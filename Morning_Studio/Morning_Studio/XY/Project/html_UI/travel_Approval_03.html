@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 基本样式 -->
+    <link href="../../Content/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap-3.3.7-dist/css/button.css" rel="stylesheet" />
+    <link href="../../CSS/Stley.css" rel="stylesheet" />
+    <title>流程待办</title>
+</head>
+<body>
+    <div id="Overall" class="container">
+        <!-- title部分 -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h2>外部出差申请</h2>
+            </div>
+        </div>
+
+        <!-- 查询输入部分 -->
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <div class="input-group">
+                    <label class="input-group-addon">申请者:</label>
+                    <input type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="input-group" style="position:relative">
+                    <label class="input-group-addon">项目名称</label>
+                    <div class="" style="position:relative">
+                        <input type="text" value="" placeholder="请选择" class="form-control" id="selectType" />
+                        <span class="glyphicon glyphicon-triangle-bottom" style="position:absolute;right:7px; top:11px; z-index:20"></span>
+                    </div>
+                    <ul class="list-group" id="select_ulType" style="position:absolute;top:35px; z-index:1;width:200px;">
+                        <li class="list-group-item">拜访黄经理</li>
+                        <li class="list-group-item">参加肖氏集团的谈判</li>
+                        <li class="list-group-item">出国签订涉外项目</li>
+                        <li class="list-group-item">每年更123新成本</li>
+                        <li class="list-group-item">每年新成本</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="input-group">
+                    <label class="input-group-addon">所属部门</label>
+                    <div class="" style="position:relative">
+                        <input type="text" value="" placeholder="请选择" class="form-control" id="selectDep" />
+                        <span class="glyphicon glyphicon-triangle-bottom" style="position:absolute;right:7px; top:11px; z-index:20"></span>
+                    </div>
+                    <ul class="list-group" id="select_ul_Dep" style="position:absolute;top:35px; z-index:1;width:200px;" >
+                        <li class="list-group-item">项目部</li>
+                        <li class="list-group-item">事业部</li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <a href="javascript:;" id="Btn_Selct" class="button button-raised button-royal">查询</a>
+            </div>
+
+        </div>
+
+        <p></p>
+        <!-- 内容显示部分 -->
+        <div class="row">
+            <form action="#">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <table class="table table-responsive  table-hover table-striped" id="table" style="border:1px solid #d3cfcf;max-height:557px;">
+                        <thead>
+                            <tr class="bg-primary">
+                                <th>单号</th>
+                                <th>申请人姓名</th>
+                                <th>申请部门</th>
+                                <th>申请日期</th>
+                                <th>结束日期</th>
+                                <th>办理状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody_content">
+                            <tr>
+                                <td><a href="#" class="a">123466</a></td>
+                                <td><a href="#" class="a">巡航</a></td>
+                                <td>项目部</td>
+                                <td>2019-1-02</td>
+                                <td>2019-1-30</td>
+                                <td>已提交</td>
+                                <td>
+                                    <button class="btn bg-success">办理</button>
+                                    <button class="btn  bg-danger">删除</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="a">123466</a></td>
+                                <td><a href="#" class="a">巡航</a></td>
+                                <td>项目部</td>
+                                <td>2019-1-02</td>
+                                <td>2019-1-30</td>
+                                <td>已提交</td>
+                                <td>
+                                    <button class="btn bg-success">办理</button>
+                                    <button class="btn  bg-danger">删除</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="a">123466</a></td>
+                                <td><a href="#" class="a">巡航</a></td>
+                                <td>项目部</td>
+                                <td>2019-1-02</td>
+                                <td>2019-1-30</td>
+                                <td>已提交</td>
+                                <td>
+                                    <button class="btn bg-success">办理</button>
+                                    <button class="btn  bg-danger">删除</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><a href="#" class="a">123466</a></td>
+                                <td><a href="#" class="a">巡航</a></td>
+                                <td>项目部</td>
+                                <td>2019-1-02</td>
+                                <td>2019-1-30</td>
+                                <td>已提交</td>
+                                <td>
+                                    <button class="btn bg-success">办理</button>
+                                    <button class="btn  bg-danger">删除</button>
+                                </td>
+                            </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+
+            <div class="Jilu">
+                <span>第<strong> 一 </strong>页</span> <span> 总 <strong>7</strong> 条记录</span> 总计 <strong>20</strong> 页
+            </div>
+            <ul class="pager  navbar-right" style="margin:0px 0px 0px 0px;">
+                <li class="previous"><a href="javascript:;"><span aria-hidden="true">&larr;</span>上一页 </a></li>
+                <li>
+                    <strong class="strong_foot">第</strong>
+                    <input type="text" class="input_Page" name="name" value="1" />
+                    <strong class="strong_foot">页</strong>
+                </li>
+                <li class="next">
+                    <a href="javascript:;">下一页<span aria-hidden="true">&rarr;</span></a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <!-- JS -->
+    <script src="../../Content/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+    <script src="../../Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        //隐藏下拉框
+        $("#select_ul_Dep").hide();
+        $("#select_ulType").hide();
+
+        //显示下拉列表
+        $(function () {
+            $("#selectDep").click(function () {
+                $("#select_ul_Dep").show();
+            });
+            $("#selectType").click(function () {
+                $("#select_ulType").show();
+            });
+
+
+
+        });
+    </script>
+</body>
+</html>

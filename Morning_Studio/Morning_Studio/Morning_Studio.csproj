@@ -394,6 +394,7 @@
     <Content Include="XY\Project\html_UI\I_apply.html" />
     <Content Include="XY\Project\html_UI\travel_01.html" />
     <Content Include="XY\Project\html_UI\travel_02.html" />
+    <Content Include="XY\Project\html_UI\travel_Approval_03.html" />
     <Content Include="XY\Project\html_UI\Users.html" />
     <Content Include="YYW\Emp_car_ dispatch_record.html" />
     <Content Include="YYW\Emp_car_archives.html" />
