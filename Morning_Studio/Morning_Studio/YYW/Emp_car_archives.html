@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="style/Emp_car_archives.css" rel="stylesheet" />
+    <link href="style/public_css.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="div">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td colspan="4" style="height:60px; text-align: center;vertical-align: middle;font-size:25px;">
+                        车辆录入
+                    </td>
+                </tr>
+                <tr>
+                    <td class="zhi">登记日期：</td>
+                    <td class="dan"><input type="text" class="text" /></td>
+                    <td class="zhi">车牌号：</td>
+                    <td class="shuang"><input type="text" class="text" /></td>
+                </tr>
+                <tr>
+                    <td class="zhi" >车辆品牌：</td>
+                    <td class="dan"><input type="text" class="text"/></td>
+                    <td class="zhi">持车人：</td>
+                    <td class="shuang"><input type="text" class="text" /></td>
+                </tr>
+                <tr>
+                    <td class="zhi">所属部门：</td>
+                    <td class="dan"><input type="text" class="text" /></td>
+                    <td class="zhi">手机号：</td>
+                    <td class="shuang"><input type="text" class="text" /></td>
+                </tr>
+                <tr>
+                    <td class="zhi">车辆类型：</td>
+                    <td class="dan" colspan="3"><input type="text" class="text" /></td>
+                </tr>
+                <tr>
+                    <td class="zhi">车辆图片：</td>
+                    <td style="width:300px;height:100px;border:1px solid rgb(97,190,243)"><input type="image" id="image" src="imag/qiche.jpg" /></td>
+                    <td style="font-size:18px;color:red;width:180px;height:100px;border:1px solid rgb(97,190,243)">
+                        车辆录入成功，停车场车位编号为:
+                    </td>
+                    <td style="font-size:33px;width:300px;height:100px;border:1px solid rgb(97,190,243);text-align:center;vertical-align:middle;">B-024</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="height:60px;text-align:center;">
+                        <input type="button" value="录入" id="btn_luru" class="anniu" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height:120px;" colspan="4"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="cx_table">
+            <tr>
+                <td colspan="4" style="height:80px; text-align: center;vertical-align: middle;font-size:25px;">
+                    车辆查询
+                </td>
+            </tr>
+            <tr style="border: 1px solid rgb(97,190,243);">
+                <td style="width:80px;height:60px;"><input type="text" class="text" /></td>
+                <td style="width:800px;"><input type="button" value="查询" class="anniu" /></td>
+            </tr>
+        </table>
+        <table id="car_chaxun">
+            <tr class="car_xianshi">
+                <td>停车场编号</td>
+                <td>车牌号</td>
+                <td>车辆品牌</td>
+                <td>持车人</td>
+                <td>所属部门</td>
+                <td>手机号</td>
+                <td>车辆类型</td>
+                <td>车辆图片</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

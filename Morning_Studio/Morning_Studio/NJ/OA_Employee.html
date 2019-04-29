@@ -1,0 +1,396 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>员工入职管理</title>
+    <link href="CSS/Style.css" rel="stylesheet" />
+  
+    <link href="../Public/Public_CSS/menu.css" rel="stylesheet" />
+    <script src="../Public/Public_jquery/jquery-3.3.1.min.js"></script>
+
+    <script src="JS/Depart.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            
+            data();
+            $("#insert_Emp").click(function () {
+                $("#JobNumber1").val("2017" + createRandomId());
+                Emp_Insert();
+            })
+
+            $("#Up_Emp").click(function () {
+                UpUser();
+            })
+            $("#JobNumber1").blur(function () {
+                if ($(this).val() == '') {
+                    $("#Name1").blur(function () {
+                        $("#JobNumber1").attr("readonly", "readonly");
+                        SeUser();
+                    })
+                } else {
+                    SeUser();
+                }
+            })
+            $("#JobNumber1").focus();
+            $("#JobNumber1").val('');
+
+            $(".selects").change(function () {
+                $.ajax({
+                    url: "Handler.ashx?act=PositionTable",
+                    type: "post",
+                    dataType: "json",
+                    data: { "id": $(this).val() },
+                    success: function (str) {
+                        //$(".pos").children("option:gt(0)").remove();
+                        $(".pos").html("<option value='-1'>请选择</option>");
+                        for (var i = 0; i < str.length; i++) {
+                            var html = "<option value='" + str[i].PositionId + "' name='PositionId'>" + str[i].PositionName + "</option>";
+                            $(".pos").append($(html));
+                        }
+                    }
+                });
+            })
+        })
+        //随机产生3位数
+        function createRandomId() {
+            return (Math.random() * 1000).toString(10).substr(0, 3);
+        }
+        //添加
+        function Emp_Insert() {
+            $.ajax({
+                url: "Handler.ashx?act=EmployeeInsert",
+                type: "post",
+                dataType: "json",
+                data: $("#formUser").serialize(),
+                success: function (str) {
+                    if (code = 200) {
+                        alert(str.msg);
+                    } else {
+                        alert(str.msg);
+                    }
+                }
+            });
+        }
+        //本地时间
+        function data() {
+            var date = new Date();
+            var seperator1 = "-";
+            var seperator2 = ":";
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+            $("input[name='WorkStart']").val(currentdate);
+
+        }
+        //获取数据库日期
+        function Time(r) {
+            var saveDate = new Date(r);
+            var N = saveDate.getFullYear();
+            var Y = saveDate.getMonth();
+            var R = saveDate.getDate();
+            return N + "-" + Y + "-" + R;
+        }
+        //查询
+        function SeUser() {
+            $.ajax({
+                url: "Handler.ashx?act=getSeUser",
+                type: "post",
+                dataType: "json",
+                data: $("#formUser").serialize(),
+                success: function (str) {
+                    for (var i = 0; i < str.length; i++) {
+                        $("input[name='JobNumber']").val(str[i].JobNumber);
+                        $("input[name='Name']").val(str[i].Name);
+                        $("#Sex1").find("option[value ='" + str[i].Sex + "']").attr("selected", true);
+                        $("#WorkStart1").text(Time(str[i].WorkStart));
+                        $("#DepartID1").find("option[value ='" + str[i].Departmentid.DepartID + "']").attr("selected", true);
+                        $("input[name='Passwored']").val(str[i].Passwored);
+                        $(".pos").children("option").remove();
+                        $.ajax({
+                            url: "Handler.ashx?act=PositionTable",
+                            type: "post",
+                            dataType: "json",
+                            data: { "id": i + 1 },
+                            success: function (str) {
+                                $(".pos").children("option:gt(0)").remove();
+                                for (var i = 0; i < str.length; i++) {
+                                    var html = "<option value='" + str[i].PositionId + "' name='PositionId'>" + str[i].PositionName + "</option>";
+                                    $(".pos").append($(html));
+                                }
+                            }
+                        });
+
+                        $("input[name='Brithday']").text(Time(str[i].Brithday));
+                        $("input[name='Phone']").val(str[i].Phone);
+                        $("#stateldId1").find("option[value ='" + str[i].GZstateId.stateldId + "']").attr("selected", true);
+                        $("input[name='YGcard']").val(str[i].YGcard);
+                        $("input[name='IdCard']").val(str[i].IdCard);
+                        $("input[name='Email']").val(str[i].Email);
+                        $("input[name='Address']").val(str[i].Address);
+                        $("input[name='Dimission']").text(Time(str[i].Dimission));
+                        $("input[name='Account']").val(str[i].Account);
+                    }
+                }
+            });
+        }
+        //修改
+        function UpUser() {
+            
+            $.ajax({
+                url: "Handler.ashx?act=getUpUser",
+                type: "post",
+                dataType: "json",
+                data: $("#formUser").serialize(),
+                success: function (str) {
+                    if (str.code == 200) {
+                        alert(str.msg);
+                    } else {
+                        alert(str.msg);
+                    }
+                }
+            })
+        }
+    </script>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        select {
+            margin-left: 10px;
+        }
+
+        #div {
+            width: 100%;
+            text-align: center;
+        }
+
+            #div span, font {
+                display: inline-block;
+                font-size: 24px;
+            }
+
+            #div input {
+                /*width: 250px;
+                height: 30px;
+                margin: 15px;*/
+                margin-left: 8px;
+                height: 38px;
+                width: 300px;
+                padding-left: 5px;
+                font-size: 18px;
+                color: #808080;
+            }
+
+            #div select {
+                width: 310px;
+                height: 38px;
+            }
+
+        .OA_Information {
+            border-collapse: collapse;
+        }
+
+        #div td {
+            width: 400px;
+            text-align: right;
+            text-align: center;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+        .ziti {
+            float: right;
+        }
+
+        #div .title input {
+            width: 20px;
+            height: 20px;
+        }
+
+        #div .title label {
+            font-size: 14px;
+        }
+        /**号字体符号*/
+        .Mandatory {
+            color: red;
+        }
+        /*按钮部分*/
+        .btn_bg {
+            cursor: pointer;
+            width: 100px;
+            height: 30px;
+            background-image: url('images/btn.gif');
+        }
+
+            .btn_bg:hover {
+                cursor: pointer;
+                background-image: url('images/btn_over.gif');
+                text-shadow: 0 0 3px #808080;
+                font-size: 18px;
+            }
+    </style>
+</head>
+<body style=" background-color:rgb(241,246,255);font-family:宋体">
+    <!--代码编辑区域-->
+    <form id="formUser">
+        <div id="div" style="margin:0px auto;width:1920px;">
+            <!--员工入职管-->
+            <div style="height:35px;line-height:35px;width:100%;">
+                <h1>员工入职管理</h1>
+            </div>
+            <!--基本信息-->
+            <div id="OA_ruzhi" style="margin-top:15px;width:80%;margin:0px auto;border:1px solid #62bdef;">
+                <div style="text-align:left;border: 1px solid rgb(97, 190, 243);"><h2>基本信息</h2></div>
+                <table class="OA_Information">
+                    <tbody>
+                        <tr></tr>
+                        <tr>
+                            <td>
+                                <span class="ziti"> 工号:</span>
+                            </td>
+                            <td>
+                                <input type="text" name="JobNumber" id="JobNumber1" required="required" />
+                            </td>
+                            <td>
+                                <span class="ziti">姓名<span class="Mandatory">*</span>:</span>
+                            </td>
+                            <td>
+                                <font face="宋体">
+                                    <input type="text" name="Name" id="Name1" required="required" />
+                                </font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ziti">性别<span class="Mandatory">*</span>:</span>
+                            </td>
+
+                            <td>
+                                <select class="select_sex" name="Sex" id="Sex1">
+                                    <option value="0">请选择...</option>
+                                    <option value="男" name="Sex">男</option>
+                                    <option value="女" name="Sex">女</option>
+                                </select>
+                            </td>
+                            <td>
+                                <font face="宋体" class="ziti">受雇日期<span class="Mandatory">*</span>:</font>
+                            </td>
+
+                            <td>
+                                <input type="date" name="WorkStart" id="WorkStart1" required="required" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="BuMen">
+                                <font face="宋体" class="ziti">部门<span class="Mandatory">*</span>:</font>
+                            </td>
+                            <td>
+                                <select class="selects" name="DepartID" id="DepartID1">
+                                    <option selected="selected" value="0">请选择...</option>
+
+                                </select>
+                            </td>
+                            <td><span class="ziti">密码：</span></td>
+                            <td><input type="text" name="Passwored" id="Passwored1" required="required" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ziti"> 技术职务<span class="Mandatory">*</span>:</span>
+                            </td>
+
+                            <td>
+                                <select class="pos" name="PositionId" id="PositionId1">
+                                    <option selected="selected" value="0">请选择...</option>
+                                </select>
+                            </td>
+                            <td>
+                                <span class="ziti">身份证号<span class="Mandatory">*</span>:</span>
+                            </td>
+
+                            <td>
+                                <input type="text" name="IdCard" id="IdCard1" required="required" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <font face="宋体" class="ziti">生日:</font>
+                            </td>
+                            <td>
+                                <input type="date" value="1980-01-01" name="Brithday" id="Brithday1" required="required" />
+                            </td>
+                            <td>
+                                <font face="宋体" class="ziti">联系电话:</font>
+                            </td>
+                            <td>
+                                <input type="text" name="Phone" id="Phone1" required="required" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ziti">员工类型:</span>
+                            </td>
+                            <td>
+                                <select class="selects_type" name="stateldId" id="stateldId1">
+                                    <option value="0">所有员工</option>
+                                </select>
+                            </td>
+                            <td>
+                                <span class="ziti">银行卡号:</span>
+                            </td>
+                            <td>
+                                <input type="text" name="YGcard" id="YGcard1" required="required" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ziti">电子邮箱:</span>
+                            </td>
+                            <td>
+                                <input type="email" name="Email" id="Email1" required="required" email="t" vali />
+                            </td>
+                            <td>
+                                <font face="宋体" class="ziti"><font face="宋体"><font face="宋体">户口:</font></font></font>
+                            </td>
+                            <td>
+                                <font face="宋体">
+                                    <input type="text" name="Account" id="Account1" required="required" />
+                                </font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:290px;">
+                                <span class="ziti">地址:</span>
+                            </td>
+                            <td>
+                                <input type="text" name="Address" id="Address1" required="required" />
+                            </td>
+                            <td style="width:290px;">
+                                <span class="ziti">离职日期:</span>
+                            </td>
+                            <td>
+                                <input type="date" value="null" name="Dimission" id="Dimission1" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <input type="button" value="新增" style="width:80px;" class="btn_bg" id="insert_Emp" /><input type="button" class="btn_bg" value="修改" style="width:80px;" id="Up_Emp" />
+                <div>
+                    <input type="file" id="file1" name="file" />
+                    <input type="button" value="附件上传" id="ww" style="width:80px;right:10px;" class="btn_bg" />
+                    <img id="img1" alt="上传成功啦" src="" />
+                </div>
+                <br />
+            </div>
+        </div>
+    </form>
+</body>
+</html>

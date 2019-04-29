@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>出差申请</title>
+    <!-- 基本样式 -->
+    <link href="../../Content/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap-3.3.7-dist/css/button.css" rel="stylesheet" />
+    <link href="../../CSS/Stley.css" rel="stylesheet" />
+
+</head>
+<body id="body">
+
+    <div class="container">
+        <!-- title部分 -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h2>外部出差申请</h2>
+            </div>
+        </div>
+
+        <!-- 填写信息表单部分 -->
+        <div class="row">
+            <!-- 输入信息部分 -->
+            <form action="#" id="Insert_subFrom" class="">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="input-group-sm">
+                                    <label>申请人姓名:</label>
+                                </td>
+                                <td class="input-group-sm">
+                                    <input type="text" class="form-control" id="Apply_Name" readonly="readonly" />
+                                </td>
+                                <td class="input-group-sm">
+                                    <label>申请人编号:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="Apply_Number" required="required" />
+                                </td>
+
+                                <td>
+                                    <label>所在部门:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="Dep_ " id_Pk="" readonly="readonly" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>出发日期:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="Apply_DataKs" name="BeginTime" />
+                                </td>
+                                <td><label>终止日期:</label></td>
+                                <td>
+                                    <input type="text" class="form-control" id="Apply_DataJs" name="EndTime" />
+                                </td>
+                                <td>
+                                    <label>出差地点:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="Apply_Place" name="Adress" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>出行方式:</label></td>
+                                <td style="position:relative;">
+                                    <div style="position:relative;">
+                                        <input type="text" value="" placeholder="请选择" class="form-control" id="select_Chuxi" />
+                                        <span class="glyphicon glyphicon-triangle-bottom" style="position:absolute;right:7px; top:11px;"></span>
+                                    </div>
+                                    <ul class="list-group" id="input_ul_Fangshi" style="position:absolute;left:10px;">
+                                        <li class="list-group-item">免费 Window 空间托管</li>
+                                        <li class="list-group-item">图像的数量</li>
+                                        <li class="list-group-item">24*7 支持</li>
+                                        <li class="list-group-item">每年更新成本</li>
+                                    </ul>
+                                </td>
+                                <td class="input-group-sm">
+                                    <label>本人联系方式:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="Apply_Phone" name="Onslef_Phone" />
+                                </td>
+                                <td>
+                                    <label>出差类型:</label>
+                                </td>
+                                <td style="position:relative;">
+                                    <div class="" style="position:relative">
+                                        <input type="text" value="" placeholder="请选择" class="form-control" id="select" />
+                                        <span class="glyphicon glyphicon-triangle-bottom" style="position:absolute;right:7px; top:11px;"></span>
+                                    </div>
+                                    <ul class="list-group" id="select_ul" style="position:absolute;left:10px;">
+                                        <li class="list-group-item">每年更新成121本</li>
+                                        <li class="list-group-item">每年更新13成本</li>
+                                        <li class="list-group-item">每年更新31231成本</li>
+                                        <li class="list-group-item">每年更123新成本</li>
+                                        <li class="list-group-item">每年新成本</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>部门负责人:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="Apply_Dep_Person" name="DepName" />
+                                </td>
+                                <td>
+                                    <label>负责人联系方式:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="Apply_Person_Phone" name="DepPhone" />
+                                </td>
+                                <td>
+                                    <label>随行人员:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="Apply_AccomPerson" name="SuiXing" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>出差事宜:</label></td>
+                                <td colspan="5">
+                                    <textarea class="form-control" rows="3" id="textareaId" name="Reasons"></textarea>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label>上传附件:</label>
+                                </td>
+                                <td colspan="5" id="upload"><a href="#">上传附件</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>部门负责人意见:</label>
+                                </td>
+                                <td colspan="5">
+                                    <textarea class="form-control" rows="3" name="textarea" value=""></textarea>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label>总经理意见:</label>
+                                </td>
+                                <td colspan="5">
+                                    <textarea class="form-control" rows="3" name="textarea" value=""></textarea>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="7" class="" style="text-align:center">
+                                    <a href="javascript:;" id="btn_Preservation" class="button button-raised button-royal">提交</a>
+                                    <a href="javascript:;" id="btn_Submit" class="button button-raised button-royal" >保存</a>
+                                    <a href="javascript:;" id="btn_empty" class="button button-raised button-royal">清空</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <input type="hidden" id="userId" value="" name="UserID" />
+                </div>
+            </form>
+        </div>
+
+        <!-- table 部分 -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="panel  panel-primary">
+                    <div class="panel-heading panel-primary">我的申请</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <div class="input-group">
+                                    <label class="input-group-addon" for="txt_DepName">部门负责人:</label>
+                                    <input type="text" name="" value="" id="txt_DepName" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <div class="input-group">
+                                    <label class="input-group-addon" for="Data_Bengin">始发日期:</label>
+                                    <input type="text" name="" value="" id="Data_Bengin" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <div class="input-group">
+                                    <label class="input-group-addon" for="Data_End">终止日期:</label>
+                                    <input type="text" name="" value="" id="Data_End" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <a href="javascript:;" id="Btn_Selct" class="button button-raised button-royal">查询</a>
+                            </div>
+
+                        </div>
+                        <p></p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 tabel-info_apply">
+                                <table class="table table-responsive  table-hover" id="table">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th>申请人姓名</th>
+                                            <th>部门负责人</th>
+                                            <th>所属部门</th>
+                                            <th>始发日期</th>
+                                            <th>终止日期</th>
+                                            <th>申请状态</th>
+                                            <th>操作详情</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="#">申请人姓名</a></td>
+                                            <td>20176945</td>
+                                            <td>项目部</td>
+                                            <td>1999-09-10</td>
+                                            <td>1999-09-10</td>
+                                            <td>已提交</td>
+                                            <td>
+                                                <button class="btn bg-success">查看详情</button>
+                                                <button class="btn  bg-danger">删除</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">申请人姓名</a></td>
+                                            <td>20176945</td>
+                                            <td>项目部</td>
+                                            <td>1999-09-10</td>
+                                            <td>1999-09-10</td>
+                                            <td>已提交</td>
+                                            <td>
+                                                <button class="btn bg-success">查看详情</button>
+                                                <button class="btn  bg-danger">删除</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">申请人姓名</a></td>
+                                            <td>20176945</td>
+                                            <td>项目部</td>
+                                            <td>1999-09-10</td>
+                                            <td>1999-09-10</td>
+                                            <td>已提交</td>
+                                            <td>
+                                                <button class="btn bg-success">查看详情</button>
+                                                <button class="btn  bg-danger">删除</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">申请人姓名</a></td>
+                                            <td>20176945</td>
+                                            <td>项目部</td>
+                                            <td>1999-09-10</td>
+                                            <td>1999-09-10</td>
+                                            <td>已提交</td>
+                                            <td>
+                                                <button class="btn bg-success">查看详情</button>
+                                                <button class="btn  bg-danger">删除</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">申请人姓名</a></td>
+                                            <td>20176945</td>
+                                            <td>项目部</td>
+                                            <td>1999-09-10</td>
+                                            <td>1999-09-10</td>
+                                            <td>已提交</td>
+                                            <td>
+                                                <button class="btn bg-success">查看详情</button>
+                                                <button class="btn  bg-danger">删除</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">申请人姓名</a></td>
+                                            <td>20176945</td>
+                                            <td>项目部</td>
+                                            <td>1999-09-10</td>
+                                            <td>1999-09-10</td>
+                                            <td>已提交</td>
+                                            <td>
+                                                <button class="btn bg-success">查看详情</button>
+                                                <button class="btn  bg-danger">删除</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">申请人姓名</a></td>
+                                            <td>20176945</td>
+                                            <td>项目部</td>
+                                            <td>1999-09-10</td>
+                                            <td>1999-09-10</td>
+                                            <td>已提交</td>
+                                            <td>
+                                                <button class="btn bg-success">查看详情</button>
+                                                <button class="btn  bg-danger">删除</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="Jilu">
+                                    <span>第<strong> 一 </strong>页</span> <span> 总 <strong>7</strong> 条记录</span> 总计 <strong>20</strong> 页
+                                </div>
+                                <ul class="pager  navbar-right" style="margin:0px 0px 0px 0px;">
+                                    <li class="previous"><a href="javascript:;"><span aria-hidden="true">&larr;</span>上一页 </a></li>
+                                    <li>
+                                        <strong class="strong_foot">第</strong>
+                                        <input type="text" class="input_Page" name="name" value="1" />
+                                        <strong class="strong_foot">页</strong>
+                                    </li>
+                                    <li class="next">
+                                        <a href="javascript:;">下一页<span aria-hidden="true">&rarr;</span></a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- 页面代号e  申请类型的为 01-->
+    <!-- 页面代号  修改类型的为 02-->
+    <!-- 页面代号  审批类型的为 03-->
+    <!-- 页面代号  查看本人所有申请为 001-->
+
+
+    <script src="../../Content/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+    <script src="../../Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        //隐藏下拉框
+        $("#select_ul").hide();
+        $("#input_ul_Fangshi").hide();
+        $(function () {
+            $("#select").click(function () {
+                $("#select_ul").show();
+            });
+            $("#select_Chuxi").click(function () {
+                $("#input_ul_Fangshi").show();
+            });
+
+
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>权限设置</title>
+    <link href="CSS/MenuPermissions.css" rel="stylesheet" />
+    <link href="CSS/Style.css" rel="stylesheet" />
+    <script src="../Public/Public_jquery/jquery-3.3.1.min.js"></script>
+    <script src="JS/Depart.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_select").click(function () {
+                var curr = $(".txt_chaxu").val();
+                var dep = $(".selects").val();
+                var pos = $(".pos").val();
+                $("#tbody_two").find("td").remove();
+                $.ajax({
+                    url: "Handler.ashx?act=getManagement",
+                    type: "post",
+                    dataType: "json",
+                    data: { "curr": curr, "dep": dep, "pos": pos },
+                    success: function (str) {
+                        for (var i = 0; i < str.length; i++) {
+                            var html = "<tr>" +
+                                "<td>" + str[i].JobNumber + "</td>" +
+                                "<td>" + str[i].Name + "</td>" +
+                                "<td>" + str[i].Dutyud.PositionName + "</td>" +
+                                "<td>" + str[i].Departmentid.DepartName + "</td>" +
+                                "<td width='300'><a href='PermissionSettings.html?" + str[i].JobNumber + "' target='_self' class='a_details'>查看详情</a><span style='margin - left: 10px; '> </span><a href='javascript: ; ' name='del' class='a_Del'>删除</a></td>" +
+                                "</tr>";
+                            $("#tbody_two").append($(html));
+                        }
+                    }
+                })
+
+            })
+            $("#tbody_two").on("click", ".a_Del", function () {
+                $.ajax({
+                    url: "Handler.ashx?act=getUpnabage",
+                    type: "post",
+                    dataType: "json",
+                    data: { "job": job },
+                    success: function (str) {
+                        if (str.code == 200) {
+                            alert(str.msg);
+                        } else {
+                            alert(str.msg);
+                        }
+                    }
+                })
+            })
+        });
+
+    </script>
+</head>
+<body>
+    <div id="main_page" class="PageDiv">
+        <!-- 输入信息部分 -->
+        <form id="form">
+            <div class="fenGe" style="font-size:24px;font:宋体;">
+                权限管理
+
+            </div>
+            <div class="chaxuDiv">
+                <label>工号/姓名:</label><input type="text" class="txt_chaxu">
+                <label class="lable_font">部门：</label>
+                <select class="selects" id="">
+                    <option>
+                        请选择
+                    </option>
+                </select>
+                <label class="lable_font">职务：</label>
+                <select class="pos">
+                    <option value="0">
+                        请选择
+                    </option>
+                </select>
+                <input type="button" value="查询" class="btn_bg" id="btn_select" style="height:40px;font-size:20px;" />
+            </div>
+        </form>
+        <form id="select_infrom" style="margin:auto">
+            <table id="table_two" style="width:1390px;">
+                <thead id="thead_two">
+                    <tr>
+                        <th><span>工号</span></th>
+                        <th><span>姓名</span></th>
+                        <th><span>职务</span></th>
+                        <th><span>部门</span></th>
+                        <th style="width:250px;">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_two"></tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="10">
+                            <div style="border:0px;text-align:right;font-size:24px;">
+                                <span>当前第:</span>
+                                <span>1</span>
+                                <span>页/共:</span>
+                                <span>3</span>
+                                <span>页</span>
+                                <a href="#"><span>下一页</span></a>
+                                <a href="#">尾页</a>
+                                <span>转到第</span>
+                                <input type="text" value="1" style="width:50px;">
+                                <span>页</span>
+                                <a href="#">GO</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </form>
+    </div>
+
+</body>
+</html>

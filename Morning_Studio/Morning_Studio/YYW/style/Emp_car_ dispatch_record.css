@@ -1,0 +1,25 @@
+﻿/*编译区样式开始*/
+.table {
+    width: 1200px;
+    margin: 0px auto;
+    border-collapse: collapse;
+    table-layout:auto;
+    border: 1px solid rgb(97,190,243);
+}
+    .table > tbody:nth-of-type(1) > tr>td {
+        height: 60px;
+        width: 1200px;        
+        text-align: center;
+        vertical-align: middle;
+        font-size: 25px;
+        border: 1px solid rgb(97,190,243);
+    }
+        .table > tbody:nth-of-type(2) > tr > td {
+            height: 60px;
+            width: 110px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 20px;
+            border: 1px solid rgb(97,190,243);
+        }
+/*编译区样式结束*/

@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="../Public/Public_jquery/jquery-3.3.1.min.js"></script>
+    <title></title>
+    <script type="text/javascript">
+        $(function () {
+            //alert(location.search.substring(1));
+            $.ajax({
+                url: "Handler.ashx?act=getQX",
+                type: "post",
+                dataType: "json",
+                data: $("#from").serialize(),
+                success: function (str) {
+                    for (var i = 0; i < str.length; i++) {
+                        var html = "<div class='Setting_one'>";
+                        html += "<div>";
+                        html += "<input type='checkbox'  value='" + str[i].PermissiosID + "'/> <label>" + str[i].PermissiosName + "</label>";
+                        html += "</div>";
+                        html += "<div class='Setting_two'>";
+                        for (var j = 0; j < str[i].PermissiosName2.length; j++) {
+                            html += "<span>";
+                            html += "<input type = 'checkbox' value='" + str[i].PermissiosName2[j].PermissiosID + "' name='role'/> <label>" + str[i].PermissiosName2[j].PermissiosName1 + "</label>";
+                            html += "</span>";
+                        }
+                        html += "</div>";
+                        html += "</div>";
+                        $(".table_two").append($(html));
+                    }
+                    
+                    $.ajax({
+                        url: "Handler.ashx?act=getSttings",
+                        type: "post",
+                        dataType: "json",
+                        data: { "mucc": location.search.substring(1) },
+                        success: function (str) {
+                            for (var i = 0; i < str.length; i++) {
+                                $(":checkbox[value='" + str[i].PermissiosID.PermissiosID + "']").prop("checked", "checked");
+                            }
+                        }
+                    });
+
+                    $.ajax({
+                        url: "Handler.ashx?act=gerPermissions",
+                        type: "post",
+                        dataType: "json",
+                        data: { "mucc": location.search.substring(1) },
+                        success: function (str) {
+                            for (var i = 0; i < str.length; i++) {
+                                $(":checkbox[value='" + str[i].PermissiosID.PermissiosID + "']").prop("checked", "checked");
+                            }
+                        }
+                    });
+
+                    $(":checkbox").change(function () {
+                        if ($(this).prop("checked") != true) {
+                            $.ajax({
+                                url: "Handler.ashx?act=getDelPer",
+                                type: "post",
+                                dataType: "json",
+                                data: { "mucc": location.search.substring(1), "bumen": $(this).val() },
+                                success: function (str) {
+                                    if (str.code == 200) {
+                                        alert(str.msg);
+                                    } else {
+                                        alert(str.msg);
+                                    }
+                                }
+                            });
+                        } else {
+                            $.ajax({
+                                url: "Handler.ashx?act=getInper",
+                                type: "post",
+                                dataType: "json",
+                                data: { "mucc": location.search.substring(1), "bumen": $(this).val() },
+                                success: function (str) {
+                                    if (str.code == 200) {
+                                        alert(str.msg);
+                                    } else {
+                                        alert(str.msg);
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+           
+        })
+    </script>
+    <style>
+        .table_two {
+            border-collapse: collapse;
+            margin: 0px auto;
+            border: 0px solid rgb(97, 190, 243);
+            width: 1360px;
+            table-layout: auto;
+        }
+
+        .fenGe {
+            margin: 0px auto;
+            background-color: rgb(97, 190, 243);
+            width: 1340px;
+            height: 40px;
+            font-size: 25px;
+            line-height: 40px;
+            padding-left: 30px;
+        }
+
+        .Setting_one {
+            line-height: 30px;
+            border: 1px solid rgb(97, 190, 243);
+            padding: 0px 15px 10px 0px;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+
+        span {
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <form id="from">
+        <div>
+            <div class="table_two">
+                <div class="fenGe" style="font-size:24px;font:宋体;">
+                    权限设置
+                </div>
+
+            </div>
+        </div>
+    </form>
+</body>
+</html>

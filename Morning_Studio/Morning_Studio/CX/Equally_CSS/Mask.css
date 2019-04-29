@@ -1,0 +1,78 @@
+﻿.Mask_z {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #666666;
+    opacity: 0.5;
+    z-index: 200;
+    display:none;
+}
+
+
+/*选择地点*/
+.content_div {
+    display: none;
+    position: absolute;
+    left: 500px;
+    width: 800px;
+    height: 600px;
+    margin: auto;
+    z-index: 201;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.guojia_select {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-bottom: 1px solid rgb(97, 190, 243);
+}
+
+.tetlie {
+    font-size: 20px;
+}
+
+/*Ctiy内容*/
+.cityDiv {
+    width: 100%;
+    height: 100px;
+    line-height: 70px;
+    text-align: center;
+    padding-top:20px;
+    
+}
+
+.txt_city {
+    width: 280px;
+    height: 30px;
+    padding-left: 5px;
+    font-size: 18px;
+}
+
+/*a链接 按钮*/
+.btn_divCity {
+    margin-top: 300px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.btn_qding, .btn_quxiao {
+    margin-left: 25%;
+    text-align: center;
+    float: left;
+    display: block;
+    width: 80px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 10px;
+    border: 1px solid rgb(97, 190, 243);
+}
+    .btn_qding:hover,.btn_quxiao:hover {
+        cursor: pointer;
+    }

@@ -1,0 +1,511 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>部门维护</title>
+    <link href="../Public_CSS/menu.css" rel="stylesheet" />
+    <link href="../Equally_CSS/Style.css" rel="stylesheet" />
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/jquery-1.3.2.min.js"></script>
+    <script src="../js/jquery-1.7.2.min.js"></script>
+    <script src="../js/Depart.js"></script>
+    <style>
+        body {
+            font-family: 宋体;
+            padding-left: 1px;
+            padding-right: 1px;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+
+        #travel_head {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+            #travel_head span.travel_shengqi {
+                font-size: 25px;
+                font-weight: bold;
+            }
+
+        #travel_table .tbody_td tr td {
+            border: 1px solid rgb(97, 190, 243);
+            width: 270px;
+        }
+
+        .a1 {
+            height: 50px;
+            font-size: 18px;
+            text-align: right;
+        }
+
+        .a2 {
+            background-color: white;
+        }
+
+            .a2 .txt {
+                padding-left: 5px;
+                margin-left: 8px;
+                width: 90%;
+                height: 30px;
+                font-size: 20px;
+                color: #808080;
+            }
+
+            .a2 .select_txt, #table_two .txt_chaxu {
+                font-size: 18px;
+                color: #808080;
+                margin-left: 8px;
+                width: 219px;
+                height: 34px;
+            }
+
+        .txt_chuchaisy {
+            padding-left: 5px;
+            font-size: 20px;
+            color: #808080;
+            margin-left: 8px;
+            width: 97%;
+            height: 80px;
+        }
+
+        .btn {
+            text-align: center;
+            vertical-align: central;
+        }
+        /*按钮部分*/
+        .image_btn {
+            width: 100px;
+            height: 30px;
+            background-image: url('../images/btn.gif');
+        }
+
+        .select_img {
+            width: 78px;
+            height: 28px;
+            font-size: 15px;
+        }
+        /*高亮显示*/
+        .image_btn:hover {
+            border: 1px solid #30cc9a;
+            font-size: 20px;
+            color: #30cc9a;
+            text-shadow: 0 0 3px #30cc9a;
+            background-image: url('../images/btn_over.gif');
+        }
+
+        .btn_q {
+            cursor: pointer;
+            background-color: #f9f7f9;
+            width: 100px;
+            height: 27px;
+            vertical-align: central;
+            border-radius: 30px;
+            border: 1px solid #808080;
+            font-size: 18px;
+            color: #808080;
+            font-weight: bold;
+        }
+        /*table_two部分*/
+        .jiangge {
+            margin-top: 10px;
+            width: 100%;
+            height: 40px;
+        }
+
+        .fenGe {
+            margin: 0px auto;
+            background-color: rgb(97, 190, 243);
+            width: 1360px;
+            height: 40px;
+            font-size: 18px;
+            line-height: 40px;
+            padding-left: 30px;
+        }
+
+        #table_two {
+            border-collapse: collapse;
+            margin: 0px auto;
+            border: 1px solid rgb(97, 190, 243);
+            width: 1340px;
+            table-layout: auto;
+        }
+
+        .chaxuDiv {
+            position: relative;
+            margin: 0px auto;
+            width: 1370px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+            .chaxuDiv .txt_chaxu {
+                padding-left: 5px;
+                margin-left: 8px;
+                width: 200px;
+                height: 30px;
+                font-size: 20px;
+                color: #808080;
+            }
+
+            .chaxuDiv .img_btn {
+                margin-left: 10px;
+                position: absolute;
+                width: 80px;
+                height: 40px;
+                top: 5px;
+            }
+
+            .chaxuDiv label {
+                font-size: 18px;
+            }
+
+        #thead_two tr th {
+            background-image: url('../images/thbg.gif');
+            height: 30px;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+        #tbody_two tr td {
+            border: 1px solid rgb(97, 190, 243);
+            height: 35px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            #tbody_two tr td a.a {
+                color: red;
+            }
+
+        .a_details, .a_Del {
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .a_details {
+            background-image: url('../images/icon.png');
+            background-repeat: no-repeat;
+            background-position: -1px -1px;
+            width: 110px;
+        }
+
+        .a_Del {
+            background-image: url('../images/icon.png');
+            background-repeat: no-repeat;
+            background-position: -1px -1px;
+            width: 80px;
+        }
+
+        .btn_bg {
+            cursor: pointer;
+            width: 100px;
+            height: 30px;
+            background-image: url('../images/btn.gif');
+        }
+
+            .btn_bg:hover {
+                cursor: pointer;
+                background-image: url('../images/btn_over.gif');
+                text-shadow: 0 0 3px #808080;
+                font-size: 18px;
+            }
+        /*下拉框*/
+        .select,.gonghao {
+            padding-left: 5px;
+            margin-left: 8px;
+            /*border: 1px solid #808080;*/
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            background: url('../images/down2.png')100% 70% no-repeat scroll transparent;
+            padding-right: 14px;
+            width: 200px;
+            height: 45px;
+            border-radius: 6px;
+            font: 14px/1.5 arial;
+        }
+      
+        a {
+            color: blue;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            //动态加载数据
+            select();
+            //添加按钮事件
+            tianjia();
+            //工号/姓名下拉框
+            Jobnumber();
+            //部门下拉框
+            $.ajax({
+                url: "../CX_Handler.ashx?act=Depart",
+                type: "post",
+                dataType: "json",
+                success: function (str) {
+                    for (var i = 0; i < str.length; i++) {
+                        var html = "<option value='" + str[i].DepartID + "'>" + str[i].DepartName + "</option>";
+                        $(".depart").append($(html));
+                    }
+                }
+            });
+           
+        });
+       //工号/姓名下拉框
+        function Jobnumber() {
+            $.ajax({
+                url: "../CX_Handler.ashx?act=DepartUSERS",
+                type: "post",
+                dataType: "json",
+                success: function (a) {
+                    for (var i = 0; i < a.length; i++) {
+                        var html = "<option value='" + a[i].UserID + "'>" + a[i].JobNumber + "</option>";
+                        $(".gonghao").append($(html));
+                    }
+                }
+            });
+        }
+
+        function select() {
+            $.ajax({
+                url: "../CX_Handler.ashx?act=GetUsers",
+                type: "post",
+                dataType: "json",
+                success: function (str) {
+                    for (var i = 0; i < str.length; i++) {
+                        var html = "<tr>" +
+                            "<td>" + str[i].Departmentid.DepartID + "</td>" +
+                            "<td>" + str[i].Departmentid.DepartName + "</td>" +
+                            "<td>" + str[i].Dutyud.PositionName + "</td>" +
+                            "<td>" + str[i].JobNumber + "</td>" +
+                            "<td>" + str[i].Name + "</td>" +
+                            "<td><a style='margin-left: 10px; cursor: pointer; ' class='bianji' curr='" + str[i].DepartID + "'>编辑 </a></td>" +
+                            "</tr >";
+                        $("#tbody_two").append($(html));
+                    }
+                }
+            });
+        }
+
+        //对话框的位置
+        function setDia() {
+            var $wobj = $(window);
+            var $dobj = $(window);
+            var widW = $wobj.width();
+            var widH = $wobj.height();
+            var diaW = $dobj.width();
+            var diaH = $dobj.height();
+            //计算提示框居中时的左边距
+            var left = (widW - diaW) / 2;
+            //计算提示框居中时的上边距
+            var top = (widH - diaH) / 2;
+            $dobj.css({ "left": left, "top": top });
+        }
+
+        //遮罩层
+        function showmask() {
+            var Ht = $("body").height();
+            var Wt = $("body").width();
+            $(".mask").css({
+                height: Ht +2000+ "px",
+                width: Wt +2000+ "px",
+                display: "block"
+            });
+            setDia();
+        }
+
+        //添加按钮
+        function tianjia() {
+            $("#select_xz").click(function () {
+                $(".panelwindow").show();
+                setDia(); showmask();
+              
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <div id="main_page" class="PageDiv">
+        <!-- 输入信息部分 -->
+        <form action="#">
+            <div id="travel_head"><span class="travel_shengqi">编辑信息</span></div>
+        </form>
+        <div class="jiangge">
+            <div class="fenGe">
+                部门查询   <span style="margin-left:1150px;border:1px solid #000;border-radius: 6px;text-align:center;" class="btn_bg" id="btn_Up">
+                    <a id="select_xz" style="font-size:18px;padding:2px 10px;">
+                        <img src="../images/ico01.png" />
+                        新增
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div class="chaxuDiv" style="position:relative">
+            <label>部门名称:</label>
+            <select class="depart">
+                <option selected="selected" value="0">所有部门</option>
+
+            </select>
+
+            <span style="margin-left:20px;"></span>
+            <input type="button" value="查询" class="btn_bg" style="height:40px;font-size:20px;" />
+        </div>
+        <form id="select_infrom" style="margin:auto">
+            <table id="table_two" style="width:1390px;">
+                <thead id="thead_two">
+                    <tr>
+                        <th>部门ID</th>
+                        <th>部门名称</th>
+                        <th>工号</th>
+                        <th>姓名</th>
+                        <th>职位</th>
+                        <th style="width:250px;">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_two"></tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="10">
+                            <div style="border:0px;text-align:right;font-size:24px;">
+                                <span>当前第:</span>
+                                <span>1</span>
+                                <span>页/共:</span>
+                                <span>3</span>
+                                <span>页</span>
+                                <a href="#"><span>下一页</span></a>
+                                <a href="#">尾页</a>
+                                <span>转到第</span>
+                                <input type="text" value="1" style="width:50px;">
+                                <span>页</span>
+                                <a href="#">GO</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="Content" style="border:1px solid #d3caca;height:160px;width:380px;position:relative;margin:auto;left:510px;top:-100px;display:none;">
+                <table>
+                    <tr>
+                        <td class="a1">菜单名称:</td>
+                        <td class="a2">
+                            <input type="text" class="txt" style="width:260px;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="a1">一级菜单:</td>
+                        <td class="a2">
+
+                            <input type="text" class="txt" style="width:260px;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="a1">二级菜单:</td>
+                        <td class="a2">
+
+                            <input type="text" class="txt" style="width:260px;" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div><div class="mask"></div>
+    <div class="panelwindow" id="dialog"  style="display:none; border:1px solid rgb(97, 190, 243); width: 320px;position:absolute; left:1400px; top:200px; z-index: 9002;line-height:40px;background:#d9ebf5;margin:0px auto;">
+        <div class="jurisdict_title" style="width:320px;">
+            <div class="panel-title" style="height:45px;line-height:45px;">
+                <span>部门维护<img src="../images/close4.png" style="margin-left:210px;" /></span>
+            </div>
+        </div>
+        <div id="mdialog" title="" class="" style="width:318px;border:1px solid #8fc6ea;">
+            <div id="mdi_center" style="padding:25px 0px;">
+                <div class="d">
+                    <label for="name">工&nbsp;&nbsp;&nbsp;号:</label>
+                    <select class="gonghao">
+                        <option value="0">
+                            请选择
+                        </option>
+                    </select>
+                   </div>
+                <div class="d">
+                    <label>部门&nbsp;名称:</label>
+                    <input type="text" id="txt_murr" style="width:190px;height:30px;border-radius:6px;margin-left:10px;" />
+                </div>
+
+            </div>
+            <div style="background:#ede0e0;width:315px;height:40px;">
+                <input type="button" value="保存" class="jurisdict_btn" style="height:30px;font-size:20px;margin-left:150px;" />
+                <input type="button" value="关闭" class="jurisdict_btn" style="height:30px;font-size:20px;" />
+            </div>
+        </div>
+    </div>
+    <style>
+        .mask { /*遮罩层*/
+            background-color:#808080;
+            left: 0;
+            position: absolute;
+            top: 0;
+            z-index: 100;
+            filter: alpha(opacity=30);
+            opacity: 0.3;
+        }
+
+       #dialog {
+            width: 296px;
+            height: 173px;
+            position: absolute;
+            z-index: 101;
+        }
+
+     
+
+       
+        /*按钮部分*/
+        .jurisdict_btn {
+            cursor: pointer;
+            width: 60px;
+            height: 40px;
+            background-image: url('../images/btn.gif');
+            margin-top: 5px;
+        }
+
+            .jurisdict_btn:hover {
+                cursor: pointer;
+                background-image: url('../images/btn_over.gif');
+                text-shadow: 0 0 3px #808080;
+                font-size: 18px;
+            }
+
+        .jurisdict_title {
+            background-color: #8fc6ea;
+        }
+
+        .panel-title {
+            font-weight: bold;
+            font-family: 宋体;
+        }
+
+        .jusis_selects {
+            padding-left: 5px;
+            margin-left: 8px;
+            /*border: 1px solid #808080;*/
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            background: url('images/down2.png')100% 70% no-repeat scroll transparent;
+            padding-right: 14px;
+            width: 200px;
+            height: 30px;
+            border-radius: 6px;
+            font: 14px/1.5 arial;
+        }
+    </style>
+</body>
+</html>

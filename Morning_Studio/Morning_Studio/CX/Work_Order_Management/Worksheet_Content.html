@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>工作单创建详情查看</title>
+    <style>
+        body {
+            font-family: 宋体;
+            padding-left: 1px;
+            padding-right: 1px;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .PageDiv {
+            height: auto;
+        }
+
+        .table_one {
+            border-collapse: collapse;
+            margin: 0px auto;
+            border: 1px solid rgb(97, 190, 243);
+            width: 1360px;
+            height: 560px;
+            table-layout: auto;
+        }
+
+        #travel_table .travel_tr {
+            width: 100%;
+            height: 40px;
+            font-size: 18px;
+            line-height: 40px;
+        }
+
+        #travel_head {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+            #travel_head span.travel_shengqi {
+                font-size:30px;
+                font-weight: bold;
+            }
+
+        #travel_table .tbody_td tr td {
+            border: 1px solid rgb(97, 190, 243);
+            width: 200px;
+        }
+
+        #tbody_content tr td {
+            border: 1px solid rgb(97, 190, 243);
+        }
+        /*table_two部分*/
+        .jiangge {
+            margin-top: 10px;
+            width: 100%;
+            height: 40px;
+        }
+
+        .fenGe {
+            margin: 0px auto;
+            background-color: rgb(97, 190, 243);
+            width: 1330px;
+            height: 40px;
+            font-size: 18px;
+            line-height: 40px;
+            padding-left: 30px;
+        }
+
+        #table_two {
+            border-collapse: collapse;
+            margin: 0px auto;
+            border: 1px solid rgb(97, 190, 243);
+            width: 1360px;
+            table-layout: auto;
+        }
+
+        .chaxuDiv {
+            position: relative;
+            margin: 0px auto;
+            width: 1360px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+            .chaxuDiv .txt_chaxu {
+                padding-left: 5px;
+                margin-left: 8px;
+                width: 200px;
+                height: 30px;
+                font-size: 20px;
+                color: #808080;
+            }
+
+            .chaxuDiv .img_btn {
+                margin-left: 10px;
+                position: absolute;
+                width: 80px;
+                height: 40px;
+                top: 5px;
+            }
+
+            .chaxuDiv label {
+                font-size: 18px;
+            }
+
+        #thead_two tr th {
+            background-image: url('../images/thbg.gif');
+            height: 40px;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+        #tbody_two tr td {
+            border: 1px solid rgb(97, 190, 243);
+            height: 40px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            #tbody_two tr td a.a {
+                color: red;
+            }
+
+        .a_details, .a_Del {
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .a_details {
+            background-image: url('../images/icon.png');
+            background-repeat: no-repeat;
+            background-position: -1px -1px;
+            width: 110px;
+        }
+
+        .a_Del {
+            background-image: url('../images/icon.png');
+            background-repeat: no-repeat;
+            background-position: -1px -1px;
+            width: 80px;
+        }
+        /*上传文件*/
+        #upload {
+            padding-left: 350px;
+            color: rgb(97, 190, 243);
+        }
+    </style>
+    <link href="../Equally_CSS/Style.css" rel="stylesheet" />
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/jquery-1.7.2.min.js"></script>
+    <script src="../js/ajaxfileupload.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "../CX_Handler.ashx?act=GetCha",
+                type: "get",
+                dataType: "json",
+                success: function (a) {
+                    for (var i = 0; i < a.length; i++) {  
+                        var my_html =
+                            '<tr>' +
+                            '<td>' + a[i].WorkOrderNumber + '</td>' +
+                            '<td>' + a[i].ResponsiblePerson + '</td>' +
+                            '<td>' + a[i].WorkCreatNumber + '</td>' +
+                            '<td>' + gettime(a[i].WorksheetCreatDate) + '</td>' +
+                            '<td>' + a[i].WorkDealPeople + '</td>' +
+                            '<td>' + a[i].WorkUploadType + '</td>' +
+                            '<td>' + a[i].MyProWorkDescribleperty + '</td>' +
+                            '<td>' + a[i].WorkState + '</td>' +
+                            '<td>' + gettime(a[i].WorkDueTime) + '</td>' +
+                            '<td>' + a[i].WorkDueDeal + '</td>' +
+                            '<td>' + a[i].WorkTaskName + '</td>' +
+                            '<td>' + a[i].WorkReminderlevel + '</td>' +
+                            '<td>' + a[i].WorkReminderTime + '</td>' +
+                            '<td><a href="javascript:;" class="a_details"  update="' + a[i].WorksheetID + '">查看详情</a></td>' +
+                            '</tr >';
+
+                        $("#tbody_content").append($(my_html));
+                    }
+                }
+            });
+            //查看详情
+            $("#tbody_content").on("click", ".a_details", function () {
+                var id = $(this).attr("update");
+             
+                window.localStorage.setItem("WorksheetID", id);//键是自定义的
+                window.open("Worksheet_Process.html");
+            });
+        });
+        //表格显示数据年月日
+        function gettime(t) {
+            var _time = new Date(t);
+            var year = _time.getFullYear();//2017
+            var month = _time.getMonth() + 1;//7
+            var date = _time.getDate();//10
+            return year + "年" + month + "月" + date + "日   ";//这里自己按自己需要的格式拼接
+        }
+
+
+        //工作单创建明细加载数据库
+        function Select_table() {
+            var work_idcard = $("#work_idcard").val();
+            var work_names = $("#work_names").val();
+            $.ajax({
+                url: "../CX_Handler.ashx?act=WorkGetList",
+                type: "get",
+                dataType: "json",
+                data: { "WorkOrderNumber": work_idcard, "WorkTaskName": work_names },
+                success: function (a) {
+                    for (var i = 0; i < a.length; i++) {
+                        var my_html =
+                            '<tr>' +
+                            '<td>' + a[i].WorkOrderNumber + '</td>' +
+                            '<td>' + a[i].ResponsiblePerson + '</td>' +
+                            '<td>' + a[i].WorkCreatNumber + '</td>' +
+                            '<td>' + a[i].WorksheetCreatDate + '</td>' +
+                            '<td>' + a[i].WorkDealPeople + '</td>' +
+                            '<td>' + a[i].WorkUploadType + '</td>' +
+                            '<td>' + a[i].MyProWorkDescribleperty + '</td>' +
+                            '<td>' + a[i].WorkState + '</td>' +
+                            '<td>' + a[i].WorkDueTime + '</td>' +
+                            '<td>' + a[i].WorkDueDeal + '</td>' +
+                            '<td>' + a[i].WorkTaskName + '</td>' +
+                            '<td>' + a[i].WorkReminderlevel + '</td>' +
+                            '<td>' + a[i].WorkReminderTime + '</td>' +
+                            '<td><a href="javascript:;" target="_blank" class="a_details">查看详情</a></td>' +
+                            '</tr >';
+                        $("#tbody_content").append($(my_html));
+                        sessionStorage.setItem("WorkOrderNumber", a[i].WorkCreatNumber);
+                    }
+                }
+            });
+        }
+    </script>
+
+
+
+
+</head>
+<body>
+    <div id="main_page" class="PageDiv">
+        <!-- 显示申请信息部分 提供修改功能 -->
+        <form id="form">
+            <div id="travel_head"><span class="travel_shengqi">工&nbsp;作&nbsp;单&nbsp;创&nbsp;建&nbsp;查&nbsp;看</span></div>
+           
+        </form>
+             <div class="jiangge">
+            <div class="fenGe">创建明细</div>
+        </div>
+        <form id="select_infrom">
+            <table id="table_two" style="text-align:center;">
+                <thead id="thead_two">
+                    <tr>
+                        <th width="40">单号</th>
+                        <th width="40">责任人</th>
+                        <th width="70">创建人工号</th>
+                        <th width="100">创建日期</th>
+                        <th width="40">处理人</th>
+                        <th width="70">上传类型</th>
+                        <th width="70">描述</th>
+                        <th width="70">状态</th>
+                        <th width="100">到期时间</th>
+                        <th width="70">到期处理</th>
+                        <th width="90">任务名称</th>
+                        <th width="70">催办等级</th>
+                        <th width="70">催办时效</th>
+                        <th style="width:100px;">办公处理</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tbody_content"></tbody>
+
+            </table>
+        </form>
+    </div>
+</body>
+</html>

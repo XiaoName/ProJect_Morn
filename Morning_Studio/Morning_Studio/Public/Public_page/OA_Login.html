@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>登录</title>
+    <link href="../Public_CSS/Login.css" rel="stylesheet" />
+    <!-- Iconos -->
+    <script src="../Public_jquery/jquery-1.11.1.js"></script>
+    <script src="../Public_jquery/jquery-1.10.2.min.js"></script>
+    <script src="../Public_jquery/jquery-validate.js"></script>
+    <script src="../Public_jquery/vector.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //登陆背景函数
+            Login_Backgroud();
+
+            //验证
+            Validate();
+            //登录按钮
+            $("#entry_btn").click(function () {
+                var username = $("#entry_name").val();
+                var password = $("#entry_password").val();
+                $.ajax({
+                    url: "../Public_Hander/Handler.ashx?act=login",
+                    data: $(".form").serialize(),
+                    type: "post",
+                    dataType: "json",
+                    success: function (rs) {
+                        if (rs.UserID > 0) {                          
+                            //储存登录用户工号
+                            sessionStorage.setItem("user", username);
+                            //储存用户密码
+                            sessionStorage.setItem("pwd", password);
+                            
+                            //储存用户名字
+                            sessionStorage.setItem("username", rs.Name);
+                            //储存用户ID
+                            sessionStorage.setItem("userid", rs.UserID);
+                            //储存登陆用户部门ID
+                            sessionStorage.setItem("dep_id", rs.Departmentid.DepartID);
+                            location.href = "";
+                        }
+                        else {
+                            alert("登录失败！");
+                        }
+                    }
+                });
+            });
+
+
+        });
+        //登陆背景函数
+        function Login_Backgroud() {
+            Victor("container", "output");
+            $("#entry_name").focus();
+            $(document).keydown(function (event) {
+                if (event.keyCode == 13) {
+                    $("#entry_btn").click();
+                }
+            });
+        }
+
+        //验证
+        function Validate() {
+            $("#entry_name").blur(function () {
+                if ($("#entry_name").val() == "") {
+                    this.style.borderColor = 'red';
+                    alert("*不允许为空");
+                }
+                else {
+                    this.style.borderColor = 'green';
+                    $("#number_tshi").text("");
+                }
+            }); $("#entry_password").blur(function () {
+                if ($("#entry_password").val() == "") {
+                    this.style.borderColor = 'red';
+                    alert("*不允许为空");
+                }
+                else {
+                    this.style.borderColor = 'green';
+                    $("#pwd_tshi").text("");
+                }
+            });
+
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div id="output">
+            <div class="containerT">
+                <h1>账户登录</h1>
+                <form class="form" id="entry_form">
+                    <div>
+                        <input class="required" placeholder="admin" name="JobNumber" type="text" id="entry_name" required="required" />
+                    </div>
+                    <div>
+                        <input type="password" class="required" placeholder="密码" id="entry_password" name="Passwored" required="required" />
+                    </div>
+                    <button type="button" id="entry_btn" class="BTN_Login">登录</button>
+                    <div id="prompt" class="prompt"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

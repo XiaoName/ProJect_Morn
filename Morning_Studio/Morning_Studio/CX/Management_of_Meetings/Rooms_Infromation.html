@@ -1,0 +1,828 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>会议室管理</title>
+    <style>
+        body {
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+        }
+
+        html, body {
+            width: 1500px;
+            height: 800px;
+            margin: auto;
+        }
+
+        * {
+            font-family: arial,"ËÎÌå","Î¢ÈíÑÅºÚ",sans-serif;
+            scrollbar-face-color: #dbebfe;
+            scrollbar-shadow-color: #b8d6fa;
+            scrollbar-highlight-color: #ffffff;
+            scrollbar-3dlight-color: #dbebfe;
+            scrollbar-darkshadow-color: #458ce4;
+            scrollbar-track-color: #ffffff;
+            scrollbar-arrow-color: #458ce4;
+        }
+
+
+
+        td {
+            font-size: 12px;
+        }
+
+        input[type="text"], .date, .txt {
+            padding-left: 5px;
+            margin-left: 8px;
+            border: 1px solid #808080;
+            appearance: none;
+            /*-moz-appearance: none;*/
+            /*-webkit-appearance: none;*/
+            padding-right: 14px;
+            width: 269px;
+            height: 40px;
+            font: 14px/1.5 arial;
+        }
+
+        input[type="checkbox"] {
+            border: 1px solid #808080;
+            appearance: none;
+            /*-moz-appearance: none;
+            -webkit-appearance: none;*/
+            padding-right: 14px;
+            width: 25px;
+            height: 25px;
+            font: 14px/1.5 arial;
+        }
+
+        select {
+            padding-left: 5px;
+            margin-left: 8px;
+            border: 1px solid #808080;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            background: url('../images/down2.png')100% 70% no-repeat scroll transparent;
+            padding-right: 14px;
+            width: 290px;
+            height: 45px;
+            font: 14px/1.5 arial;
+        }
+
+
+        .btn_bg {
+            cursor: pointer;
+            width: 100px;
+            height: 30px;
+            background-image: url('../images/btn.gif');
+        }
+
+            .btn_bg:hover {
+                cursor: pointer;
+                background-image: url('../images/btn_over.gif');
+                text-shadow: 0 0 3px #808080;
+                font-size: 18px;
+            }
+        /*遮罩层*/
+        .Mask_z {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #666666;
+            opacity: 0.5;
+            z-index: 200;
+            /*display:none;*/
+        }
+
+
+        /*选择地点*/
+        .content_div {
+            /*display: none;*/
+            position: absolute;
+            left: 350px;
+            width: 1000px;
+            height: 600px;
+            margin: auto;
+            z-index: 201;
+            background-color: white;
+            font-size: 18px;
+        }
+
+        .guojia_select {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-bottom: 1px solid rgb(97, 190, 243);
+        }
+
+        #tetlie {
+            font-size: 30px;
+        }
+        /*a链接 按钮*/
+        .btn_divCity {
+            margin-top: 100px;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+        .btn_qding, .btn_quxiao {
+            margin-left: 25%;
+            text-align: center;
+            float: left;
+            display: block;
+            width: 80px;
+            height: 35px;
+            line-height: 35px;
+            border-radius: 10px;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+            .btn_qding:hover, .btn_quxiao:hover {
+                cursor: pointer;
+            }
+
+        #table_two {
+            border-collapse: collapse;
+            margin: 0px auto;
+            table-layout: auto;
+        }
+
+        #thead_two tr th {
+            background-image: url('../images/thbg.gif');
+            height: 20px;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+        #tbody_two tr td, #tbody_twoo tr td {
+            border: 1px solid rgb(97, 190, 243);
+            height: 20px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            #tbody_two tr td a.a {
+                color: red;
+            }
+        /*负责人*/
+        .AA {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #666666;
+            opacity: 0.5;
+            z-index: 200;
+        }
+
+
+        #room_inforation_people {
+            left: 200px;
+            position: relative;
+            width: 900px;
+            height: 600px;
+            margin: auto;
+            margin-top: -400px;
+            z-index: 201;
+            background-color: white;
+            border-radius: 8px;
+        }
+
+        .guojia_select {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-bottom: 1px solid rgb(97, 190, 243);
+        }
+
+        .tetlie {
+            font-size: 20px;
+        }
+
+        /*按钮部分*/
+
+
+        .txt_city {
+            width: 280px;
+            height: 30px;
+            padding-left: 5px;
+            font-size: 18px;
+        }
+
+        /*a链接 按钮*/
+        .btn_divCity {
+            margin-top: 370px;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+        .btn_qding, .btn_quxiao {
+            text-align: center;
+            float: left;
+            display: block;
+            width: 80px;
+            height: 35px;
+            line-height: 35px;
+            border-radius: 10px;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+            .btn_qding:hover, .btn_quxiao:hover {
+                cursor: pointer;
+            }
+
+        ul, li {
+            list-style: none;
+            line-height: 30px;
+        }
+
+        #lList option, #select2 option {
+            line-height: 30px;
+            height: 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+
+            .data-list li:hover, #lList option:hover, #select2 option:hover {
+                color: #252525;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+
+        .button-box {
+            float: left;
+            width: 19%;
+            height: 50%;
+            margin-top: 20%;
+        }
+
+            .button-box button {
+                background: none;
+                font-size: 16px;
+                border: 1px solid #818181;
+                color: #359bf5;
+                height: 36px;
+                line-height: 36px;
+                width: 120px;
+                margin: 10px auto;
+                display: block;
+                cursor: pointer;
+            }
+
+        .bb {
+            margin-top: 20px;
+            text-align: center;
+            float: left;
+            display: block;
+            width: 80px;
+            height: 35px;
+            line-height: 35px;
+            border-radius: 10px;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+            .bb:hover {
+                cursor: pointer;
+            }
+    </style>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="../js/jquery-1.7.2.min.js"></script>
+    <script src="../js/Rooms_Infromation.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //部门
+            Depat();
+            //本地时间
+            setInterval("getCurDate()", 100);
+            getCurDate();
+            //预约人
+            Xuanze_information();
+
+            Canle();
+            Checked();
+            //预约资源
+            equipment();
+
+            //点击返回首页
+            back_home();
+        });
+        function Depat() {
+            //部门下拉框
+            $.ajax({
+                url: "../CX_Handler.ashx?act=Depart",
+                type: "post",
+                dataType: "json",
+                success: function (str) {
+                    for (var i = 0; i < str.length; i++) {
+                        var html = "<option value='" + str[i].DepartID + "'>" + str[i].DepartName + "</option>";
+                        $(".depart").append($(html));
+                    }
+                }
+            });
+        }
+        $("#datetime").val();
+        //本地时间
+        function getCurDate() {
+            var date = new Date();
+            var seperator1 = "-";
+            var seperator2 = ":";
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate + " " + hours + seperator2 + minutes + seperator2 + seconds;
+            $("#datetime").val(currentdate);
+        }
+
+        //预约资源
+        function equipment() {
+            //部门下拉框
+            $.ajax({
+                url: "../CX_Handler.ashx?act=Rooms",
+                type: "post",
+                dataType: "json",
+                success: function (str) {
+                    for (var i = 0; i < str.length; i++) {
+                        var html = "<option value='" + str[i].ConferenceRoomID + "'>" + str[i].ConferenceRoomName + "</option>";
+                        $("#equipment").append($(html));
+                    }
+                }
+            });
+        }
+
+
+        //预约人
+        function Xuanze_information() {
+            var dep = $("#depart").val();
+            $.ajax({
+                url: "../CX_Handler.ashx?act=Rooms_Informations_OrderSelects",
+                type: "post",
+                dataType: "json",
+                success: function (str) {
+                    //alert($('#depart').find("option:selected").text());
+                    for (var i = 0; i < str.length; i++) {
+                        var html = "<tr>" +
+                            "<td><input type='checkbox' class='chek_information' /></td>" +
+                            "<td>" + str[i].JobNumber + "</td>" +
+                            "<td>" + str[i].Name + "</td>" +
+                            "<td>" + str[i].Departmentid.DepartName + "</td>" +
+                            "<td>" + str[i].Dutyud.PositionName + "</td>" +
+                            "<td>" + str[i].WorkStart + "</td>" +
+                            "</tr >";
+                        $("#tbody_twoo").append($(html));
+                    }
+                }
+
+
+            })
+            $("#two_selectcha").click(function () {
+                $("#tbody_twoo").find("td").remove();
+                $.ajax({
+                    url: "../CX_Handler.ashx?act=Rooms_InformationsOrders",
+                    type: "post",
+                    dataType: "json",
+                    data: { "DepartID": $("#depart").val() },
+                    success: function (str) {
+                        //alert($('#depart').find("option:selected").text());
+                        for (var i = 0; i < str.length; i++) {
+                            var html = "<tr>" +
+                                "<td><input type='checkbox' class='chek_information' /></td>" +
+                                "<td>" + str[i].JobNumber + "</wretd>" +
+                                "<td>" + str[i].Name + "</td>" +
+                                "<td>" + str[i].Departmentid.DepartName + "</td>" +
+                                "<td>" + str[i].Dutyud.PositionName + "</td>" +
+                                "<td>" + str[i].WorkStart + "</td>" +
+                                "</tr >";
+                            $("#tbody_twoo").append($(html));
+                        }
+                    }
+
+
+                })
+            });
+        }
+
+        function Checked() {
+            var a;
+            $(".chek_information").live("change", function () {
+                if ($(this).attr("checked") == "checked") {
+                    $(":checkbox").not($(this)).removeAttr("checked");
+                    a = $(this).parent().next().next().text();
+                }
+
+            });
+            $("#Btn_confirm").click(function () {
+                //处理人从弹框中选值
+                $("#order_user").val(a);
+                $(".Mask_z").hide();
+                $(".content_div").hide();
+            });
+        }
+        //弹框中的关闭按钮
+        function Canle() {
+            $("#Btn_cancel").click(function () {
+                $(".Mask_z").hide();
+                $(".content_div").hide();
+            });
+        }
+        //点击选择弹框页面
+        function Canle() {
+            $("#Xuanze_information").click(function () {
+                $(".Mask_z").show();
+                $(".content_div").show();
+            });
+        }
+
+        //点击返回首页
+        function back_home() {
+            $("#back_home").click(function () {
+                location.href = "../../Public/Public_page/Home.html";
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        //下拉框交换JQuery
+        $(function () {
+            bumen(); yuangong();
+            //参与成员
+            $("#cy_pople").click(function () {
+                $("#room_inforation_people").show();
+                $(".AA").show();
+            });
+            bumen(); yuangong();
+            //弹框中的关闭按钮
+            $("#cancel").click(function () {
+                $("#room_inforation_people").hide();
+                $(".AA").hide();
+            });
+
+            //移到右边
+            $('#add').click(function () {
+                //获取选中的选项，删除并追加给对方
+                $('#lList option:selected').appendTo('#select2');
+            });
+            //移到左边
+            $('#remove').click(function () {
+                $('#select2 option:selected').appendTo('#lList');
+            });
+
+            $("#confirm").click(function () {
+                $("#room_inforation_people").hide(); $(".AA").hide();
+                var a = $('#select2 option:selected').text();
+                $("#cy_pople").val(a);
+
+            });
+
+        });
+        function bumen() {
+            //部门下拉框
+            $.ajax({
+                url: "../CX_Handler.ashx?act=Depart",
+                type: "post",
+                dataType: "json",
+                success: function (str) {
+                    for (var i = 0; i < str.length; i++) {
+                        var html = '<li onclick="yuangong()" value=" ' + str[i].DepartID + '" id="bumen">' + str[i].DepartName + '</li>';
+                        $("#part").append($(html));
+                    }
+                }
+            });
+        }
+        function yuangong() {
+            $("#bumen").click(function () {
+                $.ajax({
+                    url: "../CX_Handler.ashx?act=Names",
+                    type: "post",
+                    dataType: "json",
+                    data: { "IId": $(this).val() },
+                    success: function (b) {
+                        $("#lList").find("option").remove();
+                        for (var i = 0; i < b.length; i++) {
+                            var html = "<option  id='yuangong'>" + b[i].Name + "</option>";
+                            $("#lList").append($(html));
+
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+    <table width="1200" cellspacing="0" cellpadding="0" border="0" align="center" style="border: 1px solid rgb(97, 190, 243);">
+        <tbody>
+            <tr style="border: 1px solid rgb(97, 190, 243);">
+                <td width="60%" nowrap="" height="41">
+                    <table style="font-size:12px;" width="98%" cellspacing="0" cellpadding="0" border="0" align="center">
+                        <tbody>
+                            <tr style="border: 1px solid rgb(97, 190, 243);">
+                                <td colspan="3" height="28px">
+                                    <div style=" float:left;height:20px; width:90px;">
+                                        <span style="margin-left:25px; height:28px; line-height:28px; font-weight:bold;">当日资源占用情况</span>
+                                    </div>
+                                    <div style=" background-repeat:no-repeat; float:right;height:28px; width:10px; background-position:bottom">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="8px" height="1px"></td>
+                                <td width="98%" height="50" align="center">
+                                    <table border="0" align="center">
+                                        <tbody>
+                                            <tr height="24">
+                                                <td align="center">
+                                                    <form method="post" action="booksource.asp" name="form11">
+                                                        <input type="text" width="240" name="Name" id="Name" />
+                                                        <input type="button" name="lookbtn" value="查询" id="select_name" class="btn_bg" style="margin-left:10px;" />
+                                                        <input type="button" value="返回" id="backname" class="btn_bg" style="margin-left:10px;" /><br>
+                                                        2019年3月18日的资源占用情况图（<font color="red">色带</font>表示被占用时间段）
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table bordercolorlight="" bordercolordark="" style="border-collapse: collapse;" width="98%" cellspacing="0" cellpadding="0" border="1" bgcolor="" align="center">
+                                        <tbody id="tbody_infoation">
+                                            <tr style="color:white; background-image: url('../images/btn_over.gif');" height="21" align="center">
+                                                <td width="120" style="border: 1px solid rgb(97, 190, 243);">
+                                                    <b>资源名称</b>
+                                                </td>
+                                                <td>
+                                                    <b>资源占用图例</b>
+                                                </td>
+                                                <td style="border: 1px solid rgb(97, 190, 243);">
+                                                    <b>备&nbsp;&nbsp;注</b>
+                                                </td>
+                                            </tr>
+
+                                    </table>
+                                    <font color="blue"><b>说明：</b></font><font color="gray">
+                                        色带表示该时间该段资源已被预约，
+                                        <font color="green"><b>绿色</b></font>表示已经通过审核，<font color="red"><b>红色</b></font>表示待审核。
+                                    </font><br><br>
+                                </td>
+                                <td style="background-position:right;" width="1%"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style=" background-repeat:repeat-x;" height="17">
+                                    <div style="background-repeat:no-repeat; float:left; height:17px; width:10px; background-position:left; background-position:top;"></div>
+                                    <div style=" background-repeat:no-repeat; float:right;height:17px; width:63px; background-position:right; background-position:top;">
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="font-size:12px;" width="98%" cellspacing="0" cellpadding="0" border="0" align="center">
+                        <tbody>
+                            <tr>
+                                <td colspan="3" style=" background-repeat:repeat-x;" height="28px">
+                                    <div style=" background-repeat:no-repeat; float:left; height:28px; width:240px;">
+                                        <span style="margin-left:25px; height:28px; line-height:28px; font-weight:bold;">资源预约</span>
+                                    </div>
+                                    <div style=" background-repeat:no-repeat; float:right;height:28px; width:135px; background-position:bottom">
+                                    </div><div style="float:right;margin-top:1px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="1%">
+                                <td width="98%" valign="top" height="50" align="center">
+                                    <form method="post" name="form1" action="booksource.asp">
+                                        <table style="border-collapse: collapse;" width="100%" cellspacing="0" cellpadding="0" border="1" align="center">
+                                            <tbody>
+                                                <tr height="23">
+                                                    <td width="15%" style="border: 1px solid rgb(97, 190, 243);">
+                                                        <div style="font-weight: bold" align="right">预约资源：</div>
+                                                    </td>
+                                                    <td width="35%">
+                                                        <select size="1" name="equipment" id="equipment">
+                                                            <option value="">请选择</option>
+
+                                                        </select><font color="red">*</font>
+                                                    </td>
+                                                    <td style="border: 1px solid rgb(97, 190, 243);">
+                                                        <div style="font-weight: bold" align="right">预约人：</div>
+                                                    </td>
+                                                    <td bgcolor="white">
+                                                        <input type="text" size="9" name="order_user" id="order_user" value="测试员" style="color:blue;font-weight:bold;">
+                                                        <input name="button" type="button" value="选择" id="Xuanze_information" />
+                                                    </td>
+                                                </tr>
+                                                <tr height="24">
+                                                    <td style="border: 1px solid rgb(97, 190, 243);">
+                                                        <div style="font-weight: bold" align="right">所在部门：</div>
+                                                    </td>
+                                                    <td>
+                                                        <select name="userdept" id="userdept" class="depart">
+                                                            <option value="">请选择</option>
+                                                            <option value="董事会">董事会</option>
+
+
+                                                        </select>
+                                                        <input type="hidden" name="dept_name" id="dept_name" value="信息中心">
+                                                    </td>
+                                                    <td width="15%" style="border: 1px solid rgb(97, 190, 243);">
+                                                        <div style="font-weight: bold" align="right">联系方式：</div>
+                                                    </td>
+
+                                                    <td width="35%">
+                                                        <input type="text" size="15" name="apply_user_contact" id="apply_user_contact" value="13618112200">
+                                                    </td>
+                                                </tr>
+                                                <tr height="35">
+                                                    <td nowrap="" style="border: 1px solid rgb(97, 190, 243);">
+                                                        <div align="right">会议名称：</div>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="" id="statename" />
+                                                    </td>
+                                                    <td nowrap="" style="border: 1px solid rgb(97, 190, 243);">
+                                                        <div align="right">参与人员：</div>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="" id="cy_pople" />
+                                                    </td>
+
+                                                </tr>
+                                                <tr height="24">
+                                                    <td style="border: 1px solid rgb(97, 190, 243);"><div style="font-weight: bold;" align="right">登记时间：</div></td>
+                                                    <td><input type="text" id="datetime" class="txt" readonly="readonly" style="border:0px "></td>
+                                                    <td style="border: 1px solid rgb(97, 190, 243);"><div style="font-weight: bold" align="right">登记人：</div></td>
+                                                    <td><input type="hidden" name="help_order_user" id="help_order_user" value="测试员">测试员</td>
+
+
+
+                                                </tr>
+                                                <tr height="24">
+                                                    <td nowrap="" style="border: 1px solid rgb(97, 190, 243);">
+                                                        <div style="font-weight: bold" align="right">开始使用时间：</div>
+                                                    </td>
+                                                    <td>
+                                                        <input type="date" class="date" id="statetime" />
+                                                    </td>
+                                                    <td style="border: 1px solid rgb(97, 190, 243);">
+                                                        <div style="font-weight: bold" align="right" id="endtime">结束使用时间：</div>
+                                                    </td>
+                                                    <td>
+                                                        <input type="date" class="date" />
+                                                    </td>
+                                                </tr>
+                                                <tr height="24">
+                                                    <td style="border: 1px solid rgb(97, 190, 243);" align="right"><strong>资源用途：</strong></td>
+                                                    <td colspan="3">
+                                                        <textarea rows="3" cols="58" name="purpose" id="purpose_yongtu" style=" width:88.5%;"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr height="24">
+                                                    <td style="border: 1px solid rgb(97, 190, 243);">
+                                                        <div style="font-weight: bold" align="right">资源使用备注说明：</div>
+                                                    </td>
+                                                    <td colspan="3">
+                                                        <textarea rows="3" cols="58" name="purpose" id="purpose" style=" width:88.5%;">
+                                                 </textarea><font color="red">*</font>
+                                                    </td>
+                                                </tr>
+                                                <tr height="24">
+                                                    <td style="border: 1px solid rgb(97, 190, 243);"><div style="font-weight: bold" align="right">使用备注是否公开：</div></td>
+                                                    <td colspan="3">
+                                                        <label>
+                                                            <input type="radio" name="openning" id="openning0" value="0" checked="">
+                                                            可以公开
+                                                            <input type="radio" name="openning" id="openning1" value="1">
+                                                            不公开<span style="color: #666666">（仅预约人和上级审核主管以上可见）</span>
+                                                        </label><font color="red">*</font>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <p style="padding-top:6px;">
+                                            <input type="button" name="sendme" class="btn_bg" id="sendme" value="预约资源" />&nbsp;&nbsp;&nbsp;
+                                            <input type="button" value="返回首页" class="btn_bg" id="back_home" />
+                                        </p>
+
+                                        <div align="left">
+                                            <font color="#ff3399">
+                                                <div>
+                                                    <div>注意：常规资源一律提前一天预约，特殊资源除外。</div>
+                                                </div>
+                                            </font>
+                                        </div>
+                                    </form>
+                                </td>
+                                <td style=" background-repeat:repeat-y; background-position:right;" width="1%"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="background-repeat:repeat-x;" height="9">
+                                    <div style="background-repeat:no-repeat; float:left; height:9px; width:9px; background-position:left; background-position:top;">
+                                    </div><div style="background-repeat:no-repeat; float:right;height:9px; width:8px; background-position:right; background-position:top;">
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><br>
+
+
+
+
+
+    </table>
+
+    <form id="two_cha">
+        <!-- 负责人选择内容部分 -->
+        <div class="content_div" style="top:5px; display:none;">
+            <div class="guojia_select">
+                <span id="tetlie" style="font-size:30px;">预约人</span>
+            </div>
+            <!-- 负责人  -->
+            <div class="cityDiv">
+                <label style="margin-left:300px;">部门：</label>
+                <select class="depart" id="depart" name="DepartID"></select>
+                <input type="button" value="查看" id="two_selectcha" />
+                <br />
+                <div style="overflow-x: auto; overflow-y: auto; height: 410px;scrollbar-arrow-color:aquamarine;scrollbar-base-color:#cae6f2; width:1000px;text-align:center">
+                    <table id="table_two" style="width:915px;margin-left:50px;">
+                        <thead id="thead_two">
+                            <tr>
+                                <th>选择</th>
+                                <th>工号</th>
+                                <th>姓名</th>
+                                <th>部门名称</th>
+                                <th>职位</th>
+                                <th>录入时间</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody_twoo"></tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="btn_divCity" style="text-align:center;margin-top:40px;">
+                <div id="Btn_confirm" class="btn_qding">确认</div>
+                <div id="Btn_cancel" class="btn_quxiao">取消</div>
+            </div>
+        </div>
+        <div class="Mask_z" style="display:none;"></div>
+    </form>
+
+    <!--参与人员弹出页面-->
+    <div id="room_inforation_people" style="display:none;top:-400px;left:-50px;">
+        <!-- 负责人选择内容部分 -->
+
+        <div class="guojia_select">
+            <span class="tetlie">负责人选择</span>
+        </div>
+        <!--上面部分  -->
+        <a style="margin-left:100px;height:50px;line-height:50px;">部门名称</a>
+        <a style="margin-left:200px;">姓名</a>
+        <a style="margin-left:270px;">指定人员</a>
+        <div class="cityDiv" style="margin-top:-10px;">
+            <div class="bumen_one" style="overflow-y:scroll;border:1px solid rgb(97, 190, 243);width:250px;height:400px;float:left;">
+                <ul class="data-list" id="part"></ul>
+
+            </div>
+
+            <select multiple="multiple" id="lList" style="border:1px solid rgb(97, 190, 243); width:250px;height:400px;float:left;margin-left:10px;line-height:100px; "></select>
+
+            <div style="float:left;margin-top:100px;line-height:70px;">
+                <span id="add">
+
+                    <img src="../images/redo.png" width="40" height="20" class="btn" />
+                </span><br />
+
+                <span id="remove">
+                    <img src="../images/undo.png" width="40" height="20" class="btn" />
+
+                </span>
+            </div>
+            <select multiple="multiple" id="select2" style="border:1px solid rgb(97, 190, 243);width:250px;height:400px; float:left;line-height:100px;"></select>
+        </div>
+        <div class="btn_divCity" style="">
+            <div id="confirm" class="bb" style="float:left;margin-left:-500px;margin-top:50px;">确认</div>
+            <div id="cancel" class="bb" style="margin-left:270px;float:left;">取消</div>
+        </div>
+
+    </div>
+    <div class="AA" style="display:none;"></div>
+</body>
+</html>

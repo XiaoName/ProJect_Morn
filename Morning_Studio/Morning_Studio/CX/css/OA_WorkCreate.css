@@ -1,0 +1,178 @@
+﻿a {
+text-decoration:none;
+}
+
+/*创建工作单文字*/
+.OA_content_title {
+    color: #656565;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 35px;
+    border: 1px solid #f2eded;
+}
+/*所有的input标签*/
+.OA_content input {
+    width: 270px;
+    height: 45px;
+    border-radius: 6px;
+    border: 1px solid #f2f6f6;
+    background: #f6f7f9;
+    padding: 0;
+    font: 14px/1.5 arial;
+}
+
+
+
+/*所有单选按钮的颜色*/
+input[type="radio"] + label::before {
+    content: "\a0";
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    width: 0.6em;
+    height: 0.6em;
+    margin-right: .4em;
+    border-radius: 50%;
+    border: 1px solid #3e7ceb;
+    text-indent: .15em;
+    line-height: 1;
+}
+
+input[type="radio"]:checked + label::before {
+    background-color: #3e7ceb;
+    background-clip: content-box;
+    padding: .15em;
+    width: 0.3em;
+    height: 0.3em;
+}
+
+input[type="radio"] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
+
+.selects {
+    border: solid 1px #f2f6f6;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: url('../images/down2.png')95% 50% no-repeat scroll transparent;
+    background-color: transparent;
+    background-color: transparent;
+    padding-right: 14px;
+    background-color: #f6f7f9;
+    width: 270px;
+    height: 45px;
+    border-radius: 6px;
+    font: 14px/1.5 arial;
+}
+
+/*查询*/
+.Work_SelectContent {
+    border: 1px solid #e0e6ed;
+    height:120px;
+    text-align:center;
+    width: 100%;
+}
+    .Work_SelectContent input[type="text"] {
+        width: 270px;
+        height:35px;
+        border-radius: 6px;
+        border: 1px solid #f2f6f6;
+        background: #f6f7f9;
+        padding: 0;
+        font: 14px/1.5 arial;
+    }
+.Work_SelectHead {
+    border: 1px solid #e0e6ed;
+    height: 40px;
+    text-align: center;
+    width: 100%;
+    border-radius:6px;
+    background-color:#669;
+    color:white;
+  
+}
+.Work_SelectContent span {
+    margin-left: 50px;
+}
+/*查询按钮*/
+.Btn_WrokSelect:hover {
+    cursor: pointer;
+}
+/*  表头 */
+.cloudTable {
+    border: 1px solid #e0e6ed;
+    font-size: 16px;
+    width: 100%;
+}
+
+.cloudTableTitle {
+    padding: 10px 20px;
+}
+
+.cloudTable td {
+    height: 40px;
+    min-width: 0px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    position: relative;
+    border-bottom: 1px solid #e0e6ed;
+}
+.cloudTable_header tr {
+    background-color: #efeff1;
+}
+
+.cloudTable_header th {
+    min-width: 0;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    position: relative;
+    padding: 10px 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: bold;
+    text-align: -internal-center;
+}
+
+/* 表身体 */
+
+
+.cloudTable_body tr td {
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    border-right: 1px solid #e0e6ed;
+    padding: 8px;
+    border-bottom: 1px solid #fff;
+    color: #669;
+    border-top: 1px solid #fff;
+    background: #e8edff url('table-images/gradback.png') repeat-x;
+}
+
+.cloudMtxTable_body {
+    /*height:102px;*/
+    height: 402px;
+    width: 100%;
+    overflow-y: auto;
+    border-bottom: 1px solid #e0e6ed;
+}
+
+/* 公用样式 */
+.data-cell {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.cloudTable_body tr:hover {
+    background-color: #c5e8fe;
+    cursor: pointer;
+    background: #d0dafd url('table-images/gradhover.png') repeat-x;
+    color: #339;
+}
+

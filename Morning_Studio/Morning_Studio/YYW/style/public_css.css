@@ -1,0 +1,58 @@
+﻿
+body {
+    background-color: rgb(241,246,255);
+    font-family: 宋体;
+}
+
+.anniu {
+    height: 30px;
+    width: 70px;
+    border: 1px solid rgb(97,190,243);
+    border-radius: 3px;
+    background-image: url(../../Public/Public_Images/btn.gif);
+}
+
+    .anniu:hover {
+        background-image: url(../../Public/Public_Images/btn_over.gif);
+    }
+
+.xiala {
+    font-size: 18px;
+    width: 200px;
+    height: 35px;
+}
+
+.text {
+    width: 300px;
+    height: 35px;
+}
+.zhi {
+    width: 180px;
+    height: 50px;
+    background-color: #d9fff3;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid rgb(97,190,243);
+}
+.dan {
+    width: 399px;
+    height: 50px;
+    border: 1px solid rgb(97,190,243);
+}
+
+.shuang {
+    width: 399px;
+    height: 50px;
+    border: 1px solid rgb(97,190,243);
+}
+.textarea {
+    width: 700px;
+    height: 100px;
+    max-height: 120px;
+    max-width: 900px;
+    min-height: 100px;
+    min-width: 700px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+}

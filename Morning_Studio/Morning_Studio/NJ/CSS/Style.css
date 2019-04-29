@@ -1,0 +1,132 @@
+﻿body {
+    background-color: rgb(241, 246, 255);
+    font-family: 宋体;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*按钮部分*/
+.btn_bg {
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    background-image: url('../images/btn.gif');
+}
+
+    .btn_bg:hover {
+        cursor: pointer;
+        background-image: url('../images/btn_over.gif');
+        text-shadow: 0 0 3px #808080;
+        font-size: 18px;
+    }
+
+
+.btn_td {
+    text-align: center;
+}
+
+.txt_q {
+    width: 250px;
+    height: 30px;
+    padding-left: 5px;
+    font-size: 15px;
+    color: #808080;
+}
+/*任务计划执行人*/
+#task_table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+}
+
+    #task_table #task_tbody tr td {
+        border: 1px solid rgb(97, 190, 243);
+        height: 40px;
+    }
+
+        #task_table #task_tbody tr td.single_dan {
+            width: 150px;
+            text-align: right;
+            font-size: 16px;
+            background-color: rgb(241, 246, 255);
+        }
+
+        #task_table #task_tbody tr td.double_shuang {
+            width: 330px;
+        }
+
+.text_conten {
+    font-size: 15px;
+    padding-left: 5px;
+    color: #808080;
+    margin-left: 8px;
+    width: 98%;
+    height: 80px;
+}
+
+.tetarea_yijian {
+    padding: 5px 0px 5px 0px;
+}
+
+.dep {
+    margin-left: 8px;
+    width: 280px;
+    height: 31px;
+    color: #808080;
+    text-align: center;
+}
+
+
+/*所有单选按钮的颜色*/
+input[type="radio"] + label::before {
+    content: "\a0";
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    width: 0.8em;
+    height: 0.8em;
+    margin-right: .4em;
+    border-radius: 50%;
+    border: 1px solid #3e7ceb;
+    text-indent: .15em;
+    line-height: 1;
+}
+
+input[type="radio"]:checked + label::before {
+    background-color: #3e7ceb;
+    background-clip: content-box;
+    padding: .15em;
+    width: 0.8em;
+    height: 0.8em;
+}
+
+input[type="radio"] {
+    position: absolute;
+
+    clip: rect(0, 0, 0, 0);
+}
+
+
+.selects, .pos, .select_sex, .selects_type, .selects_lzhidays, .selects_days, .selects_caidan1, .selects_caidan2, .selects_workstate, .selects_caidan3, .selects_caidan4, .depart {
+    padding-left: 5px;
+    margin-left: 8px;
+    /*border: 1px solid #808080;*/
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: url('images/down2.png')100% 70% no-repeat scroll transparent;
+    padding-right: 14px;
+    width: 270px;
+    height: 45px;
+    border-radius: 6px;
+    font: 14px/1.5 arial;
+}

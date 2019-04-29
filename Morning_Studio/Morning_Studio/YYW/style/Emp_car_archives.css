@@ -1,0 +1,49 @@
+﻿
+.table {
+    width: 1200px;
+    height: 400px;
+    margin: 0px auto;
+    border-collapse:collapse;
+    border: 1px solid rgb(97,190,243);
+}
+
+.cx_table {
+    width: 1200px;
+    margin: 0px auto;
+    border-collapse: collapse;
+    border: 1px solid rgb(97,190,243);
+}
+    .table > tbody > tr > td {
+        border: 1px solid rgb(97,190,243);
+        font-size: 18px;
+    }
+
+
+#image {
+    width: 250px;
+    height: 160px;
+}
+
+#btn_luru {
+    width: 65px;
+    height: 30px;
+}
+
+
+/*------------------------------------------*/
+
+#car_chaxun {
+    width: 1200px;
+    margin: 0px auto;
+    border-collapse: collapse;
+   table-layout:auto;
+    border: 1px solid rgb(97,190,243);
+}
+.car_xianshi > td {
+    height: 50px;
+    width: 100px;
+    background-color: #d9fff3;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid rgb(97,190,243);
+}

@@ -1,0 +1,225 @@
+﻿body {
+    font-family: 宋体;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.PageDiv {
+    height: auto;
+}
+
+.table_one {
+    border-collapse: collapse;
+    margin: 0px auto;
+    border: 1px solid rgb(97, 190, 243);
+    width: 1390px;
+    height: 150px;
+    table-layout: auto;
+}
+
+#travel_table .travel_tr {
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+#travel_head {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+
+    #travel_head span.travel_shengqi {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+#travel_table .tbody_td tr td {
+    border: 1px solid rgb(97, 190, 243);
+    width: 270px;
+}
+
+.a1 {
+    height: 50px;
+    font-size: 18px;
+    text-align: right;
+}
+
+.a2 {
+    background-color: white;
+}
+
+    .a2 .txt {
+        padding-left: 5px;
+        margin-left: 8px;
+        width: 90%;
+        height: 30px;
+        font-size: 20px;
+        color: #808080;
+    }
+
+    .a2 .select_txt, #table_two .txt_chaxu {
+        font-size: 18px;
+        color: #808080;
+        margin-left: 8px;
+        width: 219px;
+        height: 34px;
+    }
+
+.txt_chuchaisy {
+    padding-left: 5px;
+    font-size: 20px;
+    color: #808080;
+    margin-left: 8px;
+    width: 97%;
+    height: 80px;
+}
+
+.btn {
+    text-align: center;
+    vertical-align: central;
+}
+/*按钮部分*/
+.image_btn {
+    width: 100px;
+    height: 30px;
+    background-image: url('../images/btn.gif');
+}
+
+.select_img {
+    width: 78px;
+    height: 28px;
+    font-size: 15px;
+}
+/*高亮显示*/
+.image_btn:hover {
+    border: 1px solid #30cc9a;
+    font-size: 20px;
+    color: #30cc9a;
+    text-shadow: 0 0 3px #30cc9a;
+    background-image: url('../images/btn_over.gif');
+}
+
+.btn_q {
+    cursor: pointer;
+    background-color: #f9f7f9;
+    width: 100px;
+    height: 27px;
+    vertical-align: central;
+    border-radius: 30px;
+    border: 1px solid #808080;
+    font-size: 18px;
+    color: #808080;
+    font-weight: bold;
+}
+/*table_two部分*/
+.jiangge {
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+}
+
+.fenGe {
+    margin: 0px auto;
+    background-color: rgb(97, 190, 243);
+    width: 1360px;
+    height: 40px;
+    font-size: 18px;
+    line-height: 40px;
+    padding-left: 30px;
+}
+
+#table_two {
+    border-collapse: collapse;
+    margin: 0px auto;
+    border: 1px solid rgb(97, 190, 243);
+    width: 1340px;
+    table-layout: auto;
+}
+
+.chaxuDiv {
+    position: relative;
+    margin: 0px auto;
+    width: 1370px;
+    height: 50px;
+    line-height: 50px;
+}
+
+    .chaxuDiv .txt_chaxu {
+        padding-left: 5px;
+        margin-left: 8px;
+        width: 200px;
+        height: 30px;
+        font-size: 20px;
+        color: #808080;
+    }
+
+    .chaxuDiv .img_btn {
+        margin-left: 10px;
+        position: absolute;
+        width: 80px;
+        height: 40px;
+        top: 5px;
+    }
+
+    .chaxuDiv label {
+        font-size: 18px;
+    }
+
+#thead_two tr th {
+    background-image: url('../images/btn.gif');
+    height: 30px;
+    border: 1px solid rgb(97, 190, 243);
+}
+
+#tbody_two tr td {
+    border: 1px solid rgb(97, 190, 243);
+    height: 35px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+    #tbody_two tr td a.a {
+        color: red;
+    }
+
+.a_details, .a_Del {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+}
+
+.a_details {
+    background-image: url('../images/icon.png');
+    background-repeat: no-repeat;
+    background-position: -1px -1px;
+    width: 110px;
+}
+
+.a_Del {
+    background-image: url('../images/icon.png');
+    background-repeat: no-repeat;
+    background-position: -1px -1px;
+    width: 80px;
+}
+
+.btn_bg {
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    background-image: url('../images/btn.gif');
+}
+
+    .btn_bg:hover {
+        cursor: pointer;
+        background-image: url('../images/btn_over.gif');
+        text-shadow: 0 0 3px #808080;
+        font-size: 18px;
+    }

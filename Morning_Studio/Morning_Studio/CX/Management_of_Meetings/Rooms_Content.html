@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>会议室创建详情查看</title>
+    <style>
+        body {
+            font-family: 宋体;
+            padding-left: 1px;
+            padding-right: 1px;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .PageDiv {
+            height: auto;
+        }
+
+        .table_one {
+            border-collapse: collapse;
+            margin: 0px auto;
+            border: 1px solid rgb(97, 190, 243);
+            width: 1360px;
+            height: 560px;
+            table-layout: auto;
+        }
+
+        #travel_table .travel_tr {
+            width: 100%;
+            height: 40px;
+            font-size: 18px;
+            line-height: 40px;
+        }
+
+        #travel_head {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+            #travel_head span.travel_shengqi {
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+        #travel_table .tbody_td tr td {
+            border: 1px solid rgb(97, 190, 243);
+            width: 200px;
+        }
+
+        #tbody_content tr td {
+            border: 1px solid rgb(97, 190, 243);
+        }
+        /*table_two部分*/
+        .jiangge {
+            margin-top: 10px;
+            width: 100%;
+            height: 40px;
+        }
+
+        .fenGe {
+            margin: 0px auto;
+            background-color: rgb(97, 190, 243);
+            width: 1330px;
+            height: 40px;
+            font-size: 20px;
+            line-height: 40px;
+            font-family: 宋体;
+            padding-left: 30px;
+        }
+
+        #table_two {
+            border-collapse: collapse;
+            margin: 0px auto;
+            border: 1px solid rgb(97, 190, 243);
+            width: 1360px;
+            table-layout: auto;
+        }
+
+        .chaxuDiv {
+            position: relative;
+            margin: 0px auto;
+            width: 1360px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+            .chaxuDiv .txt_chaxu {
+                padding-left: 5px;
+                margin-left: 8px;
+                width: 200px;
+                height: 30px;
+                font-size: 20px;
+                color: #808080;
+            }
+
+            .chaxuDiv .img_btn {
+                margin-left: 10px;
+                position: absolute;
+                width: 80px;
+                height: 40px;
+                top: 5px;
+            }
+
+            .chaxuDiv label {
+                font-size: 18px;
+            }
+
+        #thead_two tr th {
+            background-image: url('../images/thbg.gif');
+            height: 40px;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+        #table_Contents tr td {
+            border: 1px solid rgb(97, 190, 243);
+            height: 40px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            #tbody_two tr td a.a {
+                color: red;
+            }
+
+        .a_details, .a_Del {
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .a_details {
+            background-image: url('../images/icon.png');
+            background-repeat: no-repeat;
+            background-position: -1px -1px;
+            width: 110px;
+        }
+
+        .a_Del {
+            background-image: url('../images/icon.png');
+            background-repeat: no-repeat;
+            background-position: -1px -1px;
+            width: 80px;
+        }
+        /*上传文件*/
+        #upload {
+            padding-left: 350px;
+            color: rgb(97, 190, 243);
+        }
+    </style>
+    <link href="../Equally_CSS/Style.css" rel="stylesheet" />
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //页面加载表格数据
+            Apply_jiaz();
+            Rooms_XQ();
+      
+        });
+        //页面加载表格数据
+        function Apply_jiaz() {
+            $.ajax({
+                url: "../CX_Handler.ashx?act=RoomGetcha",
+                type: "post",
+                dataType: "json",
+                success: function (a) {
+                    for (var i = 0; i < a.length; i++) {
+                        var my_html = '<tr>' +
+                            '<td>' + a[i].UserId.Name + '</td>' +
+                            '<td>' + a[i].FormMeeting + '</td>' +
+                            '<td>' + a[i].DepartID.DepartName + '</td>' +
+                            '<td>' + a[i].Inviter + '</td>' +
+                            '<td>' + gettime(a[i].ConferenceBeginTime) + '</td>' +
+                            '<td>' + gettime(a[i].ConferenceEndTime) + '</td>' +
+                            '<td>' + a[i].NameMeeting + '</td>' +
+                            '<td>' + a[i].ConferenceRoomID.ConferenceRoomName + '</td>' +
+                            '<td>' + a[i].MeetingStatus + '</td>' +
+                            '<td><a href="javascript:" class="a_details"  DD="' + a[i].ConferenceID + '">查看详情</a></td>' +
+                            '</tr >';
+                        $("#table_Contents").append($(my_html));
+                    }
+                }
+            });
+        }
+        //点击查看详情跳转页面
+        function Rooms_XQ() {
+            $("#table_Contents").on("click", ".a_details", function () {
+                var id = $(this).attr("DD");
+                window.localStorage.setItem("RoomID", id);//键是自定义的
+                window.open("Room_Exmine.html");
+            });
+        }
+        //时间调用方法
+        function gettime(t) {
+            var _time = new Date(t);
+            var year = _time.getFullYear();//2017
+            var month = _time.getMonth() + 1;//7
+            var date = _time.getDate();//10
+            return year + "年" + month + "月" + date + "日   ";//这里自己按自己需要的格式拼接
+        }
+    </script>
+</head>
+<body>
+    <div id="main_page" class="PageDiv">
+        <!-- 显示申请信息部分 提供修改功能 -->
+        <form id="form">
+            <div id="travel_head"><span class="travel_shengqi">会&nbsp;议&nbsp;室&nbsp;创&nbsp;建&nbsp;查&nbsp;看</span></div>
+
+        </form>
+        <div class="jiangge">
+            <div class="fenGe">创建明细</div>
+        </div>
+        <form id="select_infrom">
+            <table id="table_two" style="text-align:center;">
+                <thead id="thead_two">
+                    <tr>
+                        <th>发起人</th>
+                        <th>会议名称</th>
+                        <th>邀请部门</th>
+                        <th>邀请人</th>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>会议形式</th>
+                        <th>会议室</th>
+
+                        <th>状态</th>
+                        <th style="width:250px;">办理</th>
+                    </tr>
+                </thead>
+
+                <tbody id="table_Contents"></tbody>
+
+            </table>
+        </form>
+    </div>
+</body>
+</html>

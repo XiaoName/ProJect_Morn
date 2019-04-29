@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>会议室审批详情</title>
+    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../js/bootstrap/css/bootstrap-table.min.css" rel="stylesheet" />
+  
+</head>
+<body >
+    <div class="container">
+        <div class="row bg-primary">
+            <!-- 跨行 -->
+            <div class="col-xs-12  col-sm-12  col-md-12 col-lg-12" style="background-image:radial-gradient(#1e3c72,#2a5298);">
+                <h5>会议室审批</h5>
+            </div>
+
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-xs-3  col-sm-3  col-md-3 col-lg-3">
+                <div class="input-group">
+                    <span class="input-group-addon">会议名称</span>
+                    <input type="text" id="RoomName" class="form-control" />
+                </div>
+            </div>
+            <div class="col-xs-3  col-sm-3  col-md-3 col-lg-3">
+                <div class="input-group">
+
+                    <span class="input-group-addon">会议室</span>
+                    <input type="text" id="Room_huiyi" class="form-control" />
+                </div>
+            </div>
+            <div class="col-xs-3  col-sm-3  col-md-3 col-lg-3">
+                <div class="btn-group">
+
+                    <button class="btn btn-default" id="btn_selecta" style="margin-top:-5px;">查询</button>
+
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-xs-12  col-sm-12  col-md-12 col-lg-12" style="height:200vh">
+                <!--跨列-->
+                <table id="table_two"  class="table table-hover table-bordered table-striped text-center">
+                    <thead id="thead_two">
+                        <tr class="" style="background-image:radial-gradient(#1e3c72,#2a5298);color:white">
+                            <th>发起人</th>
+                            <th>会议名称</th>
+                            <th>邀请部门</th>
+                            <th>邀请人</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
+                            <th>会议形式</th>
+                            <th>会议室</th>
+                            <th>状态</th>
+                            <th class="btn-group">操作</th>
+                        </tr>
+
+                    </thead>
+                    <tbody id="table_Contents"></tbody>
+                </table>
+            </div>
+
+        </div>
+        <div clsas="row bg-primary">
+            <div class="col-xs-12  col-sm-12  col-md-12 col-lg-12 bg-primary">
+                <div style="text-align:center;">    版权声明&copy;项目开发组</div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/jquery-1.7.2.min.js"></script>
+    <script src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //页面加载表格数据
+            Apply_jiaz();
+           
+        
+            //根据会议名称查询
+            RoomName();
+        });
+
+        //页面加载表格数据
+        function Apply_jiaz() {
+            $.ajax({
+                url: "../CX_Handler.ashx?act=RoomGetcha",
+                type: "post",
+                dataType: "json",
+                success: function (a) {
+
+                    for (var i = 0; i < a.length; i++) {
+                        var my_html = '<tr >' +
+                            '<td>' + a[i].UserId.Name + '</td>' +
+                            '<td>' + a[i].FormMeeting + '</td>' +
+                            '<td>' + a[i].DepartID.DepartName + '</td>' +
+                            '<td>' + a[i].Inviter + '</td>' +
+                            '<td>' + gettime(a[i].ConferenceBeginTime) + '</td>' +
+                            '<td>' + gettime(a[i].ConferenceEndTime) + '</td>' +
+                            '<td>' + a[i].NameMeeting + '</td>' +
+                            '<td>' + a[i].ConferenceRoomID.ConferenceRoomName + '</td>' +
+                            '<td>' + a[i].MeetingStatus + '</td>' +
+                            '<td  class="btn-group"><button  id="tr"  class="btn btn-success" target="_blank" class="a_details"  tiaozhuan="' + a[i].ConferenceID + '">查看详情</button></td>' +
+                            '</tr >';
+                        $("#table_Contents").append($(my_html));
+                    } //跳转到审批界面:查看详情
+                    tiaozhuan();
+                }
+            });
+        }
+
+        //时间调用方法
+        function gettime(t) {
+            var _time = new Date(t);
+            var year = _time.getFullYear();//2017
+            var month = _time.getMonth() + 1;//7
+            var date = _time.getDate();//10
+            return year + "年" + month + "月" + date + "日   ";//这里自己按自己需要的格式拼接
+        }
+        //跳转到审批界面:查看详情
+        function tiaozhuan() {
+            $("#tr").live("click", ".a_details", function () {
+                var id = $(this).attr("tiaozhuan");
+                window.localStorage.setItem("UserId", id);//键是自定义的
+                window.open("Room_Exmine.html");
+            });
+
+        }
+
+        //根据会议名称查询    //根据会议室查询
+        function RoomName() {
+            var aa = $("#RoomName").val();
+            var b = $("#Room_huiyi").val();
+            $("#btn_selecta").click(function () {
+                    $.ajax({
+                        url: "../CX_Handler.ashx?act=Room_getChaName",
+                        type: "post",
+                        dataType: "json",
+                        data: { "Name_Meeting": aa,"Conference_Room_Name":b},
+                        success: function (a) {
+                            $("#table_Contents").find("td").remove();
+                             $("#RoomName").val("");
+                            $("#Room_huiyi").val("");
+                            for (var i = 0; i < a.length; i++) {
+                                var my_html = '<tr >' +
+                                    '<td>' + a[i].UserId.Name + '</td>' +
+                                    '<td>' + a[i].FormMeeting + '</td>' +
+                                    '<td>' + a[i].DepartID.DepartName + '</td>' +
+                                    '<td>' + a[i].Inviter + '</td>' +
+                                    '<td>' + gettime(a[i].ConferenceBeginTime) + '</td>' +
+                                    '<td>' + gettime(a[i].ConferenceEndTime) + '</td>' +
+                                    '<td>' + a[i].NameMeeting + '</td>' +
+                                    '<td>' + a[i].ConferenceRoomID.ConferenceRoomName + '</td>' +
+                                    '<td>' + a[i].MeetingStatus + '</td>' +
+                                    '<td  class="btn-group"><button   class="btn btn-success" target="_blank" class="a_details"  tiaozhuan="' + a[i].ConferenceID + '">查看详情</button></td>' +
+                                    '</tr >';
+                                $("#table_Contents").append($(my_html));
+                            }
+                        }
+                    });
+                });        
+        }
+    
+   
+    </script>
+
+</body>
+</html>

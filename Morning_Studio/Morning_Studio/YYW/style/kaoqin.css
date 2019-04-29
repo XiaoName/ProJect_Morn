@@ -1,0 +1,111 @@
+﻿/*考勤DIV样式*/
+#kaoqin {
+    background-color: white;
+    border: 1px solid rgb(97,190,243);
+    width:640px;
+    height: 560px;
+    z-index: 50;
+    position: absolute;
+    top: 80px;
+    left: 630px;
+    display: none;
+}
+
+/*遮罩层*/
+.Mask_z {
+    background-color: gray;
+    opacity: 0.4;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    z-index: 20;
+    filter: alpha(opactiy=30);
+}
+/*请假样式*/
+.table {
+    width: 560px;
+    height: 510px;
+    font-size: 20px;
+    margin: 0px auto;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+    table-layout: auto;
+}
+
+.user_qingjia {
+    width: 560px;
+    height: 50px;
+    font-size: 22px;
+}
+
+.he {
+    width: 278px;
+    height: 50px;
+    border: 1px solid rgb(97,190,243);
+}
+
+.dan {
+    width: 68px;
+    height: 50px;
+    border: 1px solid rgb(97,190,243);
+}
+
+.shuang {
+    width: 210px;
+    height: 50px;
+    border: 1px solid rgb(97,190,243);
+}
+
+.text_fen {
+    width: 170px;
+    height: 30px;
+    font-size:15px;
+    padding:5px;
+    border: 1px solid rgb(97,190,243)
+}
+.text_he {
+    width: 230px;
+    height: 30px;
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid rgb(97,190,243)
+}
+
+.textarea {
+    width: 558px;
+    height: 136px;
+    resize: none;
+    padding: 5px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid rgb(97,190,243);
+}
+
+/*按钮*/
+.btn_ {
+    height: 30px;
+    width: 70px;
+    border: 1px solid rgb(97,190,243);
+    border-radius: 3px;
+    background-image: url(../../Public/Public_Images/btn.gif);
+}
+
+    .btn_:hover {
+        background-image: url(../../Public/Public_Images/btn_over.gif);
+    }
+.sel_ {
+    width: 130px;
+    height: 30px;
+    text-align:center;
+    border: 1px solid rgb(97,190,243);
+}
+.sex {
+    height: 15px;
+    width: 15px;
+}
+    /*空行*/
+.kong {
+    width: 558px;
+    height: 10px;
+}

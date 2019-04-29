@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>人事信息统计</title>
+    <link href="CSS/Style.css" rel="stylesheet" />
+    <script src="../Public/Public_jquery/jquery-3.3.1.min.js"></script>
+    <script src="JS/Depart.js"></script>
+    <style>
+        body {
+            font-family: 宋体;
+            padding-left: 1px;
+            padding-right: 1px;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .PageDiv {
+            height: auto;
+        }
+
+        .table_one {
+            border-collapse: collapse;
+            margin: 0px auto;
+            border: 1px solid rgb(97, 190, 243);
+            width: 1340px;
+            table-layout: auto;
+        }
+
+        #travel_table .travel_tr {
+            width: 100%;
+            height: 40px;
+            font-size: 18px;
+            line-height: 40px;
+        }
+
+        #travel_head {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            text-shadow: 5px 5px 5px rgb(97, 190, 243); /*阴影*/
+        }
+
+            #travel_head span.travel_shengqi {
+                font-size: 25px;
+                font-weight: bold;
+            }
+
+        #travel_table .tbody_td tr td {
+            border: 1px solid rgb(97, 190, 243);
+            width: 400px;
+        }
+
+        .a1 {
+            border:none;
+            height: 50px;
+            font-size: 18px;
+            text-align: right;
+        }
+
+        .a2 {
+            border: none;
+            background-color: white;
+        }
+
+        .txt {
+            height: 30px;
+            font-size: 20px;
+            color: #808080;
+            /*border: 1px solid #808080;*/
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            padding-right: 14px;
+            width: 270px;
+            height: 45px;
+            border-radius: 6px;
+            font: 14px/1.5 arial;
+        }
+
+        .a2 .select_txt, #table_two .txt_chaxu {
+            font-size: 18px;
+            /*color: #808080;*/
+            margin-left: 8px;
+            width: 219px;
+            height: 34px;
+        }
+
+        #ApplyRoom_peopleTP:hover {
+            cursor: pointer;
+        }
+        /*按钮部分*/
+        .image_btn {
+            width: 100px;
+            height: 30px;
+            background-image: url('images/btn.gif');
+        }
+
+        .select_img {
+            width: 78px;
+            height: 28px;
+            font-size: 15px;
+        }
+        /*高亮显示*/
+        .image_btn:hover {
+            border: 1px solid #30cc9a;
+            font-size: 20px;
+            color: #30cc9a;
+            text-shadow: 0 0 3px #30cc9a;
+            background-image: url('images/btn_over.gif');
+        }
+
+        .selects {
+            padding-left: 5px;
+            margin-left: 8px;
+            /*border: 1px solid #808080;*/
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            background: url('images/down2.png')100% 70% no-repeat scroll transparent;
+            padding-right: 14px;
+            width: 270px;
+            height: 45px;
+            border-radius: 6px;
+            font: 14px/1.5 arial;
+        }
+        /*table_two部分*/
+        .jiangge {
+            margin-top: 10px;
+            width: 100%;
+            height: 40px;
+        }
+
+        .jiangge {
+            margin: 0px auto;
+            width: 1310px;
+            height: 40px;
+            font-size: 25px;
+            line-height: 40px;
+            padding-left: 30px;
+        }
+
+        #table_two {
+            border-collapse: collapse;
+            margin: 0px auto;
+            border: 1px solid rgb(97, 190, 243);
+            width: 1340px;
+            table-layout: auto;
+        }
+
+        .chaxuDiv {
+            position: relative;
+            margin: 0px auto;
+            width: 1340px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        #thead_two tr th {
+            background-image: url('images/thbg.gif');
+            height: 30px;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+        #tbody_two tr td {
+            border: 1px solid rgb(97, 190, 243);
+            height: 35px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            #tbody_two tr td a.a {
+                color: red;
+            }
+
+
+        /*table部分*/
+        .table_content {
+            background-color: rgb(191, 223, 241);
+            top: 100px;
+            position: absolute;
+            left: 1000px;
+            vertical-align: central;
+            width: 30%;
+            margin: auto;
+            table-layout: auto;
+            border-collapse: collapse;
+        }
+
+
+
+        #table_Contents tr td {
+            height: 35px;
+            border: 1px solid rgb(97, 190, 243);
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            data();
+            $("#btn_select").click(function () {
+                var q = $(".selects").val();
+                var w = $("#Statistics_begintime").val();
+                var r = $("#Statistics_endtime").val();
+                $.ajax({
+                    url: "Handler.ashx?act=getDepcount",
+                    type: "post",
+                    dataType: "json",
+                    data: { "bumen": q, "kai": w, "jie": r },
+                    success: function (str) {
+                        $("#table_Contents").find("td").remove();
+                        for (var i = 0; i < str.length; i++) {
+                            var html = "<tr><td>" + str[i].Departmentid.DepartID + "</td><td>" + str[i].Departmentid.DepartName + "</td><td>" + str[i].count+"</td></tr>";
+                            $("#table_Contents").append($(html));
+                        }
+                    }
+                });
+            })
+        })
+        //当前日期
+        function data() {
+            var date = new Date();
+            var seperator1 = "-";
+            var seperator2 = ":";
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+            $("#Statistics_endtime").val(currentdate);
+
+        }
+    </script>
+</head>
+<body>
+    <div id="main_page" class="PageDiv">
+        <!-- 输入信息部分 -->
+        <form action="#" id="my_form">
+            <div id="travel_head"><span class="travel_shengqi">人&nbsp;事&nbsp;信&nbsp;息&nbsp;统&nbsp;计</span></div>
+            <table class="table_one" id="travel_table">
+                <tbody class="tbody_td">
+                    <tr>
+                        <td class="a1">部门:</td>
+                        <td class="a2">
+                            <select class="selects">
+                                <option  value="0">请选择...</option>
+                            </select>
+                        </td>
+                        <td class="a1">起始日期:</td>
+                        <td class="a2">
+                            <input type="date" class="txt" id="Statistics_begintime" name="" value="1990-01-01" />
+                        </td>
+
+                        <td class="a1">截止日期:</td>
+                        <td class="a2">
+                            <input type="date" class="txt" id="Statistics_endtime" name="" />
+
+                        </td>
+                        <td style="text-align:center;"><input type="button" value="查询" class="btn_bg" id="btn_select" style="height:40px;font-size:20px;" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="jiangge">
+                <div class="fenGe" style="margin:auto;margin-left:550px;">部&nbsp;门&nbsp;员&nbsp;工&nbsp;统&nbsp;计&nbsp;表</div>
+            </div>
+            <table id="table_two">
+                <thead id="thead_two">
+                    <tr>
+                        <th>编号</th>
+                        <th>部门</th>
+                        <th>总计人数</th>
+                    </tr>
+                </thead>
+                <tbody id="table_Contents">
+                   
+                </tbody>
+            </table>
+
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿/*按钮部分*/
+.jurisdict_btn {
+    cursor: pointer;
+    width: 60px;
+    height: 40px;
+    background-image: url('../images/btn.gif');
+    margin-top: 5px;
+}
+
+    .jurisdict_btn:hover {
+        cursor: pointer;
+        background-image: url('../images/btn_over.gif');
+        text-shadow: 0 0 3px #808080;
+        font-size: 18px;
+    }
+
+.jurisdict_title {
+    background-color: #8fc6ea;
+}
+
+.panel-title {
+    font-weight: bold;
+    font-family: 宋体;
+}
+
+.jusis_selects {
+    padding-left: 5px;
+    margin-left: 8px;
+    /*border: 1px solid #808080;*/
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: url('../images/down2.png')100% 70% no-repeat scroll transparent;
+    padding-right: 14px;
+    width: 200px;
+    height: 30px;
+    border-radius: 6px;
+    font: 14px/1.5 arial;
+}

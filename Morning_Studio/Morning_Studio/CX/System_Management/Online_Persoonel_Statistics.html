@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>在线人员统计</title>
+    <link href="../Equally_CSS/Style.css" rel="stylesheet" />
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/jquery-1.8.0.min.js"></script>
+    <script src="../js/jquery-1.7.2.min.js"></script>
+    <script src="../js/Depart.js"></script>
+    <style>
+        body {
+        }
+
+        #Overall {
+            width: 1800px;
+            height: 1200px;
+            margin: auto;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+        .Title_span {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: rgb(0, 148, 255);
+        }
+
+        .font_title_span {
+            font-size: 20px;
+        }
+
+        .select_divContent {
+            margin: 10px 0px 10px 20px;
+        }
+
+        .lable_font {
+            font-size: 16px;
+        }
+
+        .txt_currency, .select_dep {
+            width: 290px;
+            height: 31px;
+            color: rgb(128, 128, 128);
+            font-size: 16px;
+        }
+
+        .txt_currency {
+            padding-left: 5px;
+        }
+
+        .select_dep {
+            text-align: center;
+        }
+        /*table部分*/
+        .table_content {
+            vertical-align: central;
+            width: 98%;
+            margin: auto;
+            table-layout: auto;
+            border-collapse: collapse;
+        }
+
+            .table_content thead tr th {
+                vertical-align: central;
+                background-image: url('../images/thbg.gif');
+                height: 30px;
+                border: 1px solid rgb(97, 190, 243);
+                width: 150px;
+            }
+
+            .table_content tbody tr td {
+                height: 35px;
+                border: 1px solid rgb(97, 190, 243);
+                text-align: center;
+                vertical-align: middle;
+            }
+
+                .table_content tbody tr td a.a {
+                    display: inline-block;
+                    width: 100%;
+                    height: 100%;
+                    line-height: 35px;
+                    color: red;
+                }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            // 动态加载数据
+            SELECT();
+            //二级联动
+            $(".depart").change(function () {
+                Depart();
+            });
+
+            //查询按钮
+            $("#Btn_Select").click(function () {
+                BTn();
+
+            });
+
+        });
+
+        //查询按钮
+        function BTn() {
+            var curr = $(".lable_font").val();
+            var dep = $(".depart").val();
+            var pos = $(".yaoqr").val();
+            $("#tbody_content").find("td").remove();
+            $.ajax({
+                url: "../CX_Handler.ashx?act=getInformation",
+                type: "post",
+                dataType: "json",
+                data: { "curr": curr, "dep": dep, "pos": pos },
+                success: function (a) {
+                    for (var i = 0; i < a.length; i++) {
+                        var my_html = '<tr>' +
+                            '<td>' + a[i].JobNumber + '</td>' +
+                            '<td>' + a[i].Name + '</td>' +
+                            '<td>' + a[i].Departmentid.DepartName + '</td>' +
+                            '<td>销售部人员</td>' +
+                            '<td>' + Time(a[i].WorkStart) + '</td>' +
+                            '</tr >';
+                        $("#tbody_content").append($(my_html));
+                    }
+                }
+            })
+        }
+        //二级联动
+        function Depart() {
+            $.ajax({
+                url: "../CX_Handler.ashx?act=PositionTable",
+                type: "post",
+                dataType: "json",
+                data: { "id": $(this).val() },
+                success: function (str) {
+                    $(".yaoqr").children("option:gt(0)").remove();
+                    for (var i = 0; i < str.length; i++) {
+                        var html = "<option value='" + str[i].PositionId + "' name='PositionId'>" + str[i].PositionName + "</option>";
+                        $(".yaoqr").append($(html));
+                    }
+                }
+            });
+        }
+        //时间调用方法
+        function gettime(t) {
+            var _time = new Date(t);
+            var year = _time.getFullYear();//2017
+            var month = _time.getMonth() + 1;//7
+            var date = _time.getDate() + 1;//10
+            return year + "年" + month + "月" + date + "日 ";//这里自己按自己需要的格式拼接
+        }
+
+        //获取数据库日期
+        function Time(r) {
+            var saveDate = new Date(r);
+            var N = saveDate.getFullYear();
+            var Y = saveDate.getMonth();
+            var R = saveDate.getDate();
+            return N + "-" + Y + "-" + R;
+        }
+        // 动态加载数据
+        function SELECT() {
+            $.ajax({
+                url: "../CX_Handler.ashx?act=OnlinePeople",
+                type: "post",
+                dataType: "json",
+                success: function (a) {
+                    console.log(a);
+                    for (var i = 0; i < a.length; i++) {
+                        var my_html = '<tr>' +
+                            '<td>' + a[i].JobNumber + '</td>' +
+                            '<td>' + a[i].Name + '</td>' +
+                            '<td>' + a[i].Departmentid.DepartName + '</td>' +
+                            '<td>' + a[i].Dutyud.PositionName + '</td>' +
+                            '<td>' + a[i].WorkStart + '</td>' +
+                            '</tr >';
+                        $("#tbody_content").append($(my_html));
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="Overall">
+        <div class="Title_span"><span class="font_title_span">在&nbsp;线&nbsp;人&nbsp;员&nbsp;统&nbsp;计</span></div>
+        <div class="select_divContent">
+            <label class="lable_font">姓名/工号：</label>
+            <input type="text" class="txt_currency" id="" />
+            <label class="lable_font">部门：</label>
+            <select class="depart" id="">
+                <option>
+                    请选择
+                </option>
+            </select>
+            <label class="lable_font">职务：</label>
+            <select class="yaoqr">
+                <option value="0">
+                    请选择
+                </option>
+            </select>
+            <span style="margin-left:20px;"></span>
+            <button class="btn_bg" id="Btn_Select">查<span style="margin-left:8px;"></span>询</button>
+        </div>
+        <div class="table_DivContent">
+            <form action="#">
+                <table class="table_content">
+                    <thead>
+                        <tr>
+                            <th>部门</th>
+                            <th>姓名</th>
+                            <th>工号</th>
+                            <th>事业部名称</th>
+                            <th>最近登录</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="tbody_content"></tbody>
+                </table>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>

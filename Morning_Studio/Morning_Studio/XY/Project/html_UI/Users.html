@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>用户管理系统</title>
+    <link href="../../Content/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <p></p>
+        <!-- 页头部分 -->
+        <div class="row table-bordered">
+            <div class="col-xs-12 col-sm-12  col-md-12 col-lg-12" style="height:10vh">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header">
+                        <a href="#" class="navbar-brand">用户系统管理</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="javascript:;">产品</a></li>
+                            <li><a href="javascript:;">留言</a></li>
+                            <li><a href="javascript:;">关于我们</a></li>
+                        </ul>
+                        <button class="btn btn-danger navbar-btn navbar-right">
+                            <span class="glyphicon glyphicon-remove"></span>删除
+                        </button>
+                        <form class="navbar-form navbar-right">
+                            <div class="form-group">
+                                <input type="text" class="form-control" />
+                            </div>
+                            <button class="btn btn-default">搜索</button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <p></p>
+
+        <!-- 内容部分 -->
+        <div class="row">
+            <!-- 导航菜单 -->
+            <div class="col-xs-2 col-sm-2  col-md-2 col-lg-2 bg-info" style="height:80vh">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="javascript:;">首页</a></li>
+                    <li class="form-group">
+                        <a href="javascript:;" class="">首页</a> <span class="glyphicon glyphicon-chevron-down"></span>
+                        <ul class="nav nav-pills nav-stacked" style="margin-left:20px;">
+                            <li><a href="javascript:;">产品</a></li>
+                            <li><a href="javascript:;">留言</a></li>
+                            <li><a href="javascript:;">关于我们</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="javascript:;">首页</a></li>
+                    <li><a href="javascript:;">首页</a></li>
+                </ul>
+            </div>
+            <!-- 页面主内容 -->
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 table-bordered" style="height:80vh;">
+                <div class="row">
+                    <!-- 操作部分 -->
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <div class="input-group">
+                            <label class="input-group-addon">编号</label>
+                            <input type="text" class="form-control" value="0" id="Number" disabled="disabled" />
+                            <button class="btn btn-default"></button>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <div class="input-group">
+                            <label class="input-group-addon">姓名</label>
+                            <input type="text" class="form-control" value="1" id="txt_name" />
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="btn-group">
+                            <button class="btn btn-default">操作</button>
+                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:;" id="Sava">保存</a></li>
+                                <li><a href="javascript:;" id="Sou">搜索</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <p></p>
+                <!-- 表格数据加载 -->
+                <div class="row" style="">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr class="bg-info">
+                                    <th>编号</th>
+                                    <th>姓名</th>
+                                    <th>账号</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <!-- 表格内容部分 -->
+                            <tbody id="tbody"></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>
+                                        <ul class="pagination">
+                                            <li class="active"><a href="#">1</a> </li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">4</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 尾部 -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <nav class="navbar navbar-fixed-bottom" style="background-image: -webkit-linear-gradient(180deg,#808080,#00ff21)">
+                    <div class="container">
+                        <p class="navbar-text">
+                            <div class="text-center" style="color: white">
+                                版权声明&copy;酷酷的傻逼制作
+                            </div>
+                        </p>
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- JS 部分 -->
+    <script src="../../Content/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+    <script src="../../Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            var list = [
+                { "id": 1, "Name": "张三", "Number": "123456648" },
+                { "id": 2, "Name": "张四", "Number": "s15611655" },
+                { "id": 3, "Name": "王二", "Number": "r56561565" },
+                { "id": 4, "Name": "麻子", "Number": "YY5656565" }]
+            loadData(list);
+
+            $("#Sou").click(function () {
+                var name = $("#txt_name").val();
+                var Ulist = [];
+                for (var i = 0; i < list.length; i++) {
+                    if (list[i].Name.indexOf(name) != -1) {
+                        Ulist.push(list[i])
+                    }
+                }
+                loadData(Ulist);
+            });
+
+            $("#Sava").click(function () {
+                onload(list);
+            });
+
+            $("#tbody").delegate("button[name='Edit']", "click", function () {
+                Edit($(this).attr("Edit_id"), list);
+            });
+
+            $("#tbody").delegate("button[name='del']", "click", function () {
+                del($(this).attr("del_id"), list);
+            });
+        });
+
+
+        //修改和添加数据
+        function onload(list) {
+            var user = {
+                "id": parseInt($("#Number").val()),
+                "Name": $("#txt_name").val(),
+                "Number": "q123456"
+            }
+
+            ///添加
+            if (user.id === 0) {
+                user.id = list[list.length - 1].id + 1;
+                list.push(user);
+
+            } else {
+                for (var i = 0; i < list.length; i++) {
+                    //修改数据
+                    if (user.id === list[i].id) {
+                        list[i].id = user.id;
+                        list[i].Name = user.Name;
+                        list[i].Number = user.Number;
+                        break;
+                    }
+                }
+            }
+            loadData(list);
+            $("#Number").val('0');
+            $("#txt_name").val("");
+        }
+
+        function del(id, list) {
+            var index = -1;
+            if (confirm("是否删除当前用户？")) {
+                for (var i = 0; i < list.length; i++) {
+                    if (list[i].id == id) {
+                        index = i;
+                    }
+                }
+                if (index != -1) {
+                    list.splice(index, 1);
+                    loadData(list);
+                }
+
+            }
+        }
+
+        function Edit(id, list) {
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].id == id) {
+                    $("#Number").val(list[i].id);
+                    $("#txt_name").val(list[i].Name);
+                }
+            }
+        }
+
+        function loadData(list) {
+            $("tbody").html("");
+            for (var i = 0; i < list.length; i++) {
+                var html = "<tr>"
+                html += "<td>" + list[i].id + "</td >"
+                html += "<td>" + list[i].Name + "</td>"
+                html += "<td>" + list[i].Number + "</td>"
+                html += "<td>"
+                html += "<div class='btn-group'>"
+                html += "<button class='btn btn-success btn-xs' name='Edit' Edit_id=" + list[i].id + ">编辑</button>"
+                html += "<button class='btn btn-danger btn-xs' name='del' del_id=" + list[i].id + ">删除</button>"
+                html += "</div>"
+                html += "</td>"
+                html += "</tr>"
+                $("tbody").append($(html));
+            }
+        }
+    </script>
+</body>
+
+</html>

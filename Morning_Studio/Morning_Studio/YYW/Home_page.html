@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../Public/Public_jquery/jquery-3.2.1.min.js"></script>
+    <link href="style/home_page.css" rel="stylesheet" />
+    <script src="jquery/Home_page.js"></script>
+
+    <link href="Plug-in_unit_lunbo/css/css.css" rel="stylesheet" />
+    <script src="Plug-in_unit_lunbo/js/js.js"></script>
+
+    <link href="Plug-in_unit_rili/css/calendar.css" rel="stylesheet" />
+    <script src="Plug-in_unit_rili/js/calendar.js"></script>
+
+    <link href="style/kaoqin.css" rel="stylesheet" />
+    <link href="style/kaoqin_shenpi.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="zhengti">
+        <div class="Mask_z"></div>
+        <!--上部-->
+        <div id="shang" style="height:530px;">
+            <div style="float:left">
+                <div id="Home_picture">
+                    <img src="imag/home_page01.PNG" />
+                </div>
+                <div>
+                    <div class="shang_zuo">
+                        <div>
+                            <p>待我审批</p>
+                            <p class="gengduo" style="width:40px;height:25px;left:520px;top:-33px;line-height:25px;">
+                                <a>更多</a>
+                            </p>
+                        </div>
+                        <div><div class="shenpi"><a href="javascript:alert('无内容');">待我审批</a>（<input type="text" value="0" readonly="readonly" class="shuju_txt" />）</div></div>
+                    </div>
+                    <div class="shang_zuo">
+                        <p>待办事宜</p>
+                        <div id="daiban">
+                            <dl>
+                                <dt><a href="javascript:alert('无内容');">待我阅读（<input type="text" value="0" readonly="readonly" class="shuju_txt" style="background-color:white"/>）</a></dt>
+                                <dt><a href="javascript:alert('无内容');">内部邮件（<input type="text" value="0" readonly="readonly" class="shuju_txt" style="background-color:white"/>）</a></dt>
+                                <dt><a href="javascript:alert('无内容');">工作任务（<input type="text" value="0" readonly="readonly" class="shuju_txt" style="background-color:white"/>）</a></dt>
+                            </dl>
+                        </div>
+                        <div id="daibantupian"><center><div id="myStat" data-dimension="250" data-text="35%" data-info="New Clients" data-width="30" data-fontsize="38" data-percent="35" data-fgcolor="#61a9dc" data-bgcolor="#eee" data-fill="#ddd"></div></center></div>
+                    </div>
+                </div>
+            </div>
+            <div id="shang_you">
+                <div class="shang_you">
+                    <div id="calendar" class="calendar"></div>
+                </div>
+                <div class="shang_you">
+                    <table id="my_table">
+                        <tr>
+                            <td colspan="2" style="font-size:21px;border-bottom:1px solid #d3d2d2;">考勤管理</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:18px;">打卡</td>
+                            <td><input type="button" value="点击打卡" class="anniu"  id="user_daka"/></td>
+                        </tr>
+                        <tr>
+                            <td><input type="image" src="imag/qingjia.jpg" class="small_img" /></td>
+                            <td><input type="image" src="imag/xiangmuqingjia.jpg" class="small_img" /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" value="请假申请" class="anniu" id="btn_qingjia" /></td>
+                            <td><input type="button" value="项目休假申请" class="anniu" id="btn_xmqingjia" /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="image" src="imag/qingjiashenpi.jpg" class="small_img" /></td>
+                            <td><input type="image" src="imag/xiangmushenpi.jpg" class="small_img" /></td>
+                        </tr>
+                        <tr class="btn_qjshenpi_tr">
+                            <td><input type="button" value="请假审批" class="anniu" id="btn_qjshenpi" /></td>
+                            <td><input type="button" value="项目休假审批" class="anniu" id="btn_xmqjshenpi" /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="image" src="imag/chaxun.jpg" class="small_img" /></td>
+                            <td><input type="image" src="imag/shezhi.jpg" class="small_img" /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" value="考勤设置" class="anniu" id="btn_shezhi" /></td>
+                            <td><input type="button" value="部门考勤查询" class="anniu" id="btn_select_dept" /></td>
+                        </tr>
+                    </table>
+                </div>
+                <!--考勤页面-->
+                <div id="kaoqin"></div>
+                <div id="shenhe">
+                    <div id="kaoqin_shenpi" style="overflow-x:auto;overflow-y: auto; height: 700px; width:1600px;">
+                        <div style="height:30px;width:1500px;"></div>
+                        <div style="height:30px;width:1500px;"><label style="float:right;right:20px;"><input type="button" value="退出" class="anniu" id="btn_tuichu_shenpi" /></label></div>
+                        <div style="height:60px;width:1500px;vertical-align:middle;font-size:22px;"><label style="position:relative;left:750px">请假审核</label></div>
+                        <table id="shenpi_table">
+                            <thead>
+                                <tr>
+                                    <td class='sp_td'>姓名</td>
+                                    <td class='sp_td'>发送日期</td>
+                                    <td class='sp_td' colspan="2">内容</td>
+                                    <td class='sp_td'>请假类型</td>
+                                    <td class='sp_td'>审批</td>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div style="height:60px;width:1500px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--中部-->
+        <div id="zhong" style="height:350px;">
+            <div class="zhong">
+                <p style="font-size:18px;margin-left:20px;margin-top:10px;">我的会议</p>
+                <p class="gengduo" style="width:40px;left:530px;top:-20px;font-size:15px;">
+                    <a>更多</a>
+                </p>
+            </div>
+            <div class="zhong">
+                <div class="area">
+                    <a id=prev class="prevBtn qq" href="javascript:void(0)"></a>
+                    <a id=next class="nextBtn qq" href="javascript:void(0)"></a>
+                    <div id=js class="js">
+                        <div class="box01">
+                            <img onClick="" src="imag/lunbo1.jpg">
+                            <img style="DISPLAY: none" src="imag/lunbo2.jpg">
+                            <img style="DISPLAY: none" src="imag/lunbo3.jpg">
+                            <img style="DISPLAY: none" src="imag/lunbo4.jpg">
+                            <img style="DISPLAY: none" src="imag/lunbo5.jpg">
+                        </div>
+                        <div class="bg"></div>
+                        <div id=jsNav class=jsNav>
+                            <a class="trigger" href="javascript:void(0)">1</a>
+                            <a class="trigger" href="javascript:void(0)">2</a>
+                            <a class="trigger" href="javascript:void(0)">3</a>
+                            <a class="trigger" href="javascript:void(0)">4</a>
+                            <a class="trigger" href="javascript:void(0)">5</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="zhong">
+                <p style="font-size:18px;margin-left:20px;margin-top:10px;">我的考勤</p>
+                <p class="gengduo" style="width:40px;left:430px;top:-20px;">
+                    <a>更多</a>
+                </p>
+                <dl id="kaoqing">
+                    <dd>迟到（<input type="text" id="chidao" readonly="readonly" class="shuju_txt"/>）次</dd>
+                    <dd>缺卡（<input type="text" id="queka" readonly="readonly" class="shuju_txt" />）次</dd>
+                    <dd>旷工（<input type="text" id="kuanggong" readonly="readonly" class="shuju_txt" />）次</dd>
+                    <dd>全勤（<input type="text" id="quanqin" readonly="readonly" class="shuju_txt" />）次</dd>
+                    <dd>请假（<input type="text" id="qingjia" value="0" readonly="readonly" class="shuju_txt"/>）次</dd>
+                </dl>
+            </div>
+        </div>
+        <!--下部-->
+        <div id="xia" style="height:400px;">
+            <div class="xia">
+                <div> <p style="font-size:18px;margin-left:20px;padding-top:7px;">内部邮件</p></div>
+                <div>
+                    <div><div class="youjian">邮件12312131313213132131</div></div>
+                </div>
+            </div>
+            <div class="xia">
+                <div><p style="font-size:18px;margin-left:20px;padding-top:7px;">公司动态</p></div>
+                <div></div>
+            </div>
+            <div class="xia">
+                <div>
+                    <p style="font-size:18px;margin-left:20px;padding-top:7px;">知识管理</p>
+                    <p class="gengduo" style="width:40px;left:530px;top:-20px;font-size:15px;">
+                        <a>更多</a>
+                    </p>
+                </div>
+                <div>
+                    <div class="zhishi">员工积分管理办法</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

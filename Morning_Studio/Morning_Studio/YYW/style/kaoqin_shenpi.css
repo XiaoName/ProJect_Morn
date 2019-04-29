@@ -1,0 +1,28 @@
+﻿/*考勤审批DIV样式*/
+#kaoqin_shenpi {
+    background-color: white;
+    border: 1px solid rgb(97,190,243);
+    width: 1600px;
+    height: 750px;
+    z-index: 50;
+    position: absolute;
+    top: 50px;
+    left: 120px;
+    display: none;
+}
+/*审批样式*/
+#shenpi_table {
+    width: 1400px;
+    height: 700px;
+    font-size: 18px;
+    margin: 0px auto;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+    table-layout: auto;
+}
+.sp_td {
+    width: 180px;
+    height: 30px;
+    border: 1px solid rgb(97,190,243);
+}

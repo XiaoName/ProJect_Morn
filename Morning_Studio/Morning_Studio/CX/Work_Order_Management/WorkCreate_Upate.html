@@ -1,0 +1,465 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>工作单创建修改</title>
+    <style>
+        body {
+            font-family: 宋体;
+            padding-left: 1px;
+            padding-right: 1px;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .PageDiv {
+            height: auto;
+        }
+
+        .table_one {
+            border-collapse: collapse;
+            margin: 0px auto;
+            border: 1px solid rgb(97, 190, 243);
+            width: 1360px;
+            height: 560px;
+            table-layout: auto;
+        }
+
+        #travel_table .travel_tr {
+            width: 100%;
+            height: 40px;
+            font-size: 18px;
+            line-height: 40px;
+        }
+
+        #travel_head {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+            #travel_head span.travel_shengqi {
+                font-size: 25px;
+                font-weight: bold;
+            }
+
+        #travel_table .tbody_td tr td {
+            border: 1px solid rgb(97, 190, 243);
+            width: 200px;
+        }
+
+        .a1 {
+            height: 50px;
+            font-size: 18px;
+            text-align: right;
+        }
+
+        .a2 {
+            background-color: white;
+        }
+
+            .a2 .txt {
+                padding-left: 5px;
+                margin-left: 8px;
+                height: 30px;
+                font-size: 20px;
+                color: #808080;
+                /*border: 1px solid #808080;*/
+                appearance: none;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+                padding-right: 14px;
+                width: 270px;
+                height: 45px;
+                border-radius: 6px;
+                font: 14px/1.5 arial;
+            }
+
+            .a2 .select_txt, #table_two .txt_chaxu {
+                font-size: 18px;
+                color: #808080;
+                margin-left: 8px;
+                width: 219px;
+                height: 34px;
+            }
+
+        .txt_chuchaisy {
+            padding-left: 5px;
+            font-size: 20px;
+            color: #808080;
+            margin-left: 8px;
+            width: 97%;
+            height: 80px;
+        }
+
+        .btn {
+            text-align: center;
+            vertical-align: central;
+        }
+        /*按钮部分*/
+        .image_btn {
+            width: 100px;
+            height: 30px;
+            background-image: url('../images/btn.gif');
+        }
+
+        .select_img {
+            width: 78px;
+            height: 28px;
+            font-size: 15px;
+        }
+        /*高亮显示*/
+        .image_btn:hover {
+            border: 1px solid #30cc9a;
+            font-size: 20px;
+            color: #30cc9a;
+            text-shadow: 0 0 3px #30cc9a;
+            background-image: url('../images/btn_over.gif');
+        }
+
+        .btn_q {
+            cursor: pointer;
+            background-color: #f9f7f9;
+            width: 100px;
+            height: 27px;
+            vertical-align: central;
+            border-radius: 30px;
+            border: 1px solid #808080;
+            font-size: 18px;
+            color: #808080;
+            font-weight: bold;
+        }
+        /*table_two部分*/
+        .jiangge {
+            margin-top: 10px;
+            width: 100%;
+            height: 40px;
+        }
+
+        .fenGe {
+            margin: 0px auto;
+            background-color: rgb(97, 190, 243);
+            width: 1309px;
+            height: 40px;
+            font-size: 18px;
+            line-height: 40px;
+            padding-left: 30px;
+        }
+
+        #table_two {
+            border-collapse: collapse;
+            margin: 0px auto;
+            border: 1px solid rgb(97, 190, 243);
+            width: 1360px;
+            table-layout: auto;
+        }
+
+        .chaxuDiv {
+            position: relative;
+            margin: 0px auto;
+            width: 1360px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+            .chaxuDiv .txt_chaxu {
+                padding-left: 5px;
+                margin-left: 8px;
+                width: 200px;
+                height: 30px;
+                font-size: 20px;
+                color: #808080;
+            }
+
+            .chaxuDiv .img_btn {
+                margin-left: 10px;
+                position: absolute;
+                width: 80px;
+                height: 40px;
+                top: 5px;
+            }
+
+            .chaxuDiv label {
+                font-size: 18px;
+            }
+
+        #thead_two tr th {
+            background-image: url('../images/thbg.gif');
+            height: 30px;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+        #tbody_two tr td {
+            border: 1px solid rgb(97, 190, 243);
+            height: 35px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            #tbody_two tr td a.a {
+                color: red;
+            }
+
+        .a_details, .a_Del {
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .a_details {
+            background-image: url('../images/icon.png');
+            background-repeat: no-repeat;
+            background-position: -1px -1px;
+            width: 110px;
+        }
+
+        .a_Del {
+            background-image: url('../images/icon.png');
+            background-repeat: no-repeat;
+            background-position: -1px -1px;
+            width: 80px;
+        }
+        /*上传文件*/
+        #upload {
+            padding-left: 350px;
+            color: rgb(97, 190, 243);
+        }
+    </style>
+    <link href="../Equally_CSS/Style.css" rel="stylesheet" />
+    <link href="../css/xcConfirm.css" rel="stylesheet" />
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../../Public/Public_jquery/jquery-1.7.2.min.js"></script>
+    <script src="../js/ajaxfileupload.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //动态加载数据
+            Create_Select();
+
+            //上传文件
+            $("#work_tianjiafjian").click(function () {
+                Create_Upload();
+            });
+
+            //修改按钮
+            WOrkApplay();
+
+          //工作单修改取消按钮
+            Canle();
+        });
+        //上传文件方法
+        function Create_Upload() {
+            $.ajaxFileUpload({
+                url: '../CX_Handler.ashx',
+                secureuri: false,
+                fileElementId: 'file1',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    data = $.parseJSON(data);
+                    $("#img1").attr("src", data.img);
+                    //$("#img1").get(0).src = data.img;
+                }
+            });
+        }
+        //动态加载数据
+        function Create_Select() {
+            var id = window.localStorage.getItem("WorkOrderNumber");
+            $.ajax({
+                url: "../CX_Handler.ashx?act=UpateCha",
+                type: "post",
+                data: { "UpateID": id },
+                dataType: "json",
+                success: function (data) {
+                       $("#danhao").val(data.WorkOrderNumber);
+                    $("#gongzuodandanhao").val(data.WorkOrderNumber);
+                    $("#work_cjtime").val(data.WorksheetCreatDate);
+                    $(".upload_type").text(data.WorkUploadType);
+                    $("#work_rwname").val(data.WorkTaskName);
+                    $(".muqian_state").text(data.WorkState);
+                    $("#work_daoqtime").val(data.WorkDueTime);
+                    $(".daoqichul").val(data.WorkDueDeal);
+                    $("#work_gji").val(data.WorkReminderlevel);
+                    $(".cban_time").text(data.WorkReminderTime);
+                    $("#work_zrr").val(data.ResponsiblePerson);
+                    $("#work_miaoshu").val(data.MyProWorkDescribleperty);
+                    $("#gongzuodandanhao").val(data.WorkOrderNumber);
+                    $("#work_gonghao").val(data.WorkCreatNumber);
+                }
+
+            });
+
+            localStorage.setItem("work_name", $("#work_rwname").val());
+            sessionStorage.setItem("work_dengji", $("#work_cbandengji").val());
+        }
+
+        //工作单修改按钮
+        function WOrkApplay() {
+            $("#WorkCreate_btnUpdate").click(function () {
+                $(".xcConfirm").show();
+            });
+            $("#btn_ok").click(function ()
+{             
+                $.ajax({
+                    url: "../CX_Handler.ashx?act=WorkUpdate",
+                    type: "post",
+                    dataType: "json",
+                    data: $("#form").serialize(),
+                    success: function (feng) {
+                        if (feng) {
+                            $(".xcConfirm").hide();
+                            localStorage.removeItem("WorksheetID");//清除
+                            location.href = "Worksheet_Content.html";
+                        }
+                        else {
+                            alert("修改失败！");
+                        }
+
+                    }
+
+                });
+            });
+            $("#btn_cancel").click(function () {
+                $("#create_title").text("你已点击取消按钮");
+                $(".xcConfirm").hide();
+            });
+
+        }
+
+        //工作单修改取消按钮
+        function Canle() {
+            $("#WorkCreate_btnquxiao").click(function () {              
+                $("#create_title").text("你已点击取消按钮");
+                $(".xcConfirm").show();
+                $("#btn_cancel").remove();
+                $("#btn_ok").click(function () {
+                    location.href = "WorkCreate.html";
+                });
+            });
+
+        }
+    </script>
+
+
+
+
+</head>
+<body>
+    <div id="main_page" class="PageDiv">
+        <!-- 显示申请信息部分 提供修改功能 -->
+        <form id="form">
+            <div id="travel_head"><span class="travel_shengqi">工&nbsp;作&nbsp;单&nbsp;创&nbsp;建&nbsp;修&nbsp;改</span></div>
+            <table class="table_one" id="travel_table">
+                <tbody class="tbody_td">
+                    <tr>
+                        <td class="a1">工作单单号:</td>
+                        <td class="a2">
+                            <input id="danhao" type="text" name="WorkOrderNumber" class="txt"  readonly="re"/>
+
+
+                        </td>
+                        <td class="a1">创建时间:</td>
+                        <td class="a2">
+                            <input type="text" class="txt" id="work_cjtime" name="WorksheetCreatDate" />
+                        </td>
+
+                        <td class="a1">任务名称:</td>
+                        <td class="a2"><input type="text" class="txt" id="work_rwname" name="WorkTaskName" /></td>
+                    </tr>
+                    <tr>
+                        <td class="a1">目前状态:</td>
+                        <td class="a2">
+                            <input id="rabtState_0" type="radio" name="rabtState" value="待处理" checked="checked" class="muqian_state"><label for="rabtState_0">待处理</label>
+                            <input id="rabtState_1" type="radio" name="rabtState" value="已完成" class="muqian_state"><label for="rabtState_1">已完成</label>
+                            <input id="rabtState_2" type="radio" name="rabtState" value="未完成" class="muqian_state"><label for="rabtState_2">未完成</label>
+
+                        </td>
+                        <td class="a1">到期时间:</td>
+                        <td class="a2"><input type="text" class="txt" id="work_daoqtime" name="WorkDueTime" /></td>
+                        <td class="a1">到期处理:</td>
+                        <td class="a2">
+                            <input id="rabtExpiry_0" type="radio" name="rabtExpiry" value="不处理" checked="checked" class="daoqichul"><label for="rabtExpiry_0">不处理</label>
+                            <input id="rabtExpiry_1" type="radio" name="rabtExpiry" value="系统自动发送未完成处理" class="daoqichul"><label for="rabtExpiry_1">系统自动发送未完成处理</label>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="a1">催办等级:</td>
+                        <td class="a2">
+                            <input type="text" id="work_gji" class="txt" name="WorkReminderlevel" />
+                        </td>
+                        <td class="a1">催办时效:</td>
+                        <td class="a2">
+                            <input id="rabtPrescription_0" type="radio" name="rabtPrescription" value="每周一" checked="checked" class="cban_time"><label for="rabtPrescription_0">每周一</label>
+                            <input id="rabtPrescription_1" type="radio" name="rabtPrescription" value="每天" class="cban_time"><label for="rabtPrescription_1">每天</label>
+                            <input id="rabtPrescription_2" type="radio" name="rabtPrescription" value="每小时" class="cban_time"><label for="rabtPrescription_2">每小时</label>
+
+                        </td>
+                        <td class="a1">上传类型:</td>
+                        <td class="a2">
+                            <input id="RabtForm_0" type="radio" name="RabtForm" value="不需要发起人反馈" checked="checked" class="upload_type"><label for="RabtForm_0">不需要发起人反馈</label>
+                            <input id="RabtForm_1" type="radio" name="RabtForm" value="需发起人反馈" class="upload_type"><label for="RabtForm_1">需发起人反馈</label>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="a1">责任人:</td>
+                        <td class="a2">
+                            <input type="text" id="work_zrr" name="ResponsiblePerson" class="txt" />
+                        </td>
+                        <td class="a1">创建人工号:</td>
+                        <td class="a2" colspan="2">
+                            <input type="text" id="work_gonghao" name="WorkCreatNumber" class="txt" readonly="readonly" />
+                        </td>
+                    </tr>
+                    <tr><td class="a1">描述:</td><td colspan="5"><textarea class="txt_chuchaisy" id="work_miaoshu" name="WorkDescrible"></textarea></td></tr>
+                    <tr>
+                        <td class="a1">备注:</td>
+                        <td class="a2" colspan="5" id="upload">
+                            <input type="file" id="file1" name="file" value="浏览" />
+                            <a href="#" id="work_tianjiafjian" style="">添加附件</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="a1"> 完成修改</td>
+                        <td class="a2" colspan="5" id="upload">
+                            <input type="button" style="margin-left:170px;" class="btn_bg" value="修改" id="WorkCreate_btnUpdate" />
+                            <input type="button" style="" class="btn_bg" value="取消" id="WorkCreate_btnquxiao" />
+
+                        </td>
+                    </tr>
+                    <tr style="display:none;">
+                        <td>
+                            <input type="text" id="txt" name="WorksheetID" value="1" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+
+    <div class="xcConfirm" id="pop_155226745181580473" style="display:none; font-family:Arial, Helvetica, sans-serif">
+        <div class="xc_layer"></div>
+        <div class="popBox">
+            <div class="ttBox">
+                <a class="clsBtn"></a>
+                <span class="tt">提示</span>
+            </div><div class="txtBox">
+                <div class="bigIcon" style="background-position: 0px -96px;">
+                </div>
+                <p id="create_title">修改成功</p>
+            </div>
+            <div class="btnArea">
+                <div class="btnGroup">
+                    <a class="sgBtn ok" id="btn_ok">确定</a>
+                    <a class="sgBtn cancel" id="btn_cancel">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

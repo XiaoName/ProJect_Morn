@@ -1,0 +1,662 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>工作单创建</title>
+    <link href="../Equally_CSS/Style.css" rel="stylesheet" />
+    <style>
+        .tips {
+            color: rgba(0, 0, 0, 0.5);
+            padding-left: 10px;
+        }
+
+        .tips_true, .tips_false {
+            padding-left: 10px;
+        }
+
+        .tips_true {
+            color: green;
+        }
+
+        .tips_false {
+            color: red;
+        }
+
+        body {
+            font-family: 宋体;
+            padding-left: 1px;
+            padding-right: 1px;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .PageDiv {
+            height: auto;
+        }
+        /*//处理人*/
+        #work_rwname:hover {
+            cursor:pointer;
+        }
+        .table_one {
+            border-collapse: collapse;
+            margin: 0px auto;
+            border: 1px solid rgb(97, 190, 243);
+            width: 1340px;
+            height: 560px;
+            table-layout: auto;
+        }
+
+        #travel_table .travel_tr {
+            width: 100%;
+            height: 40px;
+            font-size: 18px;
+            line-height: 40px;
+        }
+
+        #travel_head {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            text-shadow: 5px 5px 5px rgb(97, 190, 243); /*阴影*/
+        }
+
+            #travel_head span.travel_shengqi {
+                font-size: 25px;
+                font-weight: bold;
+            }
+
+        #travel_table #tbody_content tr td {
+            border: 1px solid rgb(97, 190, 243);
+            width: 600px;
+        }
+
+        #tbody_content tr td {
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+        .a1 {
+            height: 50px;
+            font-size: 18px;
+            text-align: right;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+        .a2 {
+            background-color: white;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+            .a2 .txt, .txt {
+                padding-left: 5px;
+                margin-left: 8px;
+                height: 30px;
+                font-size: 20px;
+                color: #808080;
+                appearance: none;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+                padding-right: 14px;
+                width: 270px;
+                height: 45px;
+                border-radius: 6px;
+                font: 14px/1.5 arial;
+            }
+
+            .a2 .select_txt, #table_two .txt_chaxu {
+                font-size: 18px;
+                /*color: #808080;*/
+                margin-left: 8px;
+                width: 219px;
+                height: 34px;
+            }
+
+        .txt_chuchaisy {
+            padding-left: 5px;
+            font-size: 20px;
+            color: #808080;
+            margin-left: 8px;
+            width: 97%;
+            height: 80px;
+        }
+
+        .btn {
+            text-align: center;
+            vertical-align: central;
+        }
+        /*按钮部分*/
+        .image_btn {
+            width: 100px;
+            height: 30px;
+            background-image: url('../images/btn.gif');
+        }
+
+        .select_img {
+            width: 78px;
+            height: 28px;
+            font-size: 15px;
+        }
+        /*高亮显示*/
+        .image_btn:hover {
+            border: 1px solid #30cc9a;
+            font-size: 20px;
+            color: #30cc9a;
+            text-shadow: 0 0 3px #30cc9a;
+            background-image: url('../images/btn_over.gif');
+        }
+
+        .btn_q {
+            cursor: pointer;
+            background-color: #f9f7f9;
+            width: 100px;
+            height: 27px;
+            vertical-align: central;
+            border-radius: 30px;
+            border: 1px solid #808080;
+            font-size: 18px;
+            color: #808080;
+            font-weight: bold;
+        }
+        /*table_two部分*/
+        .jiangge {
+            margin-top: 10px;
+            width: 100%;
+            height: 40px;
+        }
+
+        .fenGe {
+            margin: 0px auto;
+            background-color: rgb(97, 190, 243);
+            width: 1309px;
+            height: 40px;
+            font-size: 18px;
+            line-height: 40px;
+            padding-left: 30px;
+        }
+
+        #table_two {
+            border-collapse: collapse;
+            margin: 0px auto;
+            border: 1px solid rgb(97, 190, 243);
+            width: 1340px;
+            table-layout: auto;
+        }
+
+        .chaxuDiv {
+            position: relative;
+            margin: 0px auto;
+            width: 1340px;
+            height: 60px;
+            line-height: 55px;
+        }
+
+            .chaxuDiv .txt_chaxu {
+                padding-left: 5px;
+                margin-left: 8px;
+                width: 200px;
+                height: 30px;
+                font-size: 20px;
+                color: #808080;
+            }
+
+            .chaxuDiv .img_btn {
+                margin-left: 10px;
+                position: absolute;
+                width: 80px;
+                height: 40px;
+                top: 5px;
+            }
+
+            .chaxuDiv label {
+                font-size: 18px;
+            }
+
+        #thead_two tr th {
+            background-image: url('../images/thbg.gif');
+            height: 30px;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+        #tbody_two tr td {
+            border: 1px solid rgb(97, 190, 243);
+            height: 35px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            #tbody_two tr td a.a {
+                color: red;
+            }
+
+        .a_details, .a_Del {
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .a_details {
+            background-image: url('../images/icon.png');
+            background-repeat: no-repeat;
+            background-position: -1px -1px;
+            width: 110px;
+        }
+
+        .a_Del {
+            background-image: url('../images/icon.png');
+            background-repeat: no-repeat;
+            background-position: -1px -1px;
+            width: 80px;
+        }
+        /*上传文件*/
+        #upload {
+            padding-left: 350px;
+            color: rgb(97, 190, 243);
+        }
+    </style>
+    <link href="../Equally_CSS/Mask.css" rel="stylesheet" />
+    <link href="../css/xcConfirm.css" rel="stylesheet" />
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/jquery-1.7.2.min.js"></script>
+    <script src="../js/WorkCreate.js"></script>
+    <script src="../js/ajaxfileupload.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var number = sessionStorage.getItem("user");
+            var name = sessionStorage.getItem("username");
+            $("#work_nmber").val(number);
+            //$("#zrr").val(name);
+            $("#work_rwname").val(name);
+            //日期
+            data();
+            //工作单申请保存按钮中的X图片
+            TP();
+            //二级联动
+            Depart();
+            //三级联动
+            Number();
+            //四级联动
+            Name();
+            //上传事件
+            $("#work_tianjiafjian").click(function () {
+                Create_Up();
+            });
+            //工作单申请保存按钮
+            $("#WorkCreate_btn").click(function () {
+                $(".xcConfirm").show();
+                RoomApplay();
+
+            });
+
+            //zrr：处理人触发弹框事件
+             ZRR();
+            //工作单弹框中的确定按钮
+            Confirm();
+            //工作单弹框中的取消按钮
+            Canle();
+
+        });
+
+
+        //二级联动
+        function Depart() {
+            $(".depart").change(function () {
+                $.ajax({
+                    url: "../CX_Handler.ashx?act=PositionTable",
+                    type: "post",
+                    dataType: "json",
+                    data: { "id": $(this).val() },
+                    success: function (str) {
+                        $(".pos").children("option:gt(0)").remove();
+                        for (var i = 0; i < str.length; i++) {
+                            var html = "<option value='" + str[i].PositionId + "' name='PositionId'>" + str[i].PositionName + "</option>";
+                            $(".pos").append($(html));
+                        }
+                    }
+                });
+            });
+        }
+        //三级联动
+        function Number() {
+            $(".pos").change(function () {
+                $.ajax({
+                    url: "../CX_Handler.ashx?act=Numbers",
+                    type: "post",
+                    dataType: "json",
+                    data: { "Id": $(this).val() },
+                    success: function (a) {
+                        $("#select_zrr").children("option:gt(0)").remove();
+                        for (var i = 0; i < a.length; i++) {
+                            var html = "<option value='" + a[i].UserID + "'>" + a[i].JobNumber + "</option>";
+                            $("#select_zrr").append($(html));
+                        }
+                    }
+                });
+            });
+        }
+
+        //四级联动
+        function Name() {
+            $("#select_zrr").change(function () {
+                $.ajax({
+                    url: "../CX_Handler.ashx?act=Name",
+                    type: "post",
+                    dataType: "json",
+                    data: { "IId": $(this).val() },
+                    success: function (b) {
+                        $("#select_name").children("option:gt(0)").remove();
+                        for (var i = 0; i < b.length; i++) {
+                            var html = "<option value='" + b[i].UserID + "'>" + b[i].Name + "</option>";
+                            $("#select_name").append($(html));
+                        }
+                    }
+                });
+            });
+        }
+        //本地时间
+        function data() {
+            var date = new Date();
+            var seperator1 = "-";
+            var seperator2 = ":";
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+            $("input[name='WorksheetCreatDate']").val(currentdate);
+
+        }
+
+        //上传事件
+        function Create_Up() {
+            $.ajaxFileUpload({
+                url: '../CX_Handler.ashx',
+                secureuri: false,
+                fileElementId: 'file1',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    data = $.parseJSON(data);
+                    $("#img1").attr("src", data.img);
+                    //$("#img1").get(0).src = data.img;
+                }
+            });
+        }
+
+
+        //工作单申请保存按钮
+        function RoomApplay() {
+            var work_nmber = $("#work_nmber").val();
+            var zrr = $("#zrr").val();
+            var work_rwname = $("#work_rwname").val();
+            var work_cjtime = $("#work_cjtime").val();
+            var type = $('input[name="WorkUploadType"]:radio:checked').val();
+            var work_danhao = $("#work_danhao").val();
+            var work_name = $("#work_name").val();
+            var state = $('input[name="WorkState"]:radio:checked').val();
+            var work_daoqtime = $("#work_daoqtime").val();
+            var work_cbandengji = $("#work_cbandengji").val();
+            var cban_time = $('input[name="WorkReminderTime"]:radio:checked').val();
+            var daoqichul = $('input[name="WorkDueDeal"]:radio:checked').val();
+            var work_miaoshu = $("#work_miaoshu").val();
+
+            $("#btn_ok").click(function () {
+                $.ajax({
+                    url: "../CX_Handler.ashx?act=Worksqing_Baoc",
+                    type: "post",
+                    dataType: "json",
+                    data: { "WorksheetID": work_danhao, "WorkOrderNumber": work_nmber, "ResponsiblePerson": zrr, "WorkCreatNumber": work_nmber, "WorksheetCreatDate": work_cjtime, "WorkDealPeople": work_rwname, "WorkUploadType": type, "MyProWorkDescribleperty": work_miaoshu, "WorkState": state, "WorkDueTime": work_daoqtime, "WorkDueDeal": daoqichul, "WorkTaskName": work_name, "WorkReminderlevel": work_cbandengji, "WorkReminderTime": cban_time },
+                    success: function (str) {
+                        if (code = 200) {
+                            $(".xcConfirm").hide();
+                        } else {
+                            alert(str.msg);
+                        }
+                    }
+
+                });
+            });
+            //工作单申请取消按钮
+            $("#btn_cancel").click(function () {
+                $("#create_title").text("你已点击取消按钮");
+                $(".xcConfirm").hide();
+            });
+
+        }
+
+        //工作单申请保存按钮中的X图片
+        function TP() {
+            $(".clsBtn").click(function () {
+                $(".xcConfirm").hide();
+            });
+        }
+        //zrr：责任人触发弹框事件
+        function ZRR() {
+            $("#work_rwname").click(function () {
+                $(".Mask_z").show();
+                $(".content_div").show();
+            });
+        }
+
+        //工作单弹框中的确定按钮
+        function Confirm() {
+            $("#Btn_confirm").click(function () {
+                //处理人从弹框中选值
+                var s = $("#select_name");
+                var b = s.find("option:selected").text();
+                $("#work_rwname").val(b);
+                $(".Mask_z").hide();
+                $(".content_div").hide();
+            });
+        }
+       //工作单弹框中的取消按钮
+        function Canle() {
+            $("#Btn_cancel").click(function () {
+                $(".Mask_z").hide();
+                $(".content_div").hide();
+            });
+        }
+    </script>
+</head>
+<body>
+
+
+    <div id="main_page" class="PageDiv">
+        <!-- 输入信息部分 -->
+        <form action="#" id="myform">
+            <div id="travel_head"><span class="travel_shengqi">创&nbsp;建&nbsp;工&nbsp;作&nbsp;单</span></div>
+            <table class="table_one" id="travel_table">
+                <tbody class="tbody_td">
+                    <tr>
+                        <td class="a1">创建工号:</td>
+                        <td class="a2">
+                            <input type="text" class="txt" id="work_nmber" required="required" name="WorkCreatNumber" />
+                        </td>
+                        <td class="a1">责任人:</td>
+                        <td class="a2">
+                            <input type="text" class="txt" id="zrr" required="required" name="ResponsiblePerson" />
+
+                        </td>
+                        <td class="a1">处理人:</td>
+                        <td class="a2" id="name2"><input type="text" class="txt" id="work_rwname" name="WorkDealPeople" /></td>
+                    </tr>
+                    <tr>
+                        <td class="a1">创建时间:</td>
+                        <td class="a2">
+                            <input type="date" class="txt" id="work_cjtime" required="required" name="WorksheetCreatDate" />
+                        </td>
+                        <td class="a1">上传类型:</td>
+                        <td class="a2">
+                            <input id="RabtForm_0" type="radio" name="WorkUploadType" value="不需要发起人反馈" checked="checked" class="upload_type"><label for="RabtForm_0">不需要发起人反馈</label>
+                            <input id="RabtForm_1" type="radio" name="WorkUploadType" value="需要发起人反馈" class="upload_type"><label for="RabtForm_1">需要发起人反馈</label>
+
+                        </td>
+                        <td class="a1">工作单单号:</td>
+                        <td class="a2" id="name2"><input type="text" value="1287" class="txt" id="work_danhao" name="WorksheetID" /></td>
+
+                    </tr>
+                    <tr>
+                        <td class="a1">任务名称:</td>
+                        <td class="a2" id="name2"><input type="text" class="txt" id="work_name" name="WorkTaskName" /></td>
+
+                        <td class="a1">目前状态:</td>
+                        <td class="a2">
+                            <input id="rabtState_0" type="radio" name="WorkState" value="待处理" checked="checked" class="muqian_state"><label for="rabtState_0">待处理</label>
+                            <input id="rabtState_1" type="radio" name="WorkState" value="已完成" class="muqian_state"><label for="rabtState_1">已完成</label>
+                            <input id="rabtState_2" type="radio" name="WorkState" value="未完成" class="muqian_state"><label for="rabtState_2">未完成</label>
+
+                        </td>
+                        <td class="a1">到期时间:</td>
+                        <td class="a2"><input type="date" class="txt" id="work_daoqtime" required="required" name="WorkDueTime" /></td>
+
+                    </tr>
+                    <tr>
+                        <td class="a1">催办等级:</td>
+                        <td class="a2" id="name3">
+                            <input type="text" id="work_cbandengji" class="txt" name="WorkReminderlevel" />
+
+                        </td>
+                        <td class="a1">催办时效:</td>
+                        <td class="a2">
+                            <input id="rabtPrescription_0" type="radio" name="WorkReminderTime" value="每周一" checked="checked" class="cban_time"><label for="rabtPrescription_0">每周一</label>
+                            <input id="rabtPrescription_1" type="radio" name="WorkReminderTime" value="每天" class="cban_time"><label for="rabtPrescription_1">每天</label>
+                            <input id="rabtPrescription_2" type="radio" name="WorkReminderTime" value="每小时" class="cban_time"><label for="rabtPrescription_2">每小时</label>
+
+                        </td>
+                        <td class="a1">到期处理:</td>
+                        <td class="a2">
+                            <input id="rabtExpiry_0" type="radio" name="WorkDueDeal" value="不处理" checked="checked" class="daoqichul"><label for="rabtExpiry_0">不处理</label>
+                            <input id="rabtExpiry_1" type="radio" name="WorkDueDeal" value="系统自动发送未完成处理" class="daoqichul"><label for="rabtExpiry_1">系统自动发送未完成处理</label>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="a1">描述:</td>
+                        <td colspan="5" id="name4"><textarea class="txt_chuchaisy" id="work_miaoshu" name="MyProWorkDescribleperty"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td class="a1">备注:</td>
+                        <td class="a2" colspan="5" id="upload">
+                            <input type="file" id="file1" name="file" value="浏览" />
+                            <a href="#" id="work_tianjiafjian" style="">添加附件</a>
+                            <img id="img1" alt="" src="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="a1"> 完成创建</td>
+                        <td class="a2" colspan="5" id="upload">
+                            <input type="button" style="margin-left:200px;" class="btn_bg" value="添加" id="WorkCreate_btn" />
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </form>
+        <div class="jiangge">
+            <div class="fenGe">创建明细</div>
+        </div>
+        <div class="chaxuDiv">
+            <label>工作单单号:</label><input type="text" class="txt" id="work_idcard" />
+            <label>任务名称:</label><input type="text" class="txt" id="work_names" />
+            <input type="button" class="btn_bg" value="查询" id="WorkCreateBTN" />
+
+        </div>
+
+        <form id="select_infrom">
+            <table id="table_two" style="text-align:center;">
+                <thead id="thead_two">
+                    <tr>
+                        <th width="40">单号</th>
+                        <th width="40">责任人</th>
+                        <th width="60">创建人工号</th>
+                        <th width="100">创建日期</th>
+                        <th width="40">处理人</th>
+                        <th width="70">上传类型</th>
+                        <th width="70">描述</th>
+                        <th width="70">状态</th>
+                        <th width="100">到期时间</th>
+                        <th width="70">到期处理</th>
+                        <th width="90">任务名称</th>
+                        <th width="70">催办等级</th>
+                        <th width="70">催办时效</th>
+                        <th style="width:100px;">操作</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tbody_content"></tbody>
+
+            </table>
+        </form>
+    </div>
+
+    <div class="xcConfirm" id="pop_155226745181580473" style="display:none;font-family:Arial, Helvetica, sans-serif">
+        <div class="xc_layer"></div>
+        <div class="popBox" style="top:400px;left:43%;">
+            <div class="ttBox">
+                <a class="clsBtn"></a>
+                <span class="tt">提示</span>
+            </div><div class="txtBox">
+                <div class="bigIcon" style="background-position: 0px -96px;">
+                </div>
+                <p id="create_title">保存成功</p>
+            </div>
+            <div class="btnArea">
+                <div class="btnGroup">
+                    <a class="sgBtn ok" id="btn_ok">确定</a>
+                    <a class="sgBtn cancel" id="btn_cancel">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 负责人选择内容部分 -->
+    <div class="content_div" style="top:5px;">
+        <div class="guojia_select">
+            <span class="tetlie">负责人选择</span>
+        </div>
+        <!-- 负责人  -->
+        <div class="cityDiv">
+            <label>部门：</label>
+            <select class="depart" id="" name="DepartID">
+                <option>
+                    请选择
+                </option>
+
+            </select>
+            <br />
+            <label>职位：</label>
+            <select class="pos">
+                <option value="0">
+                    请选择
+                </option>
+            </select>
+            <br />
+            <label>工号：</label>
+            <select class="selects" id="select_zrr">
+                <option>请选择</option>
+            </select>
+            <br />
+            <label>姓名：</label>
+            <select class="selects" id="select_name">
+                <option>请选择</option>
+            </select>
+        </div>
+        <div class="btn_divCity">
+            <div id="Btn_confirm" class="btn_qding">确认</div>
+            <div id="Btn_cancel" class="btn_quxiao">取消</div>
+        </div>
+    </div>
+    <div class="Mask_z"></div>
+
+
+</body>
+
+</html>

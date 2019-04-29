@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>修改登录密码</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta charset="utf-8" />
+    <style type="text/css">
+        body {
+            font: 14px/28px "微软雅黑";
+        }
+
+        .contact *:focus {
+            outline: none;
+        }
+
+        .contact {
+            width: 700px;
+            height: auto;
+            background: #f6f6f6;
+            margin: 40px auto;
+            padding: 10px;
+        }
+
+            .contact ul {
+                width: 650px;
+                margin: 0 auto;
+            }
+
+                .contact ul li {
+                    border-bottom: 1px solid #dfdfdf;
+                    list-style: none;
+                    padding: 12px;
+                }
+
+                    .contact ul li label {
+                        width: 120px;
+                        display: inline-block;
+                        float: left;
+                    }
+
+                    .contact ul li input[type=text], .contact ul li input[type=password] {
+                        width: 270px;
+                        height: 25px;
+                        border: 1px solid #aaa;
+                        padding: 3px 8px;
+                        border-radius: 5px;
+                    }
+
+                    .contact ul li input:focus {
+                        border-color: #c00;
+                    }
+
+                    .contact ul li input[type=text] {
+                        transition: padding .25s;
+                        -o-transition: padding .25s;
+                        -moz-transition: padding .25s;
+                        -webkit-transition: padding .25s;
+                    }
+
+                    .contact ul li input[type=password] {
+                        transition: padding .25s;
+                        -o-transition: padding .25s;
+                        -moz-transition: padding .25s;
+                        -webkit-transition: padding .25s;
+                    }
+
+                    .contact ul li input:focus {
+                        padding-right: 70px;
+                    }
+
+        .btn {
+            position: relative;
+            left: 170px;
+        }
+
+        .tips {
+            color: rgba(0, 0, 0, 0.5);
+            padding-left: 10px;
+        }
+
+        .tips_true, .tips_false {
+            padding-left: 10px;
+        }
+
+        .tips_true {
+            color: green;
+        }
+
+        .tips_false {
+            color: red;
+        }
+    </style>
+    <link href="../Equally_CSS/Style.css" rel="stylesheet" />
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript"> 
+        //验证密码 
+        function checkpsd1() {
+
+            psd1 = form1.yourpass1.value;
+
+            var flagZM = false;
+
+            var flagSZ = false;
+
+            var flagQT = false;
+
+            if (psd1.length <3 || psd1.length >6) {
+
+                divpassword1.innerHTML = '<font class="tips_false">长度错误</font>';
+
+            } else {
+
+                for (i = 0; i < psd1.length; i++) {
+
+                    if ((psd1.charAt(i) >= 'A' && psd1.charAt(i) <= 'Z') || (psd1.charAt(i) >= 'a' && psd1.charAt(i) <= 'z')) {
+
+                        flagZM = true;
+
+                    }
+
+                    else if (psd1.charAt(i) >= '0' && psd1.charAt(i) <= '9') {
+
+                        flagSZ = true;
+
+                    } else {
+
+                        flagQT = true;
+
+                    }
+
+                }
+
+                if (!flagZM || !flagSZ || flagQT) {
+
+                    divpassword1.innerHTML = '<font class="tips_false">密码必须是字母数字的组合</font>';
+
+
+
+                } else {
+
+
+
+                    divpassword1.innerHTML = '<font class="tips_true">输入正确</font>';
+
+
+
+                }
+
+
+
+            }
+
+        }
+
+        //验证确认密码 
+
+        function checkpsd2() {
+
+            if (form1.yourpass1.value != form1.yourpass2.value) {
+
+                divpassword2.innerHTML = '<font class="tips_false">您两次输入的密码不一样</font>';
+
+            } else {
+
+                divpassword2.innerHTML = '<font class="tips_true">输入正确</font>';
+
+            }
+
+        }
+
+        $(function () {
+            var a = sessionStorage.getItem("user");
+            $("#ID").val(a);
+            var pwd = sessionStorage.getItem("pwd");
+            $("#old_pwd").val(pwd);
+            //修改
+            $("#BTN").click(function () {
+                UpUser();
+            });          
+        })
+        //修改
+        function UpUser() {
+            var Jobnumber = $("#ID").val();
+            var new_pwd = $("#new_pwd").val();
+            $.ajax({
+                url: "../CX_Handler.ashx?act=getUpUser",
+                type: "post",
+                dataType: "json",
+                data: { "JobNumber": Jobnumber, "Passwored": new_pwd},
+                success: function (str) {
+                    if (str.code == 200) {
+                        alert(str.msg);
+                        location.href = "../../Public/Public_page/OA_Login.html";
+                    } else {
+                        alert(str.msg);
+                    }
+                }
+            })
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="contact">
+
+        <form name="form1" method="post" id="formUser">
+
+            <ul>
+
+                <li>
+
+                    <label>用户工号：</label>
+
+                    <input type="text" name="Jobnumber" readonly="readonly" id="ID" />
+
+                </li>
+                <li>
+
+                    <label>旧密码：</label>
+
+                    <input type="text" id="old_pwd" name="yourpass" readonly="readonly" />
+
+                </li>
+                <li>
+
+                    <label>新密码：</label>
+
+                    <input type="text" id="new_pwd" name="yourpass1" placeholder="请输入你的密码" onblur="checkpsd1()" required /><span class="tips" id="divpassword1">密码必须由字母和数字组成</span>
+
+                </li>
+
+                <li>
+
+                    <label>确认密码：</label>
+
+                    <input type="text" id="nextnew_pwd" name="yourpass2" placeholder="请再次输入你的密码" onblur="checkpsd2()" required /><span class="tips" id="divpassword2">两次密码需要相同</span>
+                </li>
+            </ul>
+
+            <b class="btn" >
+                <input type="button" value="提交" class="btn_bg"  id="BTN"/>
+
+                <input type="reset" value="取消" class="btn_bg"/>
+            </b>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .editTable tr th {
+            color: #004566;
+            background-color: #EEF4FF;
+            text-align: right;
+            font-weight: normal;
+            width: 110px;
+            border: 1px solid #6faadb;
+            padding: 3px;
+        }
+
+        .editTable tr td {
+            text-align: left;
+            border: 1px solid #6faadb;
+            padding: 3px;
+            color: #004566;
+            background-color: #fff;
+            width: 400px;
+        }
+
+        div#editDiv {
+            padding: 10px;
+            text-align: center;
+        }
+
+        div {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        input[type="text"], input[type="email"], input[type="date"] {
+            margin-left: 8px;
+            height: 38px;
+            width: 300px;
+            padding-left: 5px;
+            font-size: 22px;
+        }
+
+        .btn {
+            min-width: 70px;
+            min-width: 60px\9;
+            background-image: url(images/btn.gif);
+            height: 30px;
+            padding: 0px 10px;
+            _padding: 0px 5px;
+            cursor: pointer;
+            border: 1px solid #91bdfe;
+            color: #002864;
+            _margin-left: 3px;
+            border-radius: 2px;
+        }
+
+        select {
+            padding-left: 5px;
+            margin-left: 8px;
+            /*border: 1px solid #808080;*/
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            background: url('../images/down2.png')100% 70% no-repeat scroll transparent;
+            padding-right: 14px;
+            width: 240px;
+            height: 30px;
+            font: 14px/1.5 arial;
+        }
+    </style>
+    <script src="../js/jquery-1.10.2.js"></script>
+    <script src="../js/Personal_Information.js"></script>
+    <script>
+        //图片上传预览    IE是用了滤镜。
+        function previewImage(file) {
+            var MAXWIDTH = 90;
+            var MAXHEIGHT = 90;
+            var div = document.getElementById('preview');
+            if (file.files && file.files[0]) {
+                div.innerHTML = '<img id=imghead onclick=$("#previewImg").click()>';
+                var img = document.getElementById('imghead');
+                img.onload = function () {
+                    var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                    img.width = rect.width;
+                    img.height = rect.height;
+                    //                 img.style.marginLeft = rect.left+'px';
+                    img.style.marginTop = rect.top + 'px';
+                }
+                var reader = new FileReader();
+                reader.onload = function (evt) { img.src = evt.target.result; }
+                reader.readAsDataURL(file.files[0]);
+            }
+            else //兼容IE
+            {
+                var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+                file.select();
+                var src = document.selection.createRange().text;
+                div.innerHTML = '<img id=imghead>';
+                var img = document.getElementById('imghead');
+                img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+                div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+            }
+        }
+        function clacImgZoomParam(maxWidth, maxHeight, width, height) {
+            var param = { top: 0, left: 0, width: width, height: height };
+            if (width > maxWidth || height > maxHeight) {
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+
+                if (rateWidth > rateHeight) {
+                    param.width = maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                } else {
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+    </script>
+
+</head>
+<body>
+    <form id="my_form">
+        <div id="editDiv" style="margin: 0 auto; text-align: center; width:1200px;border: 1px solid #6faadb;">
+            <div style="height:35px;line-height:0px;width:100%;border: 1px solid #6faadb;">
+                <h3 style="float:left; ">修改个人信息</h3>
+            </div>
+
+            <div style="height:35px;width:100%;border: 1px solid #6faadb;line-height:5px;">
+                <input type="button" class="btn" style="float:left;margin-top:2px;" value="保存" id="inform_btn" />
+            </div>
+            <table style="width:100px;float:left;border-collapse: collapse;border: 1px solid #6faadb;">
+                <tr>
+                    <td>
+                        <div id="addCommodityIndex">
+
+
+                            <!--input-group start-->
+                            <div class="input-group row">
+
+                                <div class="col-sm-9 big-photo">
+                                    <div id="preview">
+                                        <img id="imghead" name="ImageUrl" border="0" src="../images/photo_icon.png" width="90" height="90" onclick="$('#previewImg').click();">
+                                    </div>
+                                    <input type="file" onchange="previewImage(this)" style="display: none;" id="previewImg">
+                                    <!--<input id="uploaderInput" class="uploader__input" style="display: none;" type="file" accept="" multiple="">-->
+                                </div>
+                            </div>
+                            <!--input-group end-->
+
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <table border="1" style="width:1100px;float:left;border-collapse: collapse;border: 1px solid #6faadb;">
+                <tr colspan="6">
+                    <td height="30"   style="border: 1px solid #6faadb">
+                        <div style="width:600px;height:30px;margin:auto;">
+                            <span >工号：</span>
+                            <span name="JobNumber" id="JobNumber1">11</span>
+                            <span style="margin-left:200px">姓&nbsp;&nbsp;名&nbsp;：</span>
+                            <span name="Name" id="Name1">章忠亮</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="30" style="border: 1px solid #6faadb">
+                        <div style="width:600px;height:30px;margin:auto;">
+                            <span style="margin-left:50px;">性别：</span>
+                            <span name="Sex" id="Sex1">男</span>
+                            <span style="margin-left:240px">入职日期：</span>
+                            <span name="WorkStart" id="WorkStart1">1979-09-13</span>
+                            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="30" style="border: 1px solid #6faadb">
+                        <div style="width:600px;height:30px;margin:auto;">
+                            <span style="margin-left:20px;">部门：</span>
+                            <span name="DepartID" id="DepartID1">11</span>
+                            <span style="margin-left:210px">技术职务：</span>
+                            <span name="PositionId" id="PositionId1">章忠亮</span>
+                            </div>
+                    </td>
+                </tr>
+            </table>
+            <table class="editTable" style="margin: 0 auto; text-align: center; width:1200px;border-collapse: collapse;">
+                <tbody>
+                   <tr>
+                        <th>身份证号：</th>
+                        <td><input name="IdCard" type="text" id="ic_card"></td>
+                           <th>生日：</th>
+                        <td><input type="text" id="birthday"></td>
+                    </tr>
+                    <tr>
+                        <th>联系电话：</th>
+                        <td><input name="Phone" type="text" id="mobile" ></td>
+                        <th>银行卡号：</th>
+                        <td><input name="YGcard" type="text" id="id_card" ></td>
+                    </tr>
+                    <tr>
+                        <th>E-mail：</th>
+                        <td><input name="Email" type="email" id="email"></td>
+                        <th>户口：</th>
+                        <td><input type="text" id="huk" name="Account"></td>
+                    </tr>
+                    <tr>
+                        <th>地址：</th>
+                        <td ><input type="text" id="address" name="Address"></td>
+                        <th>离职日期：</th>
+                        <td><span id="roleName">无</span></td>
+
+                    </tr>
+
+                    
+                </tbody>
+            </table>
+
+        </div>
+    </form>
+</body>
+</html>

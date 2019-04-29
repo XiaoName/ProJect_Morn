@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>员工信息查询</title>
+    <link href="CSS/Style.css" rel="stylesheet" />
+    <script src="../Public/Public_jquery/jquery-3.3.1.min.js"></script>
+    <script src="JS/Depart.js"></script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #Overall {
+            width: 1800px;
+            height: 1200px;
+            margin: auto;
+            border: 1px solid rgb(97, 190, 243);
+        }
+
+        .Title_span {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: rgb(0, 148, 255);
+        }
+
+        .font_title_span {
+            font-size: 28px;
+        }
+
+        .select_divContent {
+            margin: 10px 0px 10px 20px;
+        }
+
+        .lable_font {
+            font-size: 16px;
+        }
+
+        .txt_currency, .select_dep {
+            width: 290px;
+            height: 31px;
+            color: rgb(128, 128, 128);
+            font-size: 16px;
+        }
+
+        .txt_currency {
+            padding-left: 5px;
+        }
+
+        .select_dep {
+            text-align: center;
+        }
+        /*table部分*/
+        .table_content {
+            vertical-align: central;
+            width: 98%;
+            margin: auto;
+            table-layout: auto;
+            border-collapse: collapse;
+        }
+
+            .table_content thead tr th {
+                vertical-align: central;
+                background-image: url('images/thbg.gif');
+                height: 30px;
+                border: 1px solid rgb(97, 190, 243);
+                width: 150px;
+            }
+
+            .table_content tbody tr td {
+                height: 35px;
+                border: 1px solid rgb(97, 190, 243);
+                text-align: center;
+                vertical-align: middle;
+            }
+
+                .table_content tbody tr td a.a {
+                    display: inline-block;
+                    width: 100%;
+                    height: 100%;
+                    line-height: 35px;
+                    color: red;
+                }
+
+        .a_details, .a_Del {
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .a_details {
+            background-image: url('images/icon.png');
+            background-repeat: no-repeat;
+            background-position: -1px -1px;
+            width: 110px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $(".selects").change(function () {
+                $.ajax({
+                    url: "Handler.ashx?act=PositionTable",
+                    type: "post",
+                    dataType: "json",
+                    data: { "id": $(this).val() },
+                    success: function (str) {
+                        $(".pos").children("option:gt(0)").remove();
+                        for (var i = 0; i < str.length; i++) {
+                            var html = "<option value='" + str[i].PositionId + "' name='PositionId'>" + str[i].PositionName + "</option>";
+                            $(".pos").append($(html));
+                        }
+                    }
+                });
+            })
+
+            $("#Btn_Select").click(function () {
+                var curr = $(".txt_currency").val();
+                var dep = $(".selects").val();
+                var pos = $(".pos").val();
+                $("#tbody_content").find("td").remove();
+                $.ajax({
+                    url: "Handler.ashx?act=getInformation",
+                    type: "post",
+                    dataType: "json",
+                    data: { "curr": curr, "dep": dep, "pos": pos },
+                    success: function (str) {
+                        for (var i = 0; i < str.length; i++) {
+                            var html = "<tr>" +
+                                "<td>" + str[i].JobNumber+"</td>" +
+                                "<td>" + str[i].Name+"</td>" +
+                                "<td>" + str[i].YGcard+"</td>" +
+                                "<td>" + str[i].Sex+"</td>" +
+                                "<td>" + str[i].Email+"</td>" +
+                                "<td>" + str[i].Address+"</td>" +
+                                "<td>" + str[i].IdCard+"</td>" +
+                                "<td>" + str[i].Phone+"</td>" +
+                                "<td>" + str[i].Departmentid.DepartName+"</td>" +
+                                "<td id='a_shi'><span style='margin-left:0px;' class='del'>"+
+                                "</span> <a href='javascript: ; ' name='del' class='a_Del' curr='"+ str[i].JobNumber+"'>删除</a></td > " +
+                                "</tr >";
+                            $("#tbody_content").append($(html));
+                        }
+                    }
+                })
+
+            })
+            $("#tbody_content").on("click", ".a_Del", function () {
+                $.ajax({
+                    url: "Handler.ashx?act=getUpnabage",
+                    type: "post",
+                    dataType: "json",
+                    data: { "job": $(this).attr("curr") },
+                    success: function (str) {
+                        if (str.code == 200) {
+                            alert(str.msg);
+                            window.location.reload();
+                        } else {
+                            alert(str.msg);
+                        }
+                    }
+                })
+            })
+           
+        })
+    </script>
+</head>
+<body>
+    <div id="Overall">
+        <div class="Title_span"><span class="font_title_span">员&nbsp;工&nbsp;信&nbsp;息&nbsp;查&nbsp;询</span></div>
+        <div class="select_divContent" style="text-align:center;">
+            <label class="lable_font">姓名/工号：</label>
+            <input type="text" class="txt_currency" id="" />
+            <label class="lable_font">部门：</label>
+            <select class="selects" id="">
+                <option>
+                    请选择
+                </option>
+            </select>
+            <label class="lable_font">职务：</label>
+            <select class="pos">
+                <option value="0">
+                    请选择
+                </option>
+            </select>
+            <span style="margin-left:20px;"></span>
+            <input type="button" class="btn_bg" id="Btn_Select" value="查 询" />
+        </div>
+        <div class="table_DivContent">
+            <form action="#">
+                <table class="table_content">
+                    <thead>
+                        <tr>
+                            <th>工号</th>
+                            <th>姓名</th>
+                            <th>卡号</th>
+                            <th>性别</th>
+                            <th>邮箱</th>
+                            <th>地址</th>
+                            <th>身份证</th>
+                            <th>电话号码</th>
+                            <th>所属部门</th>
+                            <th>编辑</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody_content"></tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="10">
+                                <div style="border:0px;text-align:right;font-size:24px;">
+                                    <span>当前第:</span>
+                                    <span>1</span>
+                                    <span>页/共:</span>
+                                    <span>3</span>
+                                    <span>页</span>
+                                    <a href="#"><span>下一页</span></a>
+                                    <a href="#">尾页</a>
+                                    <span>转到第</span>
+                                    <input type="text" value="1" style="width:50px;">
+                                    <span>页</span>
+                                    <a href="#">GO</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

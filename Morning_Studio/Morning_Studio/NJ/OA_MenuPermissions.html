@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>菜单维护</title>
+    <link href="../Public/Public_CSS/menu.css" rel="stylesheet" />
+    <link href="CSS/Style.css" rel="stylesheet" />
+    <script src="../Public/Public_jquery/jquery-3.3.1.min.js"></script>
+    <script src="JS/Permissios.js"></script>
+    <link href="CSS/PromptBox.css" rel="stylesheet" />
+    <link href="CSS/Permissions.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_Up").delegate('body','clike', function () {
+                alert($(this).attr("stte"));
+                $(".panelwindow").show();
+            })
+            $(".selects_caidan1").change(function () {
+                $.ajax({
+                    url: "Handler.ashx?act=getSePermissios1",
+                    type: "post",
+                    dataType: "json",
+                    data: $("#from").serialize(),
+                    success: function (str) {
+                        $(".selects_caidan2").children("option:gt(0)").remove();
+                        //$(".selects_caidan2").html("<option value='-1'>请选择</option>");
+                        for (var i = 0; i < str.length; i++) {
+                            var html = "<option value='" + str[i].PermissiosID + "' name='DepartID'>" + str[i].PermissiosName + "</option>";
+                            $(".selects_caidan2").append($(html));
+                        }
+                    }
+                });
+            });
+
+            $("#btn_select").click(function () {
+                $.ajax({
+                    url: "Handler.ashx?act=getSePermissios2",
+                    type: "post",
+                    dataType: "json",
+                    data: $("#from").serialize(),
+                    success: function (str) {
+                        $("#tbody_two").find("td").remove();
+                        for (var i = 0; i < str.length; i++) {
+                            var html = "<tr>" +
+                                "<td >" + str[i].PermissiosID + "</td>" +
+                                "<td>" + str[i].PermissiosName + "</td>" +
+                                "<td>" + str[i].PermissionsCode + "</td>" +
+                                "<td>" + str[i].PermissiosName1 + "</td>" +
+                                "<td><a style='margin-left:10px;cursor:pointer;' class='bianji' stte='" + str[i].PermissiosID + "'>编辑 </a></td>" +
+                                "</tr >";
+                            $("#tbody_two").append($(html));
+                        }
+                    }
+                });
+                $(".txt_chaxu").val("");
+            })
+        })
+       
+    </script>
+</head>
+<body>
+    <div id="main_page" class="PageDiv">
+        <!-- 输入信息部分 -->
+        <form id="from">
+            <div class="jiangge">
+                <div class="fenGe" style="font-size:24px;font:宋体;">
+                    菜单查询
+                    <span style="margin-left:1150px;border:1px solid #000;border-radius: 6px;text-align:center;" class="btn_bg" id="btn_Up">
+                        <a id="select_xz" style="font-size:18px;padding:2px 10px;">
+                            <img src="images/ico01.png" />
+                            新增
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <div class="chaxuDiv">
+                <label>菜单名称:</label><input type="text" class="txt_chaxu" name="caidan">
+                <label>一级菜单:</label>
+                <select class="selects_caidan1" name="caidan1">
+                    <option value="-1">请选择</option>
+                </select>
+                <label>二级菜单:</label>
+                <select class="selects_caidan2" name="caidan2">
+                    <option value="-1">请选择</option>
+                </select>
+                <input type="button" value="查询" class="btn_bg" id="btn_select" style="height:40px;font-size:20px;" />
+            </div>
+        </form>
+        <form id="select_infrom" style="margin:auto">
+            <table id="table_two" style="width:1390px;">
+                <thead id="thead_two">
+                    <tr id="th">
+                        <th><a href="#">上级菜单ID</a></th>
+                        <th><a href="#">上级菜单</a></th>
+                        <th><a href="#">菜单编号</a></th>
+                        <th><a href="#">菜单名称</a></th>
+                        <th style="width:250px;">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_two"></tbody>
+                <tr>
+                    <td colspan="10">
+                        <div style="border:0px;text-align:right;font-size:24px;">
+                            <span>当前第:</span>
+                            <span>1</span>
+                            <span>页/共:</span>
+                            <span>3</span>
+                            <span>页</span>
+                            <a href="#"><span>下一页</span></a>
+                            <a href="#">尾页</a>
+                            <span>转到第</span>
+                            <input type="text" value="1" style="width:50px;">
+                            <span>页</span>
+                            <a href="#">GO</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div class="panelwindow" style="display: none;border:1px solid rgb(97, 190, 243); width: 320px; left: 750px; top: 472px; z-index: 9002;line-height:40px;background:#d9ebf5;margin:0px auto;">
+            <div class="jurisdict_title" style="width:320px;">
+                <div class="panel-title" style="height:45px;line-height:45px;">
+                    <span>权限管理<img src="images/close4.png" style="margin-left:210px;" /></span>
+                </div>
+            </div>
+            <div id="mdialog" title="" class="" style="width:318px;border:1px solid #8fc6ea;">
+                <div id="mdi_center" style="padding:25px 0px;">
+                    <div class="d">
+                        <label for="name">工号/姓名:</label>
+                        <input type="text" id="txt_murr" style="width:190px;height:30px;border-radius:6px;margin-left:10px;" />
+                    </div>
+                    <div class="d">
+                        <label for="name"> 一级菜单 :</label>
+                        <select class="jusis_selects">
+                            <option value="-1">所有部门</option>
+                        </select>
+                    </div>
+                    <div class="d">
+                        <label for="name"> 二级菜单 :</label>
+                        <select class="jusis_selects">
+                            <option value="-1">所有部门</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="background:#ede0e0;width:318px;height:40px;">
+                    <input type="button" value="保存" class="jurisdict_btn" style="height:30px;font-size:20px;margin-left:150px;" />
+                    <input type="button" value="关闭" class="jurisdict_btn" style="height:30px;font-size:20px;" />
+                </div>
+            </div>
+        </div>
+        <style>
+            /*按钮部分*/
+            .jurisdict_btn {
+                cursor: pointer;
+                width: 60px;
+                height: 40px;
+                background-image: url('images/btn.gif');
+                margin-top: 5px;
+            }
+
+                .jurisdict_btn:hover {
+                    cursor: pointer;
+                    background-image: url('images/btn_over.gif');
+                    text-shadow: 0 0 3px #808080;
+                    font-size: 18px;
+                }
+
+            .jurisdict_title {
+                background-color: #8fc6ea;
+            }
+
+            .panel-title {
+                font-weight: bold;
+                font-family: 宋体;
+            }
+
+            .jusis_selects {
+                padding-left: 5px;
+                margin-left: 8px;
+                /*border: 1px solid #808080;*/
+                appearance: none;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+                background: url('images/down2.png')100% 70% no-repeat scroll transparent;
+                padding-right: 14px;
+                width: 200px;
+                height: 30px;
+                border-radius: 6px;
+                font: 14px/1.5 arial;
+            }
+        </style>
+
+</body>
+
+</html>

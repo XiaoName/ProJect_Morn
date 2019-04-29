@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>修改申请信息</title>
+    <!-- 基本样式 -->
+    <link href="../../Content/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap-3.3.7-dist/css/button.css" rel="stylesheet" />
+    <link href="../../CSS/Stley.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="main_page" class="container">
+        <!-- title部分 -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h2>出差申请修改</h2>
+            </div>
+        </div>
+
+        <!-- 显示申请信息部分 提供修改功能 -->
+        <form id="FormUpadta">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <input type="hidden" id="ID_pk" value="" name="App_id" />
+                <table class="table table-bordered" id="travel_table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label>申请人姓名:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="Apply_Name" readonly="readonly" />
+                            </td>
+                            <td>
+                                <label>申请人编号:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="Apply_Number" readonly="readonly" />
+                            </td>
+                            <td>
+                                <label>本人联系方式:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="Apply_Phone" name="Onslef_Phone" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>申请日期:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="Apply_DataKs" name="StratData" />
+                            </td>
+                            <td>
+                                <label>结束日期:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="Apply_DataJs" name="EndData" />
+                            </td>
+                            <td>
+                                <label>出差地点:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="Apply_Place" name="Adress" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>出行方式:</label>
+                            </td>
+                            <td style="position:relative;">
+                                <div class="" style="position:relative">
+                                    <input type="text" value="" placeholder="请选择" class="form-control" id="select_Chuxi" />
+                                    <span class="glyphicon glyphicon-triangle-bottom" style="position:absolute;right:7px; top:11px;"></span>
+                                </div>
+                                <ul class="list-group" id="input_ul_Fangshi" style="position:absolute;left:10px;">
+                                    <li class="list-group-item" val="1">公司派车</li>
+                                    <li class="list-group-item" val="2">自乘</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <label>所在部门:</label>
+                            </td>
+                            <td><input type="text" class="form-control" id="selevalDep" /></td>
+                            <td>
+                                <label>出差类型:</label>
+                            </td>
+
+                            <td style="position:relative;">
+                                <div class="" style="position:relative">
+                                    <input type="text" value="" placeholder="请选择" class="form-control" id="select" />
+                                    <span class="glyphicon glyphicon-triangle-bottom" style="position:absolute;right:7px; top:11px;"></span>
+                                </div>
+                                <ul class="list-group" id="select_ul" style="position:absolute;left:10px;">
+                                    <li class="list-group-item">拜访黄经理</li>
+                                    <li class="list-group-item">参加肖氏集团的谈判</li>
+                                    <li class="list-group-item">出国签订涉外项目</li>
+                                    <li class="list-group-item">每年更123新成本</li>
+                                    <li class="list-group-item">每年新成本</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>部门负责人:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="Apply_Dep_Person" name="DepName" />
+                            </td>
+                            <td>
+                                <label>负责人联系方式:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="Apply_Person_Phone" name="DepPhone" />
+                            </td>
+                            <td>
+                                <label>随行人员:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="Apply_AccomPerson" name="SuiXing" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>出差事宜:</label>
+                            </td>
+                            <td colspan="5">
+                                <textarea class="form-control" rows="3" value="" name="Reasons" id="chu_chaID"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" style="text-align:center">
+                                <a href="javascript:;" id="btn_Preservation" class="button button-raised button-royal">提交</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+
+    <!-- 遮罩层 -->
+    <!-- Js -->
+    <script src="../../Content/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+    <script src="../../Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        //隐藏下拉框
+        $("#select_ul").hide();
+        $("#input_ul_Fangshi").hide();
+        $(function () {
+            $("#select").click(function () {
+                $("#select_ul").show();
+            });
+            $("#select_Chuxi").click(function () {
+                $("#input_ul_Fangshi").show();
+            });
+
+
+
+        });
+    </script>
+</body>
+</html>

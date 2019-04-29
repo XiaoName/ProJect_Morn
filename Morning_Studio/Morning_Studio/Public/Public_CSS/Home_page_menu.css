@@ -1,0 +1,197 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#zhengti {
+    width: 1920px;
+    height: 1350px;
+    margin: 0px auto;
+    overflow: hidden;
+}
+
+
+
+/*导航栏样式开始*/
+#daohang {
+    background-color: #2790cb;
+    height: 70px;
+    position: relative;
+    margin: 0px auto;
+    width: 1920px;
+    z-index: 20;
+    overflow: hidden
+}
+
+#dt0 {
+    position: absolute;
+    top: 5px;
+    left: 3%;
+}
+
+#img_ziliao {
+    position: absolute;
+    top: 15px;
+    left: 90.3%;
+}
+
+#btn_ziliao {
+    position: absolute;
+    font-size: 16px;
+    top: 47px;
+    left: 89.4%;
+}
+
+#img_tuichu {
+    position: absolute;
+    top: 15px;
+    left: 94%;
+}
+
+#btn_tuichu {
+    position: absolute;
+    top: 47px;
+    font-size: 16px;
+    left: 94.0%;
+}
+#img_zhuye {
+    position: absolute;
+    top: 16px;
+    left: 85.7%;
+}
+
+#btn_zhuye {
+    position: absolute;
+    font-size: 16px;
+    top: 47px;
+    left: 85%;
+}
+#span1 {
+    position: absolute;
+    left: 69%;
+    top: 30px;
+}
+
+#mohuselect {
+    height: 25px;
+    width: 80px;
+}
+
+#mohutxt {
+    height: 25px;
+    width: 180px;
+}
+
+#yemianname {
+    position: absolute;
+    left: 45%;
+    top: 30px;
+    color: white;
+    font-size: 18px;
+}
+/*导航栏样式结束*/
+
+
+
+/*菜单样式*/
+
+.menuHolder {
+    width: 100px;
+    height: 145px;
+    margin: 0 0 250px 0;
+    position: relative;
+    z-index: 10;
+}
+
+    .menuHolder ul {
+        padding: 0px;
+        margin: 0;
+        list-style: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+    }
+
+        .menuHolder ul li a {
+            color: #000;
+            text-decoration: none;
+            font: bold 13px/30px arial, sans-serif;
+            text-align: center;
+            box-shadow: -5px 5px 5px rgba(0,0,0,0.4);
+            transform-origin: 0 0;
+        }
+
+        .menuHolder ul.p1 li {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .menuHolder ul.p1 li {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .menuHolder ul.p2 {
+            z-index: -1;
+        }
+
+        .menuHolder ul.p3 {
+            z-index: -1;
+        }
+    /*画第一个圆圈*/
+    .menuHolder li.s1 > a {
+        position: absolute;
+        display: block;
+        width: 80px;
+        height: 80px;
+        background: #c8c8c8;
+        border-radius: 0 0 80px 0;
+    }
+
+
+
+    /*画第二个圆圈*/
+    .menuHolder li.s2 > a {
+        position: absolute;
+        display: block;
+        width: 80px;
+        padding-left: 100px;
+        height: 160px;
+        background: #888;
+        border-radius: 0 0 160px 0;
+    }
+
+
+    /*画第三个圆圈*/
+    .menuHolder ul.p3 li a {
+        position: absolute;
+        display: block;
+        width: 100px;
+        padding-left: 200px;
+        height: 300px;
+        text-align: center;
+        background: #999;
+        border-radius: 0 0 300px 0;
+    }
+
+    /*鼠标滑过改变背景颜色和文字颜色*/
+    .menuHolder ul li:hover > a {
+        background: #f00;
+        color: #fff;
+    }
+
+/*把第二第三个圆隐藏到角落里去，让视角看不到*/
+.menuHolder ul ul {
+    transform-origin: 0 0;
+    transform: rotate(90deg);
+    transition: 0.1s;
+}
+
+/*鼠标滑过第二层菜单展开第三层菜单*/
+.menuHolder li.s2:hover ul.p3 {
+    transform: rotate(0deg);
+}

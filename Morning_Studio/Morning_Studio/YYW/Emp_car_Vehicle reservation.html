@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="style/Emp_car_Vehicle reservation.css" rel="stylesheet" />
+    <link href="style/public_css.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div id="biao">
+            <p id="tital">车辆预定</p>          
+                <table id="table">
+                    <tbody class="tbody">
+                        <tr>
+                            <td class="zhi">车辆品牌</td>
+                            <td class="dan">
+                                <select class="xiala"><option>请选择...</option></select>
+                                <input type="button" value="查询状态" style="margin-left:10px;" class="anniu" />
+                            </td>
+                            <td class="zhi">车牌号</td>
+                            <td class="shuang"><select class="xiala"><option>请选择...</option></select></td>
+                        </tr>
+                        <tr>
+                            <td class="zhi">用车人</td>
+                            <td class="dan"><input type="text" class="text" /><input type="button" value="点击查询" style="margin-left:10px;" class="anniu" /></td>
+                            <td class="zhi">用车部门</td>
+                            <td class="shuang"><select class="xiala"><option>请选择...</option></select></td>
+                        </tr>
+                        <tr>
+                            <td class="zhi">开始时间</td>
+                            <td class="dan"><input type="datetime-local" value="2019-01-01T00:00" class="text" /></td>
+                            <td class="zhi">结束时间</td>
+                            <td class="shuang"><input type="datetime-local" value="2019-01-01T00:00" class="text" /></td>
+                        </tr>
+                        <tr>
+                            <td class="zhi">审批人员</td>
+                            <td class="dan"><input type="text" class="text" /></td>
+                            <td class="zhi">停车场车位</td>
+                            <td class="shuang"><input type="text" readonly="readonly" class="text" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <div id="duohang">
+                                    <p>事由:</p>
+                                    <p><textarea class="textarea"></textarea></p>
+                                    <p>备注:</p>
+                                    <p><textarea class="textarea"></textarea></p>
+                                    <p><input type="button" value="提交" class="anniu" /></p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <div style="height:60px;"></div>
+            <div id="chaxun">
+                <div class="tal">
+                    <p style="font-size:20px;line-height:60px;font-family:黑体;">预定查询</p>
+                    <table class="chaxun">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" class="text" />
+                                    <input type="button" value="查询" class="anniu" style="margin-left:20px;" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

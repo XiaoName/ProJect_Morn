@@ -1,0 +1,33 @@
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\BLL\bin\Debug\BLL.dll
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\BLL\bin\Debug\BLL.pdb
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\BLL\bin\Debug\DAL.dll
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\BLL\bin\Debug\Entity.dll
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\BLL\bin\Debug\DAL.pdb
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\BLL\bin\Debug\Entity.pdb
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\BLL\obj\Debug\BLL.csproj.CopyComplete
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\BLL\obj\Debug\BLL.dll
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\BLL\obj\Debug\BLL.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\BLL\bin\Debug\BLL.dll
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\BLL\bin\Debug\BLL.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\BLL\bin\Debug\DAL.dll
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\BLL\bin\Debug\Entity.dll
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\BLL\bin\Debug\DAL.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\BLL\bin\Debug\Entity.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\BLL\obj\Debug\BLL.csproj.CopyComplete
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\BLL\obj\Debug\BLL.dll
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\BLL\obj\Debug\BLL.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\BLL\bin\Debug\BLL.dll
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\BLL\bin\Debug\BLL.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\BLL\bin\Debug\DAL.dll
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\BLL\bin\Debug\Entity.dll
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\BLL\bin\Debug\DAL.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\BLL\bin\Debug\Entity.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\BLL\obj\Debug\BLL.csproj.CopyComplete
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\BLL\obj\Debug\BLL.dll
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\BLL\obj\Debug\BLL.pdb

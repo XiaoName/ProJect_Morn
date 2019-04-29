@@ -1,0 +1,409 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>工作单处理</title>
+    <link href="../Equally_CSS/Style.css" rel="stylesheet" />
+    <style type="text/css">
+        input[type="text"], input[type="date"] {
+            padding-left: 5px;
+            margin-left: 8px;
+            height: 30px;
+            font-size: 20px;
+            color: #808080;
+            /*border: 1px solid #808080;*/
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            padding-right: 14px;
+            width: 270px;
+            height: 45px;
+            border-radius: 6px;
+            font: 14px/1.5 arial;
+        }
+    </style>
+    <!--页面css样式-->
+    <link href="../css/Worksheet_Processing.css" rel="stylesheet" />
+    <link href="../css/xcConfirm.css" rel="stylesheet" />
+    <!--日历css-->
+    <link href="../css/laydate.css" rel="stylesheet" />
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <!--日历js-->
+    <script src="../js/laydate.js"></script>
+    <script src="../js/WorkCreate.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            //责任人
+            ZRR();
+            //动态加载数据
+            Create_Select();
+            //保存按钮
+            $("#Process_baoc").click(function () {
+                $(".xcConfirm").show();
+                RoomApplay();
+            });
+            //退出按钮
+            TUIC();
+
+            //弹框中的X图片
+            TP();
+
+        });
+        //责任人
+        function ZRR() {
+            $.ajax({
+                url: "../CX_Handler.ashx?act=WorkPeople",
+                type: "post",
+                dataType: "json",
+                success: function (str) {
+                    for (var i = 0; i < str.length; i++) {
+                        var html = "<option value='" + str[i].UserID + "'>" + str[i].IdCard + "</option>";
+                        $("#Person_Liable").append($(html));
+                    }
+                }
+            });
+        }
+
+        //动态加载数据
+        function Create_Select() {
+            var id = window.localStorage.getItem("WorksheetID");
+            $.ajax({
+                url: "../CX_Handler.ashx?act=UpateCha",
+                type: "post",
+                data: { "UpateID": id },
+                dataType: "json",
+                success: function (data) {
+                    $("#number").val(data.WorkOrderNumber);//工作单单号
+                    $(".work_sqr").val(data.ResponsiblePerson);//申请人
+                    $("#Process_danhao").text(data.WorkOrderNumber);//工作单单号
+                    $("#gongzuodandanhao").val(data.WorkCreatNumber); //创建人工号
+                    $("#work_cjtime").val(Time(data.WorksheetCreatDate));//工作单创建日期
+                    $(".upload_type").val(data.WorkUploadType);//上传类型
+                    $("#work_rwname").val(data.WorkTaskName);//任务名称
+                    $(".muqian_state").val(data.WorkState);//状态
+                    $("#work_daoqtime").val(Time(data.WorkDueTime));//到期时间
+                    $(".daoqichul").val(data.WorkDueDeal);//到期处理
+                    $("#work_cbandengji").val(data.WorkReminderlevel);//催办等级
+                    $(".cban_time").val(data.WorkReminderTime);//催办时效
+                    // $("#work_zrr").text(data.ResponsiblePerson);//责任人
+                    $("#Person_pp").val(data.ResponsiblePerson);
+                    $("#work_miaoshu").val(data.MyProWorkDescribleperty);//描述
+                    $("#WorkDealPeople").val(data.WorkDealPeople); //处理人
+                }
+
+            });
+
+            sessionStorage.setItem("work_name", $("#work_rwname").val());
+            sessionStorage.setItem("work_dengji", $("#work_cbandengji").val());
+        }
+
+
+        //数据库日期
+        function Time(r) {
+            var saveDate = new Date(r);
+            var N = saveDate.getFullYear();
+            var Y = saveDate.getMonth();
+            var R = saveDate.getDate();
+            return N + "-" + Y + "-" + R;
+        }
+
+        //弹框中的X图片
+        function TP() {
+            $(".clsBtn").click(function () {
+                $(".xcConfirm").hide();
+            });
+        }
+
+        //工作单处理保存按钮
+        function RoomApplay() {
+            $("#btn_ok").click(function () {
+                $.ajax({
+                    url: "../CX_Handler.ashx?act=WorkProcessBaoc",
+                    type: "post",
+                    dataType: "json",
+                    data: $("#Myform").serialize(),
+                    success: function (rs) {
+                        if (rs.code == 200) {
+                            $(".xcConfirm").hide();
+                            location.href = "Worksheet_Content.html";
+                        } else {
+                            $(".xcConfirm").hide();
+                            location.href = "Worksheet_Content.html";
+                        }
+
+                    }
+
+                });
+            });
+            //工作单申请取消按钮
+            $("#btn_cancel").click(function () {
+                $("#create_title").text("你已点击取消按钮");
+                $(".xcConfirm").hide();
+            });
+         
+        }
+       
+
+        //退出按钮
+        function TUIC() {
+            $("#Process_tuih").click(function () {
+                location.href="Worksheet_Content.html";
+            });
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <form id="Myform">
+            <div class="OA_content" style="position:relative;">
+                <div style="border:1px solid #808080;width:1500px;margin-left:5%;">
+
+                    <table style="min-width:950px;width:100%;height:100%;" class="table0" cellPadding="0" cellSpacing="0" border="0">
+                        <tr style="border:1px solid #808080">
+                            <td style="text-align: right">
+                                &nbsp;
+                                <span style="color: rgb(255,0,0)">*</span>主题:
+                            </td>
+                            <td style="background-color: #e8f3fd;" class="">
+                                <strong>工作单申请</strong>
+                                <input type="text" style="background:rgba(0,0,0,0);border:0px; width:30px;height:20px;" id="number" name="WorkCreatNumber" />
+                            </td>
+                            <td style="text-align: right">&nbsp;优先级:</td>
+                            <td>
+                                <input type="radio" value=-1 name="" autocomplete="off">低
+                                <input type="radio" name="dbf.priority" autocomplete="off" checked="checked">中
+                                <input type=radio name="dbf.priority" autocomplete="off">高
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right">&nbsp;步骤:</td>
+                            <td>
+                                <span id="WorkDealPeople">主管审批</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                创建人工号:
+                                <input type="text" style="background:rgba(0,0,0,0);border:0px; width:30px;height:20px;" id="gongzuodandanhao" name="WorkOrderNumber" />
+                            </td>
+                            <td style="text-align: right">&nbsp;结束时间:</td>
+                            <td style="background-color: #e8f3fd;text-align: center;" height="35px">
+                                <div class="laydate-box">
+                                    <input type="text" id="laydateInput" placeholder="xxxx年xx月xx日" />
+                                    <img src="../images/calendar.png" alt="" class="icon data-icon" />
+                                    <div class="select-date">
+                                        <div class="select-date-header">
+                                            <ul class="heade-ul">
+                                                <li class="header-item header-item-one">
+                                                    <select name="" id="yearList"></select>
+                                                </li>
+                                                <li class="header-item header-item-two" onselectstart="return false">
+                                                    <select name="" id="monthList"></select>
+                                                </li>
+                                                <li class="header-item header-item-three" onselectstart="return false">
+                                                    <span class="reback">回到今天</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="select-date-body">
+                                            <ul class="week-list">
+                                                <li>日</li>
+                                                <li>一</li>
+                                                <li>二</li>
+                                                <li>三</li>
+                                                <li>四</li>
+                                                <li>五</li>
+                                                <li>六</li>
+                                            </ul>
+                                            <ul class="day-tabel"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>&nbsp;</div>
+                    <div style="text-align: center;height:35px;">
+                        <div class="OA_title_Reservate"><span>工&nbsp;作&nbsp;单&nbsp;处&nbsp;理</span></div>
+                    </div>
+                    <table style="min-width:950px;width:100%;height:100%;" class="table1" cellPadding="0" cellSpacing="0" border="0">
+                        <tr>
+                            <td style="text-align: center" width="138">
+                                &nbsp;
+                                <span style="color: rgb(255,0,0)"> *</span> 申请人
+                            </td>
+                            <td style="background-color: #e8f3fd;" class="" width="200px;">
+
+                                <input type="text" class="work_sqr" required="required" name="ResponsiblePerson" />
+                            </td>
+                            <td style="text-align: center" width="138px">
+                                &nbsp;
+                                <span style="color: rgb(255,0,0)"> *</span> 所属部门
+                            </td>
+                            <td style="background-color: #e8f3fd;">
+                                <select class="depart" id="Process_depart" required="required">
+                                    <option selected="selected" value="0">请选择...</option>
+
+                                </select>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center" width="138px">
+                                &nbsp;
+                                <span style="color: rgb(255,0,0)"> *</span> 创建时间
+                            </td>
+                            <td style="background-color: #e8f3fd;" class="Process_time" width="200px;">
+                                <input type="text" class="txt" id="work_cjtime" required="required" name="WorksheetCreatDate" />
+                            </td>
+                            <td style="text-align: center" width="138px">
+                                &nbsp;
+                                <span style="color: rgb(255,0,0)"> *</span> 责任人
+                            </td>
+                            <td style="background-color: #e8f3fd;" class="Process_peolpe" width="200px;">
+                                <input type="text" class="txt" id="Person_pp" name="WorkDealPeople" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center" width="138px">
+                                &nbsp;
+                                <span style="color: rgb(255,0,0)"> *</span> 上传类型
+                            </td>
+                            <td style="background-color: #e8f3fd;" width="200px;">
+                                <input id="RabtForm_0" type="radio" name="WorkUploadType" value="不需要发起人反馈" checked="checked" class="upload_type"><label for="RabtForm_0">不需要发起人反馈</label>
+                                <input id="RabtForm_1" type="radio" name="WorkUploadType" value="需要发起人反馈" class="upload_type"><label for="RabtForm_1">需要发起人反馈</label>
+
+                            </td>
+                            <td style="text-align: center" width="138px">
+                                &nbsp;
+                                <span style="color: rgb(255,0,0)"> *</span> 任务名称
+                            </td>
+                            <td style="background-color: #e8f3fd;" width="200px;">
+                                <input type="text" class="txt" id="work_rwname" required="required" name="WorkTaskName" />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center" width="138px">
+                                &nbsp;
+                                <span style="color: rgb(255,0,0)"> *</span> 目前状态
+                            </td>
+                            <td style="background-color: #e8f3fd;" width="200px;">
+                                <input id="rabtState_0" type="radio" name="WorkState" value="待处理" class="muqian_state"><label for="rabtState_0">待处理</label>
+                                <input id="rabtState_1" type="radio" name="WorkState" value="已完成" class="muqian_state"> <label for="rabtState_1">已完成</label>
+                                <input id="rabtState_2" type="radio" name="WorkState" value="未完成" class="muqian_state" checked="checked"><label for="rabtState_2">未完成</label>
+
+                            </td>
+                            <td style="text-align: center" width="138px">
+                                &nbsp;
+                                <span style="color: rgb(255,0,0)"> *</span> 到期时间
+                            </td>
+                            <td style="background-color: #e8f3fd;" width="200px;" name="WorkDueTime">
+                                <input type="text" class="txt" id="work_daoqtime" required="required" name="WorkDueTime" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center" width="138px">
+                                &nbsp;
+                                <span style="color: rgb(255,0,0)"> *</span> 到期处理
+                            </td>
+                            <td style="background-color: #e8f3fd;" width="200px;">
+                                <input id="rabtExpiry_0" type="radio" name="WorkDueDeal" value="不处理" checked="checked" class="daoqichul"><label for="rabtExpiry_0">不处理</label>
+                                <input id="rabtExpiry_1" type="radio" name="WorkDueDeal" value="系统自动发送未完成处理" class="daoqichul"><label for="rabtExpiry_1">系统自动发送未完成处理</label>
+                            </td>
+                            <td style="text-align: center" width="138px">
+                                &nbsp;
+                                <span style="color: rgb(255,0,0)"> *</span> 催办等级
+                            </td>
+                            <td style="background-color: #e8f3fd;" width="200px;">
+                                <input type="text" id="work_cbandengji" class="txt" name="WorkReminderlevel" required="required" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center" width="138px">
+                                &nbsp;
+                                <span style="color: rgb(255,0,0)"> *</span> 催办时效
+                            </td>
+                            <td style="background-color: #e8f3fd;" width="200px;" colspan="4">
+                                <input id="rabtPrescription_0" type="radio" name="WorkReminderTime" value="每周一" class="cban_time"><label for="rabtPrescription_0">每周一</label>
+                                <input id="rabtPrescription_1" type="radio" name="WorkReminderTime" value="每天" class="cban_time" checked="checked"><label for="rabtPrescription_1">每天</label>
+                                <input id="rabtPrescription_2" type="radio" name="WorkReminderTime" value="每小时" class="cban_time"><label for="rabtPrescription_2">每小时</label>
+                            </td>
+
+
+                        </tr>
+                    </table>
+
+                    <div>&nbsp;</div>
+                    <table style="min-width:950px;width:100%;height:100%;margin-top:-20px;" class="table2" cellPadding="0" cellSpacing="0" border="0">
+                        <tr>
+                            <td style="text-align: center; width: 250px">
+                                <span style="color: rgb(255,0,0)"> *</span> 描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述
+                            </td>
+                            <td>
+                                <textarea cols="20" name="MyProWorkDescribleperty" id="work_miaoshu" class="txt form-input" style="color:#666666;width:100%;" required="required">
+                             </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; width: 250px;">
+                                <span style="color: rgb(255,0,0)"> *</span> 备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注
+                            </td>
+                            <td>
+                                <textarea name="txtContext" cols="20" id="txtbeiz" class="txt form-input" style="color:#666666;width:100%;" required="required">
+                             </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; width: 250px">
+                                <span style="color: rgb(255,0,0)"> *</span> 项目经理意见：
+                            </td>
+                            <td>
+                                <textarea name="txtContext" cols="20" id="txtxmuyjian" class="txt form-input" style="color:#666666;width:100%;" required="required">
+                             </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; width: 250px;">
+                                <span style="color: rgb(255,0,0)"> *</span>主&nbsp;管&nbsp;意&nbsp;见：
+                            </td>
+                            <td>
+                                <textarea name="txtContext" cols="20" id="txtzhuguanyjian" class="txt form-input" style="color:#666666;width:100%;" required="required">
+                             </textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>&nbsp;</div>
+
+                    <div style="text-align:right;height:40px;line-height:10px;">
+                        <div>
+                            <input type="button" class="BUTTON" value="保存" id="Process_baoc" />
+                            <input type="reset" class="BUTTON" value="清空" id="Process_clear" />
+                            <input type="button" class="BUTTON" value="退出" id="Process_tuih" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="xcConfirm" id="pop_155226745181580473" style="display:none;font-family:Arial, Helvetica, sans-serif">
+        <div class="xc_layer"></div>
+        <div class="popBox" style="top:400px;left:43%;">
+            <div class="ttBox">
+                <a class="clsBtn"></a>
+                <span class="tt">提示</span>
+            </div><div class="txtBox">
+                <div class="bigIcon" style="background-position: 0px -96px;">
+                </div>
+                <p id="create_title">保存成功</p>
+            </div>
+            <div class="btnArea">
+                <div class="btnGroup">
+                    <a class="sgBtn ok" id="btn_ok">确定</a>
+                    <a class="sgBtn cancel" id="btn_cancel">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

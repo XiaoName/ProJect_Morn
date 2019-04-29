@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>通讯录</title>
+    <link href="CSS/Style.css" rel="stylesheet" />
+    <link href="../Public/Public_CSS/menu.css" rel="stylesheet" />
+    <script src="../Public/Public_jquery/jquery-3.3.1.min.js"></script>
+    <script src="JS/Depart.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #div {
+            width: 1920px;
+            margin: 0px auto;
+        }
+
+            #div div {
+                width: 80%;
+                font-size: 24px;
+                margin: 0px auto;
+                border: 1px solid rgb(97, 190, 243);
+            }
+
+        .Search bar {
+            padding-left: 20px;
+        }
+
+        th {
+            width: 385px;
+            border: 1px solid rgb(97, 190, 243);
+            background-image: url('images/btn.gif');
+        }
+
+        td {
+        border: 1px solid rgb(97, 190, 243);
+            height: 40px;
+        }
+
+        #div select, input {
+            width: 200px;
+            height: 25px;
+        }
+
+        #div td {
+            font-size: 24px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $("#but_sel").click(function () {
+                var dep = $(".selects");
+                var curr = $("#muc");
+                $("#template").find("td").remove();
+                $.ajax({
+                    url: "Handler.ashx?act=getaddressbook",
+                    type: "post",
+                    dataType: "json",
+                    data: { "curr": curr.val(), "dep": dep.val()},
+                    success: function (str) {
+                        for (var i = 0; i < str.length; i++) {
+                            var html = "<tr>" +
+                                "<td>" + str[i].Name + "</td>" +
+                                "<td>" + str[i].Address + "</td>" +
+                                "<td>" + str[i].Email + "</td>" +
+                                "<td>" + str[i].Phone + "</td>" +
+                                "</tr >";
+                            $("#template").append($(html));
+                        }
+                    }
+                })
+                curr.val("");
+            })
+        })
+    </script>
+</head>
+<body style=" background-color:rgb(241,246,255)">
+    <!--代码编辑区域-->
+    <form id="formUser">
+        <div id="div">
+            <div style="background-color:#92d8e8;">通讯录</div>
+            <div style="border: 1px solid rgb(97, 190, 243);">
+                <div class="Search bar" style="border:0px; padding:10px;">
+                    <span>部门:</span>
+                    <select class="selects">
+                        <option selected="selected">请选择...</option>
+                    </select>
+                    <span>工号/姓名:</span><input type="text" id="muc"/>
+                    <input type="button" value="查询" style="margin-right:-50px;width:70px;" id="but_sel"/>
+                </div>
+                <table style="border: 1px solid rgb(97, 190, 243);border-collapse:collapse;">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>地址</th>
+                            <th>邮箱</th>
+                            <th>私人电话</th>
+                        </tr>
+                    </thead>
+                    <tbody id="template" style="text-align:center;">
+                    </tbody>
+                    <tfoot>
+                        
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

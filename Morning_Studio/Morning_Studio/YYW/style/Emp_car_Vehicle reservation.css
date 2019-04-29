@@ -1,0 +1,62 @@
+﻿* {
+    margin:0px;
+    padding:0px;
+}
+
+#biao {
+    margin:0px auto;
+    border: 1px solid rgb(97,190,243);
+    width: 1250px;
+}
+#tital {
+    position: relative;
+    margin-left:600px;
+    margin-top:20px;
+    margin-bottom:30px;
+    font-size: 28px
+}
+
+
+#table {
+    border: 1px solid rgb(97,190,243);
+    width: 1200px;
+    height: 650px;
+    font-size: 22px;
+    margin: 0px auto;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.tbody>tr>td>input {
+    margin-left:10px;
+}
+.tbody > tr > td > select {
+    margin-left: 10px;
+}
+
+
+#duohang {
+    margin-left:140px;
+}
+    #duohang > p {
+        font-size:18px;
+        margin-top:20px;
+    }
+
+#chaxun {
+    margin-top: -30px;
+    border: 1px solid rgb(97,190,243);
+    width: 1200px;
+    height: 300px;
+    margin: 0px auto;
+}
+    .tal{
+        border-bottom: 1px solid rgb(97,190,243);
+        height:60px;
+    }
+.chaxun {
+    position: relative;
+    float: right;
+    margin-right: 50px;
+    margin-top: -50px;
+}

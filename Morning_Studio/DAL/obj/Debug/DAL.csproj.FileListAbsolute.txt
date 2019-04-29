@@ -1,0 +1,26 @@
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\DAL\bin\Debug\DAL.dll
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\DAL\bin\Debug\DAL.pdb
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\DAL\bin\Debug\Entity.dll
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\DAL\bin\Debug\Entity.pdb
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\DAL\obj\Debug\DAL.csproj.CopyComplete
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\DAL\obj\Debug\DAL.dll
+E:\大二项目OA项目文档\OA系统模板\新建文件夹 (2)\Morning_Studio\DAL\obj\Debug\DAL.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\DAL\bin\Debug\DAL.dll
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\DAL\bin\Debug\DAL.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\DAL\bin\Debug\Entity.dll
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\DAL\bin\Debug\Entity.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\DAL\obj\Debug\DAL.csproj.CopyComplete
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\DAL\obj\Debug\DAL.dll
+E:\大二项目OA项目文档\OA系统模板\Project\Morning_Studio\DAL\obj\Debug\DAL.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\DAL\bin\Debug\DAL.dll
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\DAL\bin\Debug\DAL.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\DAL\bin\Debug\Entity.dll
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\DAL\bin\Debug\Entity.pdb
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\DAL\obj\Debug\DAL.csproj.CopyComplete
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\DAL\obj\Debug\DAL.dll
+E:\大二项目OA项目文档\OA系统模板\Project\ProJect_Morn\Morning_Studio\DAL\obj\Debug\DAL.pdb
