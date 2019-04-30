@@ -14,5 +14,21 @@ namespace BLL.CX
             DAL.PositionTableDAL positionTable = new PositionTableDAL();
             return positionTable.posi(s);
         }
+        public List<User> Number(string s)
+        {
+            DAL.CX.PositionTableDAL position = new DAL.CX.PositionTableDAL();
+            return position.Number(s);
+        }
+
+        public List<User> Name(string s)
+        {
+            DAL.CX.PositionTableDAL position = new DAL.CX.PositionTableDAL();
+            return position.Name(s);
+        }
+        public List<User> Names(string s)
+        {
+            DAL.CX.PositionTableDAL position = new DAL.CX.PositionTableDAL();
+            return position.Names(s);
+        }
     }
 }

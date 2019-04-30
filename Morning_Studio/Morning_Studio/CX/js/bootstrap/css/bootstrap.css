@@ -2587,7 +2587,7 @@ output {
 .form-control[disabled],
 .form-control[readonly],
 fieldset[disabled] .form-control {
-  background-color: #eee;
+  /*background-color: #eee;*/
   opacity: 1;
 }
 .form-control[disabled],
@@ -3931,7 +3931,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-bottom-right-radius: 0;
 }
 .input-group-addon:first-child {
-  border-right: 0;
+  /*border-right: 0;*/
 }
 .input-group .form-control:last-child,
 .input-group-addon:last-child,
@@ -3940,8 +3940,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .input-group-btn:last-child > .dropdown-toggle,
 .input-group-btn:first-child > .btn:not(:first-child),
 .input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  /*border-top-left-radius: 0;
+  border-bottom-left-radius: 0;*/
 }
 .input-group-addon:last-child {
   border-left: 0;

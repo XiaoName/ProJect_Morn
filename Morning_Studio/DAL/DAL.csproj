@@ -46,6 +46,7 @@
     <Compile Include="CX\ModifyLoginPwdDAL.cs" />
     <Compile Include="CX\OlineInformationDAL.cs" />
     <Compile Include="CX\OnlineDAL.cs" />
+    <Compile Include="CX\PersonalInformationDAL.cs" />
     <Compile Include="CX\PositionTableDAL.cs" />
     <Compile Include="CX\RoomManageDAL.cs" />
     <Compile Include="CX\WorkOrderDAL.cs" />

@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Entity;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Entity;
 namespace DAL.CX
 {
-   public  class PositionTableDAL
+    public class PositionTableDAL
     {
+        //适用于部门，职位，工号三表联查（下拉框）
         public List<PositionTable> posi(string s)
         {
             List<PositionTable> list = new List<PositionTable>();
@@ -25,5 +23,54 @@ namespace DAL.CX
             }
             return list;
         }
+        public List<User> Number(string s)
+        {
+            List<User> list = new List<User>();
+            string sql = string.Format("select * from MS_User where Dutyid='{0}'", s);
+            var table = DBHelper.Select(sql);
+            foreach (DataRow item in table.Rows)
+            {
+                User user = new User
+                {
+                    UserID = Convert.ToInt32(item["User_Id"]),
+                    JobNumber = Convert.ToInt32(item["User_JobNumber"]),
+                };
+                list.Add(user);
+            }
+            return list;
+        }
+        public List<User> Name(string s)
+        {
+            List<User> list = new List<User>();
+            string sql = string.Format("select * from MS_User where User_Id='{0}'", s);
+            var table = DBHelper.Select(sql);
+            foreach (DataRow item in table.Rows)
+            {
+                User user = new User
+                {
+                    UserID = Convert.ToInt32(item["User_Id"]),
+                    Name=item["User_Name"].ToString(),
+                };
+                list.Add(user);
+            }
+            return list;
+        }
+        public List<User> Names(string s)
+        {
+            List<User> list = new List<User>();
+            string sql = string.Format("select * from MS_User where Dutyid='{0}'", s);
+            var table = DBHelper.Select(sql);
+            foreach (DataRow item in table.Rows)
+            {
+                User user = new User
+                {
+                    UserID = Convert.ToInt32(item["User_Id"]),
+                    Name = item["User_Name"].ToString(),
+                };
+                list.Add(user);
+            }
+            return list;
+        }
+
     }
 }

@@ -185,6 +185,7 @@
     <Content Include="CX\js\Vail.js" />
     <Content Include="CX\js\WorkCreate.js" />
     <Content Include="CX\Management_of_Meetings\Application_Rooms.html" />
+    <Content Include="CX\Management_of_Meetings\HtmlPage1.html" />
     <Content Include="CX\Management_of_Meetings\Rooms_Content.html" />
     <Content Include="CX\Management_of_Meetings\Rooms_ContentUpdate.html" />
     <Content Include="CX\Management_of_Meetings\Room_Exmine.html" />
@@ -318,15 +319,17 @@
     <Content Include="NJ\val\js\vali.prompt.js" />
     <Content Include="Public\My_Url\HtmlPage1.html" />
     <Content Include="Public\My_Url\My_Url.js" />
+    <Content Include="Public\Public_CSS\basic.css" />
+    <Content Include="Public\Public_CSS\Home_page_menu.css" />
     <Content Include="Public\Public_CSS\inputEffect.css" />
+    <Content Include="Public\Public_CSS\less.css" />
     <Content Include="Public\Public_CSS\Login.css" />
+    <Content Include="Public\Public_CSS\menu.css" />
     <Content Include="Public\Public_CSS\normalize.css" />
+    <Content Include="Public\Public_CSS\sign-up-login.css" />
     <Content Include="Public\Public_CSS\spop.min.css" />
     <Content Include="Public\Public_CSS\tooltips.css" />
     <Content Include="Public\Public_CSS\verifyCode.css" />
-    <Content Include="Public\Public_Images\1.jpg" />
-    <Content Include="Public\Public_Images\2.jpg" />
-    <Content Include="Public\Public_Images\3.jpg" />
     <Content Include="Public\Public_Images\5476ba25Ne75aa640.png" />
     <Content Include="Public\Public_Images\backgroundsize.min.htc" />
     <Content Include="Public\Public_Images\btn.gif" />
@@ -335,19 +338,19 @@
     <Content Include="Public\Public_Images\icon1.png" />
     <Content Include="Public\Public_Images\iOS6AlertBackground_bg.png" />
     <Content Include="Public\Public_Images\loading.gif" />
+    <Content Include="Public\Public_Images\login1.jpg" />
+    <Content Include="Public\Public_Images\login2.png" />
+    <Content Include="Public\Public_Images\login3.jpg" />
+    <Content Include="Public\Public_Images\login4.jpg" />
     <Content Include="Public\Public_Images\loginpassword.png" />
     <Content Include="Public\Public_Images\loginuser.png" />
-    <Content Include="Public\Public_Images\Logo.png" />
-    <Content Include="Public\Public_Images\owl-login%402x.png" />
-    <Content Include="Public\Public_Images\owl-login-arm%402x.png" />
-    <Content Include="Public\Public_Images\owl-login-arm.png" />
-    <Content Include="Public\Public_Images\owl-login.png" />
-    <Content Include="Public\Public_Images\ph-owl-arm%402x.png" />
-    <Content Include="Public\Public_Images\ph-owl-arm.png" />
-    <Content Include="Public\Public_Images\ph-owl-arml%402x.png" />
-    <Content Include="Public\Public_Images\ph-owl-arml.png" />
-    <Content Include="Public\Public_Images\signup-arm%402x.png" />
-    <Content Include="Public\Public_Images\signup-arm.png" />
+    <Content Include="Public\Public_Images\login_bg_01.png" />
+    <Content Include="Public\Public_Images\login_bg_01_active.png" />
+    <Content Include="Public\Public_Images\login_bg_02.png" />
+    <Content Include="Public\Public_Images\login_bg_02_active.png" />
+    <Content Include="Public\Public_Images\login_bg_03.png" />
+    <Content Include="Public\Public_Images\login_bg_black.png" />
+    <Content Include="Public\Public_Images\login_bg_white.png" />
     <Content Include="Public\Public_Images\snow.jpg" />
     <Content Include="Public\Public_Images\sucess.png" />
     <Content Include="Public\Public_Images\zhuye.png" />
@@ -369,7 +372,7 @@
     <Content Include="Public\Public_jquery\jquery-3.3.1.min.js" />
     <Content Include="Public\Public_jquery\jquery-validate.js" />
     <Content Include="Public\Public_jquery\jquery.min.js" />
-    <Content Include="Public\Public_page\OA_Login.html" />
+    <Content Include="Public\Public_page\index.html" />
     <Content Include="Web.config" />
     <Content Include="Public\bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
     <Content Include="Public\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css" />
@@ -448,6 +451,9 @@
     <Content Include="YYW\style\public_css.css" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CX\CX_Handler.ashx.cs">
+      <DependentUpon>CX_Handler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="CX\System_Management\ueditor\net\Uploader.cs" />
     <Compile Include="NJ\Handler.ashx.cs">
       <DependentUpon>Handler.ashx</DependentUpon>
@@ -492,6 +498,7 @@
     <Content Include="NJ\val\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="NJ\val\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="NJ\val\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="CX\CX_Handler.ashx" />
     <None Include="packages.config" />
     <Content Include="Public\Public_Hander\Handler.ashx" />
     <None Include="Web.Debug.config">

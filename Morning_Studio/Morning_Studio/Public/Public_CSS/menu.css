@@ -1,0 +1,423 @@
+﻿
+/*菜单代码*/
+* {
+    margin:0px;
+    padding:0px;
+}
+#zhengti{
+    width:1920px;
+    height:1350px;
+    margin :0px auto;
+    overflow:hidden;
+}
+.menuHolder {
+    width: 100px;
+    height: 145px;
+    margin: 0 0 250px 0;
+    position: relative;
+    z-index: 10;
+}
+
+    .menuHolder ul {
+        padding: 0px;
+        margin: 0;
+        list-style: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+    }
+
+        /*.menuHolder ul li {border-radius:0 0 300px 0; width:0; height:0;}*/
+        .menuHolder ul li a {
+            color: #000;
+            text-decoration: none;
+            font: bold 13px/30px arial, sans-serif;
+            text-align: center;
+            box-shadow: -5px 5px 5px rgba(0,0,0,0.4);
+            transform-origin: 0 0;
+        }
+
+        .menuHolder ul.p1 li {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .menuHolder ul.p2 {
+            z-index: -1;
+        }
+
+        .menuHolder ul.p3 {
+            z-index: -1;
+        }
+
+    /*画第一个圆圈*/
+    .menuHolder li.s1 > a {
+        position: absolute;
+        display: block;
+        width: 80px;
+        height: 80px;
+        background: #c8c8c8;
+        border-radius: 0 0 80px 0;
+    }
+
+    /*画第二个圆圈*/
+    .menuHolder li.s2 > a {
+        position: absolute;
+        display: block;
+        width: 80px;
+        padding-left: 100px;
+        height: 160px;
+        background: #888;
+        border-radius: 0 0 160px 0;
+    }
+
+    /*画第三个圆圈*/
+    .menuHolder ul.p3 li a {
+        position: absolute;
+        display: block;
+        width: 100px;
+        padding-left: 200px;
+        height: 300px;
+        text-align: center;
+        background: #999;
+        border-radius: 0 0 300px 0;
+    }
+
+    /*把第二第三个圆隐藏到角落里去，让视角看不到*/
+    .menuHolder ul ul {
+        transform-origin: 0 0;
+        transform: rotate(90deg);
+        transition: 0.1s;
+    }
+
+    /*绘制第二层的菜单*/
+
+    .menuHolder li.s2:nth-of-type(9) > a {
+        background: #888;
+        transform: rotate(80deg);
+    }
+
+    .menuHolder li.s2:nth-of-type(8) > a {
+        background: #999;
+        transform: rotate(70deg);
+    }
+
+    .menuHolder li.s2:nth-of-type(7) > a {
+        background: #888;
+        transform: rotate(60deg);
+    }
+
+    .menuHolder li.s2:nth-of-type(6) > a {
+        background: #999;
+        transform: rotate(50deg);
+    }
+
+    .menuHolder li.s2:nth-of-type(5) > a {
+        background: #888;
+        transform: rotate(40deg);
+    }
+
+    .menuHolder li.s2:nth-of-type(4) > a {
+        background: #999;
+        transform: rotate(30deg);
+    }
+
+    .menuHolder li.s2:nth-of-type(3) > a {
+        background: #888;
+        transform: rotate(20deg);
+    }
+
+    .menuHolder li.s2:nth-of-type(2) > a {
+        background: #999;
+        transform: rotate(10deg);
+    }
+
+    /*----------------------------*/
+   
+
+
+    /*绘制子菜单（9）*/
+    .menuHolder .a9 li:nth-of-type(9) > a {
+        background: #999;
+        transform: rotate(80deg);
+    }
+
+    .menuHolder .a9 li:nth-of-type(8) > a {
+        background: #888;
+        transform: rotate(70deg);
+    }
+
+    .menuHolder .a9 li:nth-of-type(7) > a {
+        background: #999;
+        transform: rotate(60deg);
+    }
+
+    .menuHolder .a9 li:nth-of-type(6) > a {
+        background: #888;
+        transform: rotate(50deg);
+    }
+
+    .menuHolder .a9 li:nth-of-type(5) > a {
+        background: #999;
+        transform: rotate(40deg);
+    }
+
+    .menuHolder .a9 li:nth-of-type(4) > a {
+        background: #888;
+        transform: rotate(30deg);
+    }
+
+    .menuHolder .a9 li:nth-of-type(3) > a {
+        background: #999;
+        transform: rotate(20deg);
+    }
+
+    .menuHolder .a9 li:nth-of-type(2) > a {
+        background: #888;
+        transform: rotate(10deg);
+    }
+
+    /*绘制子菜单（8）*/
+
+    .menuHolder .a8 li:nth-of-type(8) > a {
+        background: #888;
+        transform: rotate(78.75deg);
+    }
+
+    .menuHolder .a8 li:nth-of-type(7) > a {
+        background: #999;
+        transform: rotate(67.5deg);
+    }
+
+    .menuHolder .a8 li:nth-of-type(6) > a {
+        background: #888;
+        transform: rotate(56.25deg);
+    }
+
+    .menuHolder .a8 li:nth-of-type(5) > a {
+        background: #999;
+        transform: rotate(45deg);
+    }
+
+    .menuHolder .a8 li:nth-of-type(4) > a {
+        background: #888;
+        transform: rotate(33.75deg);
+    }
+
+    .menuHolder .a8 li:nth-of-type(3) > a {
+        background: #999;
+        transform: rotate(22.5deg);
+    }
+
+    .menuHolder .a8 li:nth-of-type(2) > a {
+        background: #888;
+        transform: rotate(11.25deg);
+    }
+
+    /*绘制子菜单（6）*/
+    .menuHolder .a6 li:nth-of-type(6) > a {
+        background: #444;
+        transform: rotate(75deg);
+    }
+
+    .menuHolder .a6 li:nth-of-type(5) > a {
+        background: #555;
+        transform: rotate(60deg);
+    }
+
+    .menuHolder .a6 li:nth-of-type(4) > a {
+        background: #666;
+        transform: rotate(45deg);
+    }
+
+    .menuHolder .a6 li:nth-of-type(3) > a {
+        background: #777;
+        transform: rotate(30deg);
+    }
+
+    .menuHolder .a6 li:nth-of-type(2) > a {
+        background: #888;
+        transform: rotate(15deg);
+    }
+
+    /*绘制子菜单（5）*/
+
+    .menuHolder .a5 li:nth-of-type(5) > a {
+        background: #555;
+        transform: rotate(72deg);
+    }
+
+    .menuHolder .a5 li:nth-of-type(4) > a {
+        background: #666;
+        transform: rotate(54deg);
+    }
+
+    .menuHolder .a5 li:nth-of-type(3) > a {
+        background: #777;
+        transform: rotate(36deg);
+    }
+
+    .menuHolder .a5 li:nth-of-type(2) > a {
+        background: #888;
+        transform: rotate(18deg);
+    }
+
+    /*绘制子菜单（4）*/
+    .menuHolder .a4 li:nth-of-type(4) > a {
+        background: #888;
+        transform: rotate(68deg);
+    }
+
+    .menuHolder .a4 li:nth-of-type(3) > a {
+        background: #999;
+        transform: rotate(45deg);
+    }
+
+    .menuHolder .a4 li:nth-of-type(2) > a {
+        background: #888;
+        transform: rotate(22deg);
+    }
+
+
+    /*绘制子菜单（3）*/
+    .menuHolder .a3 li:nth-of-type(3) > a {
+        background: #777;
+        transform: rotate(60deg);
+    }
+
+    .menuHolder .a3 li:nth-of-type(2) > a {
+        background: #888;
+        transform: rotate(30deg);
+    }
+
+    /*绘制子菜单（2）*/
+    .menuHolder .a2 li:nth-of-type(2) > a {
+        background: #888;
+        transform: rotate(45deg);
+    }
+
+    /*----------------------------*/
+
+    /*鼠标滑过第一层菜单展开第二层菜单*/
+    .menuHolder li.s1:hover ul.p2 {
+        transform: rotate(0deg);
+    }
+
+    /*鼠标滑过第二层菜单展开第三层菜单*/
+    .menuHolder li.s2:hover ul.p3 {
+        transform: rotate(0deg);
+    }
+
+    /*----------------------------*/
+
+    /*鼠标滑过改变背景颜色和文字颜色*/
+    .menuHolder ul li:hover > a {
+        background: #f00;
+        color: #fff;
+    }
+
+    .menuHolder li.s2:hover > a {
+        background: #d00;
+        color: #fff;
+    }
+
+    .menuHolder .a16 li:hover > a {
+        background: #b00;
+        color: #fff;
+    }
+    .menuHolder .a9 li:hover > a {
+        background: #b00;
+        color: #fff;
+    }
+
+    .menuHolder .a6 li:hover > a {
+        background: #b00;
+        color: #fff;
+    }
+
+    .menuHolder .a4 li:hover > a {
+        background: #b00;
+        color: #fff;
+    }
+
+    .menuHolder .a3 li:hover > a {
+        background: #b00;
+        color: #fff;
+    }
+
+    .menuHolder .a2 li:hover > a {
+        background: #b00;
+        color: #fff;
+    }
+
+/*导航栏样式开始*/
+#daohang {
+    background-color: #2790cb;
+    height: 70px;
+    position: relative;
+    margin: 0px auto;
+    width: 1920px;
+    z-index:20;
+    overflow: hidden
+}
+
+#dt0 {
+    position: absolute;
+    top: 5px;
+    left: 3%;
+}
+
+#img_ziliao {
+    position: absolute;
+    top: 15px;
+    left: 90.3%;
+}
+
+#btn_ziliao {
+    position: absolute;
+    font-size: 16px;
+    top: 47px;
+    left: 89.4%;
+}
+
+#img_tuichu {
+    position: absolute;
+    top: 15px;
+    left: 94%;
+}
+
+#btn_tuichu {
+    position: absolute;
+    top: 47px;
+    font-size: 16px;
+    left: 94.0%;
+}
+
+#span1 {
+    position: absolute;
+    left: 70%;
+    top: 30px;
+}
+
+#mohuselect {
+    height: 25px;
+    width: 80px;
+}
+
+#mohutxt {
+    height: 25px;
+    width: 180px;
+}
+
+#yemianname {
+    position: absolute;
+    left: 45%;
+    top: 30px;
+    color: white;
+    font-size: 18px;
+}
+/*导航栏样式结束*/
+

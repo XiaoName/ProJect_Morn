@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>会议室审核</title>
+    <style type="text/css">
+        #RoomsExmin_state {
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            background: url('../images/down2.png')100% 70% no-repeat scroll transparent;
+       
+            width: 250px;
+            height: 35px;
+            font: 14px/1.5 arial;
+        }
+        input[type="text"] {
+            width: 250px;
+            height: 35px;
+            font: 14px/1.5 arial;
+            margin-left:10px;
+        }
+    </style>
+    <!-- 基本样式 -->
+    <link href="../js/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="../js/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="../css/button.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body id="body">
+
+    <div class="container-fluid" style="width:1200px;">
+        <!-- title部分 -->
+        <div class="row">
+            <div class="col-xs-12  col-sm-12  col-md-12 col-lg-12" style="background-image:radial-gradient(#1e3c72,#2a5298);">
+                <h2 style="color:white">会议室审批</h2>
+            </div>
+        </div>
+
+        <!-- 填写信息表单部分 -->
+        <div class="row" style="margin-top:2px;">
+            <!-- 输入信息部分 -->
+            <form action="#" id="Insert_subFrom" class="">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <table class="table table-bordered table-responsive" style="text-align:center">
+                        <tbody>
+                            <tr>
+                                <td class="input-group-sm"><label>申请人姓名:</label></td>
+                                <td class="input-group-sm">
+                                    <input type="text" class="form-control" id="RoomsExmin_Name" name="Inviter" readonly="readonly" />
+                                </td>
+                                <td class="input-group-sm"><label>申请人部门:</label></td>
+                                <td>
+                                    <input type="text" class="form-control" id="Apply_Number" required="required" />
+                                </td>
+                                <td class="input-group-sm"><label>申请人日期:</label></td>
+                                <td>
+                                    <input type="text" class="form-control" id="RoomsExmin_date" readonly="readonly" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>预定会议室:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="RoomsExmin_Rooms" name="ConferenceRoomID" readonly="readonly" />
+                                </td>
+                                <td><label>开始时间:</label></td>
+                                <td>
+                                    <input type="text" class="form-control" id="RoomsExmin_beginTime" name="ConferenceBeginTime" readonly="readonly" />
+                                </td>
+                                <td>
+                                    <label>结束时间:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="RoomsExmin_endTime" name="ConferenceEndTime" readonly="readonly" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>会议名称:</label></td>
+                                <td>
+
+                                    <input type="text" class="form-control" id="RoomsExmin_Namesss" name="FormMeeting" readonly="readonly" />
+                                </td>
+                                <td>
+                                    <label>状态:</label>
+                                </td>
+                                <td>
+                       
+                                        <select id="RoomsExmin_state" name="MeetingStatus" class="select" autocomplete="off">
+                                            <option value="0" selected="selected">空</option>
+                                            <option value="1">满</option>
+                                        </select>
+                                </td>
+                                <td>
+                                    <label>邀请人员:</label>
+                                </td>
+                                <td>
+
+                                    <input type="text" class="form-control" id="RoomsExmin_applypeople" readonly="readonly" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><label>使用事项:</label></td>
+                                <td colspan="5">
+                                    <textarea class="form-control" rows="3" id="RoomsExmin_shix" name="NameMeeting"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="9" height="20">
+                                    <h4 style="text-align:center">审核明细</h4>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>上传附件:</label></td>
+                                <td colspan="5" id="upload"><a href="#">上传附件</a></td>
+                            </tr>
+                            <tr>
+                                <td><label>部门负责人意见:</label></td>
+                                <td colspan="5">
+                                    <textarea class="form-control" rows="3" name="textarea" value=""></textarea>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><label>总经理意见:</label></td>
+                                <td colspan="5">
+                                    <textarea class="form-control" rows="3" name="textarea" value=""></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>备注说明:</label></td>
+                                <td colspan="5">
+                                    <textarea class="form-control" rows="3" name="textarea" value=""></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="">
+                                    <a href="javascript:;" class="button button-raised button-royal" id="RoomExmineBaoc">保存</a>
+                                    <a href="javascript:;" class="button button-raised button-royal" id="RoomExminetijiao">提交</a>
+                             
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <input type="hidden" id="userId" value="" name="UserID" />
+
+                </div>
+            </form>
+        </div>
+        </div>
+
+
+
+    <script src="../js/jquery-3.3.0.min.js"></script>
+    <script src="../js/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

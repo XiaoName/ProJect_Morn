@@ -45,6 +45,7 @@
     <Compile Include="CX\ModifyLoginPwdBLL.cs" />
     <Compile Include="CX\OlineBLL.cs" />
     <Compile Include="CX\OnlineInformationBLL.cs" />
+    <Compile Include="CX\PersonalInformationBLL.cs" />
     <Compile Include="CX\PositionTableBLL.cs" />
     <Compile Include="CX\RoomManageBLL.cs" />
     <Compile Include="CX\WorkOrderBLL.cs" />
